@@ -1221,6 +1221,24 @@ const CH_COLORS = {
 // ===== IN-MEMORY DATA (no localStorage) =====
 let db = { staff: [], prog: {} };
 
+// Normalize Firebase data (Firebase converts arrays to indexed objects)
+function normalizeFbData(data) {
+  if (!data) return { staff: [], prog: {} };
+  const result = { staff: [], prog: {} };
+  if (data.staff) {
+    result.staff = Array.isArray(data.staff) ? data.staff : Object.values(data.staff);
+  }
+  if (data.prog) {
+    Object.keys(data.prog).forEach(name => {
+      const p = data.prog[name];
+      if (Array.isArray(p)) result.prog[name] = p;
+      else if (typeof p === 'object') result.prog[name] = Object.values(p).map(Number);
+      else result.prog[name] = [];
+    });
+  }
+  return result;
+}
+
 // Firebase-backed save/load with localStorage fallback
 function save() {
   if (window.fbSave) {
@@ -1229,10 +1247,12 @@ function save() {
   try { localStorage.setItem('e1sq4', JSON.stringify(db)); } catch(e) {}
 }
 function load() {
-  // Try localStorage first for instant load
   try {
     const s = localStorage.getItem('e1sq4');
-    if (s) db = JSON.parse(s);
+    if (s) {
+      const parsed = JSON.parse(s);
+      db = normalizeFbData(parsed);
+    }
   } catch(e) {}
 }
 load();
@@ -1246,14 +1266,11 @@ let modalTarget = '';
 // When Firebase is ready, merge with Firebase data (Firebase wins)
 window._onFbReady = function(fbData) {
   if (fbData) {
-    db = fbData;
-    // Update localStorage too
+    db = normalizeFbData(fbData);
     try { localStorage.setItem('e1sq4', JSON.stringify(db)); } catch(e) {}
-    // Re-render if prog panel is open
     if (document.getElementById('prog-panel').classList.contains('show')) {
       renderView(currentView);
     }
-    // Update user badge if logged in
     if (currentUser) {
       const badge = document.getElementById('current-user-badge');
       if (badge) badge.textContent = currentUser + ' さん';
@@ -1266,7 +1283,7 @@ setTimeout(() => {
   if (window.fbListen) {
     window.fbListen(function(fbData) {
       if (fbData) {
-        db = fbData;
+        db = normalizeFbData(fbData);
         try { localStorage.setItem('e1sq4', JSON.stringify(db)); } catch(e) {}
         if (document.getElementById('prog-panel').classList.contains('show')) {
           renderView(currentView);
