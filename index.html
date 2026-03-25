@@ -1384,7 +1384,7 @@ function buildListHTML() {
   if(staff.length===0){
     html += '<div class="pp-empty"><div class="pp-empty-icon">&#128100;</div><div class="pp-empty-text">まだ職員が登録されていません。<br>下の「名前を追加する」から追加してください。</div></div>';
   } else {
-    staff.forEach(name=>{
+    staff.forEach((name,ni)=>{
       const p=getProg(name), pct=Math.round(p.length/TOTAL*100), done=pct===100;
       html += '<div class="pn-item">';
       html += '<div class="pn-main" onclick="selectUser(getStaff()['+ni+'])">';
