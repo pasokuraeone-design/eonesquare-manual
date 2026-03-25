@@ -1237,6 +1237,12 @@ function load() {
 }
 load();
 
+// ===== STATE VARIABLES (declared early to avoid hoisting issues) =====
+let currentUser = '';
+let currentView = 'list';
+let modalMode = 'add';
+let modalTarget = '';
+
 // When Firebase is ready, merge with Firebase data (Firebase wins)
 window._onFbReady = function(fbData) {
   if (fbData) {
@@ -1336,10 +1342,6 @@ document.addEventListener('keydown', e => {
 updateUI();
 
 // ===== PROGRESS PANEL =====
-let currentUser = '';
-let currentView = 'list'; // 'list' | 'study' | 'admin'
-let modalMode = 'add';
-let modalTarget = '';
 
 function showProg() {
   document.getElementById('prog-panel').classList.add('show');
