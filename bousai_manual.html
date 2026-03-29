@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>防災マニュアル｜イーワンスクエア</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #c0392b;
+  --red-light: #fdf0ee;
+  --red-mid: #e74c3c;
+  --orange: #e67e22;
+  --orange-light: #fef5ec;
+  --yellow: #f39c12;
+  --yellow-light: #fefae8;
+  --green: #27ae60;
+  --green-light: #eafaf1;
+  --blue: #2980b9;
+  --blue-light: #eaf4fb;
+  --gray: #7f8c8d;
+  --dark: #2c3e50;
+  --bg: #f8f9fa;
+  --white: #ffffff;
+  --border: #e0e0e0;
+  --shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--bg);
+  color: var(--dark);
+  line-height: 1.7;
+  padding-bottom: 60px;
+}
+
+/* === TOP HERO === */
+.hero {
+  background: var(--dark);
+  color: white;
+  padding: 32px 24px 28px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 200px; height: 100%;
+  background: linear-gradient(135deg, transparent 50%, rgba(192,57,43,0.3) 50%);
+}
+.hero-org {
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 6px;
+}
+.hero-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.hero-sub {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.6);
+}
+.hero-badge {
+  display: inline-block;
+  background: var(--red);
+  color: white;
+  font-size: 0.68rem;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-top: 12px;
+  letter-spacing: 0.06em;
+}
+
+/* === NAV === */
+.nav {
+  background: white;
+  border-bottom: 2px solid var(--red);
+  padding: 0 16px;
+  overflow-x: auto;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow);
+}
+.nav-inner {
+  display: inline-flex;
+  gap: 0;
+}
+.nav a {
+  display: inline-block;
+  padding: 14px 16px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--gray);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.nav a:hover { color: var(--red); border-bottom-color: var(--red); }
+
+/* === MAIN === */
+.main { max-width: 860px; margin: 0 auto; padding: 24px 16px; }
+
+/* === SECTION === */
+.section { margin-bottom: 32px; }
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--border);
+}
+.section-num {
+  width: 32px; height: 32px;
+  background: var(--dark);
+  color: white;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.section-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+/* === ALERT LEVEL === */
+.level-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.level-card {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.level-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 8px;
+  color: white;
+  font-weight: 700;
+  font-size: 0.72rem;
+  text-align: center;
+  line-height: 1.4;
+}
+.level-badge .num { font-size: 1.4rem; line-height: 1; }
+.level-body {
+  background: white;
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+}
+.level-trigger { font-size: 0.78rem; color: var(--gray); margin-bottom: 4px; }
+.level-action { font-size: 0.88rem; font-weight: 500; }
+.lv1 { background: #3498db; }
+.lv2 { background: #f1c40f; color: #333; }
+.lv3 { background: #e67e22; }
+.lv4 { background: #e74c3c; }
+.lv5 { background: #8e44ad; }
+
+/* === HOUSE CARDS === */
+.house-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+@media(max-width:600px){ .house-grid { grid-template-columns: 1fr; } }
+
+.house-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.house-header {
+  padding: 14px 18px;
+  color: white;
+  font-weight: 700;
+}
+.house-header.yamade { background: linear-gradient(135deg, #27ae60, #2ecc71); }
+.house-header.shinkamino { background: linear-gradient(135deg, #e67e22, #f39c12); }
+.house-name { font-size: 1rem; }
+.house-addr { font-size: 0.72rem; opacity: 0.85; margin-top: 2px; }
+.house-body { padding: 16px 18px; }
+
+.risk-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.83rem;
+}
+.risk-row:last-child { border-bottom: none; }
+.risk-label { flex: 1; color: var(--gray); }
+.risk-badge {
+  font-size: 0.72rem;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+.risk-low { background: var(--green-light); color: var(--green); }
+.risk-mid { background: var(--yellow-light); color: #b7770d; }
+.risk-high { background: var(--red-light); color: var(--red); }
+
+.evac-box {
+  margin-top: 12px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border-radius: 8px;
+  border-left: 3px solid var(--blue);
+}
+.evac-label { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--gray); margin-bottom: 4px; }
+.evac-name { font-size: 0.92rem; font-weight: 700; color: var(--dark); }
+.evac-addr { font-size: 0.72rem; color: var(--gray); }
+.evac-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 8px;
+}
+.feat {
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 20px;
+  background: var(--blue-light);
+  color: var(--blue);
+}
+
+/* === TIMELINE === */
+.timeline {
+  position: relative;
+  padding-left: 32px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 12px; top: 0; bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+.tl-item {
+  position: relative;
+  margin-bottom: 16px;
+  background: white;
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -26px; top: 18px;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--dark);
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px var(--dark);
+}
+.tl-step {
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--gray);
+  margin-bottom: 3px;
+  text-transform: uppercase;
+}
+.tl-title {
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 4px;
+}
+.tl-body { font-size: 0.82rem; color: #555; line-height: 1.7; }
+.tl-item.urgent { border-left: 4px solid var(--red); }
+.tl-item.urgent::before { background: var(--red); box-shadow: 0 0 0 2px var(--red); }
+
+/* === CHECKLIST === */
+.check-group {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+  margin-bottom: 12px;
+}
+.check-group-title {
+  padding: 10px 16px;
+  background: var(--dark);
+  color: white;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+}
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+}
+.check-item:last-child { border-bottom: none; }
+.check-item input { margin-top: 3px; accent-color: var(--dark); }
+
+/* === CONTACTS === */
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+.contact-card {
+  background: white;
+  border-radius: 10px;
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.contact-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  color: var(--gray);
+  margin-bottom: 4px;
+}
+.contact-name { font-weight: 700; font-size: 0.88rem; margin-bottom: 4px; }
+.contact-tel {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--red);
+  letter-spacing: 0.05em;
+}
+.contact-card.emerg { border-top: 3px solid var(--red); }
+.contact-card.life { border-top: 3px solid var(--blue); }
+.contact-card.facility { border-top: 3px solid var(--green); }
+
+/* === ROLE TABLE === */
+.role-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  font-size: 0.83rem;
+}
+.role-table th {
+  background: var(--dark);
+  color: white;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+}
+.role-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  line-height: 1.6;
+}
+.role-table tr:last-child td { border-bottom: none; }
+.role-table tr:nth-child(even) td { background: var(--bg); }
+
+/* === INFO BOX === */
+.info-box {
+  background: var(--blue-light);
+  border: 1px solid #aed6f1;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+  line-height: 1.8;
+}
+.warn-box {
+  background: var(--red-light);
+  border: 1px solid #f1948a;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 0.82rem;
+  margin-bottom: 12px;
+  line-height: 1.8;
+}
+.warn-box strong, .info-box strong { display: block; margin-bottom: 4px; font-size: 0.88rem; }
+
+/* === FOOTER === */
+.footer {
+  text-align: center;
+  padding: 24px;
+  color: var(--gray);
+  font-size: 0.72rem;
+  border-top: 1px solid var(--border);
+  margin-top: 40px;
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-org">イーワンスクエア　共同生活援助</div>
+  <div class="hero-title">非常災害対策マニュアル</div>
+  <div class="hero-sub">山手・新神野 両住居共通</div>
+  <div class="hero-badge">令和7年度版</div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#risk">①リスク</a>
+    <a href="#level">②警戒レベル</a>
+    <a href="#action">③避難行動</a>
+    <a href="#role">④役割分担</a>
+    <a href="#items">⑤持ち出し品</a>
+    <a href="#contacts">⑥緊急連絡先</a>
+    <a href="#infection">⑦感染症</a>
+    <a href="#checklist">⑧日常点検</a>
+  </div>
+</nav>
+
+<div class="main">
+
+<!-- ① リスク -->
+<div class="section" id="risk">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">住居別リスクと避難先</div>
+  </div>
+  <div class="house-grid">
+
+    <!-- 山手 -->
+    <div class="house-card">
+      <div class="house-header yamade">
+        <div class="house-name">🏠 山手住居</div>
+        <div class="house-addr">加古川市山手2丁目25-11</div>
+      </div>
+      <div class="house-body">
+        <div class="risk-row"><span class="risk-label">🌊 洪水</span><span class="risk-badge risk-low">リスク低</span></div>
+        <div class="risk-row"><span class="risk-label">⛰ 土砂災害</span><span class="risk-badge risk-mid">要注意</span></div>
+        <div class="risk-row"><span class="risk-label">🌏 地震</span><span class="risk-badge risk-mid">要注意</span></div>
+        <div class="risk-row"><span class="risk-label">🌊 高潮・津波</span><span class="risk-badge risk-low">リスク低</span></div>
+        <div class="evac-box">
+          <div class="evac-label">最寄り指定緊急避難場所</div>
+          <div class="evac-name">北山公園</div>
+          <div class="evac-addr">加古川市西条山手2丁目28</div>
+          <div class="evac-features">
+            <span class="feat">地震対応</span>
+            <span class="feat">洪水対応</span>
+            <span class="feat">土砂災害対応</span>
+            <span class="feat">ペット同行可</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 新神野 -->
+    <div class="house-card">
+      <div class="house-header shinkamino">
+        <div class="house-name">🏠 新神野住居</div>
+        <div class="house-addr">加古川市新神野6丁目13-12</div>
+      </div>
+      <div class="house-body">
+        <div class="risk-row"><span class="risk-label">🌊 洪水</span><span class="risk-badge risk-high">⚠ 要注意（0.5〜3m）</span></div>
+        <div class="risk-row"><span class="risk-label">⛰ 土砂災害</span><span class="risk-badge risk-low">リスク低</span></div>
+        <div class="risk-row"><span class="risk-label">🌏 地震</span><span class="risk-badge risk-mid">要注意</span></div>
+        <div class="risk-row"><span class="risk-label">🌊 高潮・津波</span><span class="risk-badge risk-low">リスク低</span></div>
+        <div class="evac-box">
+          <div class="evac-label">最寄り指定緊急避難場所</div>
+          <div class="evac-name">陵北小学校</div>
+          <div class="evac-addr">加古川市新神野5丁目1</div>
+          <div class="evac-features">
+            <span class="feat">地震対応</span>
+            <span class="feat">洪水対応（2階以上）</span>
+            <span class="feat">エアコン</span>
+            <span class="feat">ペット同行可</span>
+            <span class="feat">食料備蓄あり</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="warn-box" style="margin-top:16px;">
+    <strong>⚠ 新神野住居は洪水に特に注意！</strong>
+    加古川本流が近く、想定最大規模の洪水では0.5〜3.0mの浸水が想定されています。警戒レベル3（高齢者等避難）の段階で早めの避難行動を開始してください。
+  </div>
+</div>
+
+<!-- ② 警戒レベル -->
+<div class="section" id="level">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">警戒レベルと行動基準</div>
+  </div>
+  <div class="level-grid">
+    <div class="level-card">
+      <div class="level-badge lv1"><span class="num">1</span>注意</div>
+      <div class="level-body">
+        <div class="level-trigger">早期注意情報・気象注意報発表</div>
+        <div class="level-action">情報収集開始。テレビ・加古川市防災ポータル確認。</div>
+      </div>
+    </div>
+    <div class="level-card">
+      <div class="level-badge lv2"><span class="num">2</span>確認</div>
+      <div class="level-body">
+        <div class="level-trigger">大雨・洪水注意報発表</div>
+        <div class="level-action">避難の準備開始。持ち出し品を確認。利用者・家族へ状況共有。</div>
+      </div>
+    </div>
+    <div class="level-card">
+      <div class="level-badge lv3"><span class="num">3</span>準備</div>
+      <div class="level-body">
+        <div class="level-trigger">高齢者等避難 発令</div>
+        <div class="level-action">【新神野】直ちに避難開始。【山手】状況確認し準備。障害のある利用者は優先して避難誘導。</div>
+      </div>
+    </div>
+    <div class="level-card">
+      <div class="level-badge lv4"><span class="num">4</span>避難</div>
+      <div class="level-body">
+        <div class="level-trigger">避難指示 発令</div>
+        <div class="level-action">【全住居】危険な場所から全員避難。避難先へ移動。管理者へ報告。</div>
+      </div>
+    </div>
+    <div class="level-card">
+      <div class="level-badge lv5"><span class="num">5</span>緊急</div>
+      <div class="level-body">
+        <div class="level-trigger">緊急安全確保 発令</div>
+        <div class="level-action">避難が困難な場合は建物2階以上へ垂直避難。命を守る行動を最優先。</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ③ 避難行動 -->
+<div class="section" id="action">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">避難行動の手順</div>
+  </div>
+
+  <div class="info-box">
+    <strong>加古川市防災情報の確認先</strong>
+    加古川市防災ポータル：https://www.kakogawa-bousai.jp/<br>
+    加古川市役所（代表）：079-421-2000<br>
+    防災ネットかこがわ：kakogawa@bosai.net に空メール登録で情報受信
+  </div>
+
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-step">Step 1</div>
+      <div class="tl-title">情報収集</div>
+      <div class="tl-body">テレビ・スマートフォンで気象情報・避難情報を確認。加古川市防災ポータルで警戒レベルを確認する。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-step">Step 2</div>
+      <div class="tl-title">管理者への報告・指示確認</div>
+      <div class="tl-body">警戒レベル3以上が発令されたら、管理者（藤田）へ即時連絡。避難するか否かの判断を仰ぐ。</div>
+    </div>
+    <div class="tl-item urgent">
+      <div class="tl-step">Step 3（緊急）</div>
+      <div class="tl-title">利用者への説明と準備</div>
+      <div class="tl-body">利用者にわかりやすい言葉で状況を説明。不安を与えないよう落ち着いた対応を心がける。持ち出し品・薬を準備。</div>
+    </div>
+    <div class="tl-item urgent">
+      <div class="tl-step">Step 4（緊急）</div>
+      <div class="tl-title">避難誘導</div>
+      <div class="tl-body">
+        <b>【山手】</b>北山公園へ徒歩で避難。<br>
+        <b>【新神野】</b>陵北小学校へ徒歩で避難（洪水時は早めに！）。<br>
+        ※夜間・雨天時は懐中電灯を使用。車での移動は浸水状況を確認してから判断。
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-step">Step 5</div>
+      <div class="tl-title">避難後の対応</div>
+      <div class="tl-body">避難所受付で「障害者グループホームの避難」と伝える。利用者の人数・状況を確認し、管理者・家族へ報告。服薬管理を継続する。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-step">Step 6</div>
+      <div class="tl-title">帰宅・施設確認</div>
+      <div class="tl-body">避難情報が解除されたことを確認してから帰宅。施設の安全確認（浸水・損傷等）を行い、管理者へ報告する。</div>
+    </div>
+  </div>
+</div>
+
+<!-- ④ 役割分担 -->
+<div class="section" id="role">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">災害時の職員役割分担</div>
+  </div>
+  <table class="role-table">
+    <thead>
+      <tr>
+        <th>役割</th>
+        <th>担当</th>
+        <th>主な業務</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><b>統括責任者</b></td>
+        <td>管理者（藤田）</td>
+        <td>全体指揮・避難判断・行政・家族への連絡</td>
+      </tr>
+      <tr>
+        <td><b>現場リーダー</b></td>
+        <td>勤務中の世話人リーダー</td>
+        <td>利用者の安全確認・避難誘導の指揮・管理者への報告</td>
+      </tr>
+      <tr>
+        <td><b>利用者支援</b></td>
+        <td>全職員</td>
+        <td>利用者への説明・持ち物準備・移動介助・服薬管理</td>
+      </tr>
+      <tr>
+        <td><b>情報収集</b></td>
+        <td>勤務者の1名</td>
+        <td>テレビ・スマートフォンで気象・避難情報を継続収集</td>
+      </tr>
+      <tr>
+        <td><b>記録担当</b></td>
+        <td>勤務者の1名</td>
+        <td>避難開始時刻・人数・状況を記録。家族への連絡状況も記録。</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="info-box" style="margin-top:12px;">
+    <strong>夜間・休日の対応</strong>
+    夜間帯に宿直者1名のみの場合でも、まず利用者の安全確保を最優先。すぐに管理者へ連絡し指示を仰ぐ。一人での対応に限界を感じたら迷わず119番・110番へ。
+  </div>
+</div>
+
+<!-- ⑤ 持ち出し品 -->
+<div class="section" id="items">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">非常持ち出し品チェックリスト</div>
+  </div>
+  <div class="check-group">
+    <div class="check-group-title">🆔 書類・お金</div>
+    <div class="check-item"><input type="checkbox">利用者の個人ファイル（緊急連絡先・医療情報）</div>
+    <div class="check-item"><input type="checkbox">施設の保険証・受給者証のコピー</div>
+    <div class="check-item"><input type="checkbox">現金（小銭含む）</div>
+    <div class="check-item"><input type="checkbox">職員の身分証</div>
+  </div>
+  <div class="check-group">
+    <div class="check-group-title">💊 医療・衛生</div>
+    <div class="check-item"><input type="checkbox">全利用者分の服薬（最低3日分）と服薬表</div>
+    <div class="check-item"><input type="checkbox">お薬手帳（各自）</div>
+    <div class="check-item"><input type="checkbox">救急セット（絆創膏・消毒液・体温計）</div>
+    <div class="check-item"><input type="checkbox">マスク・消毒液</div>
+    <div class="check-item"><input type="checkbox">生理用品・オムツ等（必要な利用者分）</div>
+  </div>
+  <div class="check-group">
+    <div class="check-group-title">🔦 防災用品</div>
+    <div class="check-item"><input type="checkbox">懐中電灯と予備電池</div>
+    <div class="check-item"><input type="checkbox">携帯ラジオ</div>
+    <div class="check-item"><input type="checkbox">モバイルバッテリー（充電済み）</div>
+    <div class="check-item"><input type="checkbox">ビニール袋・レジャーシート</div>
+    <div class="check-item"><input type="checkbox">軍手・雨具</div>
+  </div>
+  <div class="check-group">
+    <div class="check-group-title">🍱 食料・水</div>
+    <div class="check-item"><input type="checkbox">飲料水（1人1日3L目安、最低1日分）</div>
+    <div class="check-item"><input type="checkbox">非常食（アレルギー・食形態を考慮）</div>
+  </div>
+  <div class="check-group">
+    <div class="check-group-title">👕 衣類・生活</div>
+    <div class="check-item"><input type="checkbox">着替え（最低1日分）</div>
+    <div class="check-item"><input type="checkbox">タオル・ウェットティッシュ</div>
+    <div class="check-item"><input type="checkbox">スリッパ（ガラス片対策）</div>
+  </div>
+</div>
+
+<!-- ⑥ 緊急連絡先 -->
+<div class="section" id="contacts">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div class="section-title">緊急連絡先一覧</div>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-card emerg">
+      <div class="contact-label">救急・火災</div>
+      <div class="contact-name">消防・救急</div>
+      <div class="contact-tel">119</div>
+    </div>
+    <div class="contact-card emerg">
+      <div class="contact-label">警察</div>
+      <div class="contact-name">警察</div>
+      <div class="contact-tel">110</div>
+    </div>
+    <div class="contact-card emerg">
+      <div class="contact-label">加古川市消防本部</div>
+      <div class="contact-name">中央消防署</div>
+      <div class="contact-tel">079-427-0119</div>
+    </div>
+    <div class="contact-card emerg">
+      <div class="contact-label">加古川警察署</div>
+      <div class="contact-name">加古川警察署</div>
+      <div class="contact-tel">079-427-0110</div>
+    </div>
+    <div class="contact-card life">
+      <div class="contact-label">加古川市役所（代表）</div>
+      <div class="contact-name">加古川市役所</div>
+      <div class="contact-tel">079-421-2000</div>
+    </div>
+    <div class="contact-card life">
+      <div class="contact-label">電気（停電）</div>
+      <div class="contact-name">関西電力送配電</div>
+      <div class="contact-tel">0800-777-3081</div>
+    </div>
+    <div class="contact-card life">
+      <div class="contact-label">ガス漏れ</div>
+      <div class="contact-name">大阪ガス（ガス漏れ専用）</div>
+      <div class="contact-tel">0120-7-19424</div>
+    </div>
+    <div class="contact-card life">
+      <div class="contact-label">電話故障</div>
+      <div class="contact-name">NTT（電話故障）</div>
+      <div class="contact-tel">113</div>
+    </div>
+    <div class="contact-card facility">
+      <div class="contact-label">管理者（緊急時）</div>
+      <div class="contact-name">藤田（管理者）</div>
+      <div class="contact-tel">※別途記入</div>
+    </div>
+    <div class="contact-card facility">
+      <div class="contact-label">サービス管理責任者</div>
+      <div class="contact-name">サビ管</div>
+      <div class="contact-tel">※別途記入</div>
+    </div>
+  </div>
+  <div class="info-box" style="margin-top:12px;">
+    <strong>災害用伝言ダイヤル</strong>
+    171（録音）→ 1 → 自分の電話番号を入力 → 30秒以内で録音<br>
+    171（再生）→ 2 → 相手の電話番号を入力 → 再生
+  </div>
+</div>
+
+<!-- ⑦ 感染症対応 -->
+<div class="section" id="infection">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <div class="section-title">感染症・嘔吐発生時の対応</div>
+  </div>
+  <div class="warn-box">
+    <strong>⚠ 嘔吐物処理は必ず手順通りに！</strong>
+    素手で触れない。換気を最優先。処理後は必ず手洗い・うがいを行う。
+  </div>
+  <div class="timeline">
+    <div class="tl-item urgent">
+      <div class="tl-step">発生直後</div>
+      <div class="tl-title">換気・隔離</div>
+      <div class="tl-body">窓を開け換気。他の利用者をその場から離す。ドアを閉め二次感染を防ぐ。</div>
+    </div>
+    <div class="tl-item urgent">
+      <div class="tl-step">処理</div>
+      <div class="tl-title">嘔吐物の処理</div>
+      <div class="tl-body">
+        ① 使い捨て手袋・マスク・エプロンを着用<br>
+        ② ペーパータオル等で外側から内側に向けてふき取る<br>
+        ③ 次亜塩素酸ナトリウム（0.1%）で消毒（床・ドアノブ・トイレ）<br>
+        ④ 処理に使ったものはビニール袋に入れて口を閉じて廃棄<br>
+        ⑤ 手袋を外し、石けんで手洗い30秒以上
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-step">報告</div>
+      <div class="tl-title">管理者・関係機関へ連絡</div>
+      <div class="tl-body">管理者へ報告。複数人に症状が出た場合は市保健所へ連絡。利用者の家族へも状況を報告する。</div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-step">継続対応</div>
+      <div class="tl-title">健康観察・記録</div>
+      <div class="tl-body">発症者・接触者の健康状態を48時間観察。体温・症状を記録する。必要に応じて医療機関を受診。</div>
+    </div>
+  </div>
+  <div class="check-group" style="margin-top:12px;">
+    <div class="check-group-title">🧴 感染症対応用品の備蓄確認</div>
+    <div class="check-item"><input type="checkbox">使い捨て手袋（サイズ各種）</div>
+    <div class="check-item"><input type="checkbox">使い捨てマスク</div>
+    <div class="check-item"><input type="checkbox">使い捨てエプロン</div>
+    <div class="check-item"><input type="checkbox">次亜塩素酸ナトリウム（家庭用漂白剤）</div>
+    <div class="check-item"><input type="checkbox">ペーパータオル</div>
+    <div class="check-item"><input type="checkbox">ビニール袋（大・小）</div>
+    <div class="check-item"><input type="checkbox">アルコール消毒液</div>
+  </div>
+</div>
+
+<!-- ⑧ 日常点検 -->
+<div class="section" id="checklist">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <div class="section-title">日常の防災点検チェックリスト</div>
+  </div>
+  <div class="check-group">
+    <div class="check-group-title">📅 月1回の確認事項</div>
+    <div class="check-item"><input type="checkbox">非常持ち出し品の場所・数量を確認した</div>
+    <div class="check-item"><input type="checkbox">消火器の設置場所・使用期限を確認した</div>
+    <div class="check-item"><input type="checkbox">避難経路に障害物がないか確認した</div>
+    <div class="check-item"><input type="checkbox">利用者の緊急連絡先（家族）を確認した</div>
+    <div class="check-item"><input type="checkbox">モバイルバッテリーを充電した</div>
+  </div>
+  <div class="check-group">
+    <div class="check-group-title">📅 年2回の確認事項（4月・10月）</div>
+    <div class="check-item"><input type="checkbox">避難訓練を実施した（夜間想定含む）</div>
+    <div class="check-item"><input type="checkbox">避難所（北山公園・陵北小学校）までの経路を実際に歩いた</div>
+    <div class="check-item"><input type="checkbox">非常食・飲料水の賞味期限を確認・補充した</div>
+    <div class="check-item"><input type="checkbox">服薬等の情報が最新かどうか確認した</div>
+    <div class="check-item"><input type="checkbox">感染症対応用品の在庫を補充した</div>
+    <div class="check-item"><input type="checkbox">職員全員がこのマニュアルを読んだか確認した</div>
+  </div>
+  <div class="check-group">
+    <div class="check-group-title">📱 スマートフォンに登録しておくこと</div>
+    <div class="check-item"><input type="checkbox">加古川市防災ポータル（https://www.kakogawa-bousai.jp/）をブックマーク</div>
+    <div class="check-item"><input type="checkbox">防災ネットかこがわにメール登録済み</div>
+    <div class="check-item"><input type="checkbox">ひょうご防災ネットアプリをインストール済み</div>
+  </div>
+</div>
+
+</div><!-- /main -->
+
+<div class="footer">
+  イーワンスクエア 非常災害対策マニュアル｜令和7年度版<br>
+  作成・管理：管理者　藤田　／　更新時は全職員への周知を徹底してください
+</div>
+
+</body>
+</html>
