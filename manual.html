@@ -72,8 +72,8 @@ tr:nth-child(even) td{background:#F5F9FD;}
 .step-list{margin:14px 0;}
 .step-item{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start;}
 .step-num{background:var(--p);color:white;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0;margin-top:2px;}
-.step-body{flex:1;font-size:.89rem;line-height:1.7;}
-.step-body strong{color:var(--p);display:block;margin-bottom:3px;}
+.step-{flex:1;font-size:.89rem;line-height:1.7;}
+.step- strong{color:var(--p);display:block;margin-bottom:3px;}
 .tr-row{display:flex;gap:0;margin-bottom:5px;}
 .tr-t{background:var(--p);color:white;font-weight:700;font-size:.83rem;padding:9px 12px;border-radius:8px 0 0 8px;min-width:68px;display:flex;align-items:center;justify-content:center;}
 .tr-c{flex:1;background:#F5F9FD;border:1px solid var(--bd);border-radius:0 8px 8px 0;padding:9px 13px;font-size:.86rem;line-height:1.65;}
@@ -121,7 +121,7 @@ tr:nth-child(even) td{background:#F5F9FD;}
   font-size:.85rem;font-family:'Noto Sans JP',sans-serif;
 }
 .pp-close:hover{background:rgba(255,255,255,.25);}
-.pp-body{max-width:600px;margin:0 auto;padding:32px 20px 60px;}
+.pp-{max-width:600px;margin:0 auto;padding:32px 20px 60px;}
 .pp-title{color:white;font-family:'Noto Serif JP',serif;font-size:1.5rem;text-align:center;margin-bottom:6px;}
 .pp-sub{color:rgba(255,255,255,.5);font-size:.85rem;text-align:center;margin-bottom:28px;}
 
@@ -220,7 +220,7 @@ tr:nth-child(even) td{background:#F5F9FD;}
 .av-reset{background:none;border:1px solid rgba(255,255,255,.14);border-radius:5px;color:rgba(255,255,255,.35);cursor:pointer;font-size:.73rem;padding:2px 8px;font-family:'Noto Sans JP',sans-serif;}
 .av-reset:hover{color:#FF8A80;border-color:#E57373;}
 
-/* inline modal - shown inside pp-body */
+/* inline modal - shown inside pp- */
 #pp-modal{
   display:none;position:fixed;inset:0;
   background:rgba(0,0,0,.8);z-index:1100;
@@ -328,7 +328,7 @@ const firebaseConfig = {
 </script>
 </head>
 <body>
-<div style="background:#0d1117;padding:10px 20px;border-bottom:1px solid #272e3d;">
+<div style="background:#0d1117;padding:12px 20px 10px;border-bottom:1px solid #272e3d;position:relative;z-index:200;">
   <a href="./index.html" style="color:#3ddc84;font-size:0.78rem;text-decoration:none;display:inline-flex;align-items:center;gap:6px;font-family:'Noto Sans JP',sans-serif;letter-spacing:0.06em;">
     ← イーワンスクエア ポータルに戻る
   </a>
