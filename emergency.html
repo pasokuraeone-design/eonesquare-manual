@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>緊急時対応フローチャート｜イーワンスクエア</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap');
+:root {
+  --p:#2C5F8A; --pl:#4A8BBD; --a:#E8834A; --al:#F5A878;
+  --bg:#F7F9FC; --card:#fff; --t:#1A2D3E; --tl:#5A7A92; --bd:#D8E6F0;
+  --ok:#3A9B6F; --wn:#D4700A; --dn:#C0392B;
+  --ok-bg:#EEF8F3; --wn-bg:#FEF6F0; --dn-bg:#FDF0EF; --p-bg:#EAF2FA;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t);min-height:100vh;padding-bottom:40px;}
+
+/* HEADER */
+.page-header{background:linear-gradient(135deg,var(--p),var(--pl));color:white;padding:0;}
+.back-bar{padding:10px 20px;border-bottom:1px solid rgba(255,255,255,.15);}
+.back-link{color:rgba(255,255,255,.75);font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border:1px solid rgba(255,255,255,.25);border-radius:20px;transition:.2s;}
+.back-link:hover{color:white;background:rgba(255,255,255,.12);}
+.header-body{padding:20px 20px 24px;}
+.header-label{font-size:.68rem;letter-spacing:.2em;color:rgba(255,255,255,.6);margin-bottom:6px;}
+.header-title{font-family:'Noto Serif JP',serif;font-size:1.4rem;font-weight:700;margin-bottom:4px;}
+.header-sub{font-size:.78rem;color:rgba(255,255,255,.65);}
+
+/* SCENE TABS */
+.scene-nav{background:var(--p);padding:0 16px;display:flex;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch;border-top:1px solid rgba(255,255,255,.1);}
+.scene-btn{flex-shrink:0;padding:11px 16px;font-size:.78rem;font-weight:700;color:rgba(255,255,255,.55);background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;white-space:nowrap;font-family:'Noto Sans JP',sans-serif;transition:.2s;}
+.scene-btn:hover{color:rgba(255,255,255,.85);}
+.scene-btn.active{color:white;border-bottom-color:var(--a);}
+
+/* MAIN */
+.main{max-width:720px;margin:0 auto;padding:24px 16px;}
+.scene-panel{display:none;}
+.scene-panel.active{display:block;}
+
+/* SCENE HEADER */
+.scene-header{display:flex;align-items:center;gap:14px;margin-bottom:20px;padding:18px 20px;background:var(--card);border-radius:14px;border:1px solid var(--bd);box-shadow:0 2px 8px rgba(44,95,138,.07);}
+.scene-icon{font-size:2rem;width:52px;height:52px;display:flex;align-items:center;justify-content:center;border-radius:12px;flex-shrink:0;}
+.scene-icon.red{background:var(--dn-bg);}
+.scene-icon.orange{background:var(--wn-bg);}
+.scene-icon.blue{background:var(--p-bg);}
+.scene-icon.green{background:var(--ok-bg);}
+.scene-name{font-family:'Noto Serif JP',serif;font-size:1.15rem;font-weight:700;color:var(--p);}
+.scene-desc{font-size:.8rem;color:var(--tl);margin-top:3px;line-height:1.6;}
+
+/* FLOW */
+.flow{display:flex;flex-direction:column;gap:0;}
+.flow-step{position:relative;padding-left:52px;padding-bottom:8px;}
+.flow-step:last-child{padding-bottom:0;}
+.flow-step:not(:last-child)::before{content:'';position:absolute;left:19px;top:40px;bottom:0;width:2px;background:var(--bd);}
+
+.step-circle{position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0;border:2px solid;}
+.step-circle.red{background:var(--dn-bg);color:var(--dn);border-color:var(--dn);}
+.step-circle.orange{background:var(--wn-bg);color:var(--wn);border-color:var(--a);}
+.step-circle.blue{background:var(--p-bg);color:var(--p);border-color:var(--pl);}
+.step-circle.green{background:var(--ok-bg);color:var(--ok);border-color:var(--ok);}
+.step-circle.gray{background:#f0f3f6;color:var(--tl);border-color:#c0ccd8;}
+
+.step-body{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px 16px;margin-bottom:10px;box-shadow:0 1px 4px rgba(44,95,138,.05);}
+.step-body.urgent{border-color:var(--dn);background:var(--dn-bg);}
+.step-body.warn{border-color:var(--a);background:var(--wn-bg);}
+.step-body.ok{border-color:var(--ok);background:var(--ok-bg);}
+.step-body.info{border-color:var(--pl);background:var(--p-bg);}
+
+.step-title{font-weight:700;font-size:.92rem;margin-bottom:5px;display:flex;align-items:center;gap:6px;}
+.step-detail{font-size:.83rem;color:var(--tl);line-height:1.75;}
+.step-detail ul{padding-left:0;margin-top:4px;}
+.step-detail ul li{list-style:none;padding:2px 0 2px 14px;position:relative;}
+.step-detail ul li::before{content:'・';position:absolute;left:0;color:var(--pl);}
+
+/* BRANCH */
+.branch{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 10px 52px;}
+.branch-box{border-radius:10px;padding:12px 14px;border:1px solid var(--bd);font-size:.82rem;}
+.branch-box .bh{font-weight:700;margin-bottom:5px;font-size:.8rem;}
+.branch-box.yes{background:var(--ok-bg);border-color:var(--ok);}
+.branch-box.yes .bh{color:var(--ok);}
+.branch-box.no{background:var(--wn-bg);border-color:var(--a);}
+.branch-box.no .bh{color:var(--wn);}
+
+/* CONTACT BOX */
+.contact-box{background:linear-gradient(135deg,#EAF2FA,#EEF8F3);border:2px solid var(--p);border-radius:14px;padding:16px 20px;text-align:center;margin:20px 0 0;}
+.contact-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;color:var(--tl);margin-bottom:6px;}
+.contact-name{font-size:.95rem;font-weight:700;color:var(--p);margin-bottom:2px;}
+.contact-tel{font-size:1.4rem;font-weight:700;color:var(--a);letter-spacing:.05em;}
+.contact-tel a{color:inherit;text-decoration:none;}
+.contact-note{font-size:.75rem;color:var(--tl);margin-top:5px;}
+
+/* ALERT BANNER */
+.alert{padding:12px 16px;border-radius:10px;font-size:.83rem;margin-bottom:16px;border-left:4px solid;line-height:1.7;}
+.alert.red{background:var(--dn-bg);border-color:var(--dn);color:var(--dn);}
+.alert.orange{background:var(--wn-bg);border-color:var(--a);color:var(--wn);}
+.alert.blue{background:var(--p-bg);border-color:var(--pl);color:var(--p);}
+
+@media(max-width:480px){
+  .branch{grid-template-columns:1fr;}
+  .header-title{font-size:1.2rem;}
+}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="back-bar">
+    <a href="../index.html" class="back-link">← スタッフポータルに戻る</a>
+  </div>
+  <div class="header-body">
+    <div class="header-label">E-ONE SQUARE STAFF PORTAL</div>
+    <div class="header-title">🚨 緊急時対応フローチャート</div>
+    <div class="header-sub">場面を選んで、次にすべき行動を確認しましょう</div>
+  </div>
+</div>
+
+<div class="scene-nav">
+  <button class="scene-btn active" onclick="switchScene('fever')">🤒 発熱・体調不良</button>
+  <button class="scene-btn" onclick="switchScene('fall')">🩹 転倒・怪我</button>
+  <button class="scene-btn" onclick="switchScene('agitation')">😤 不穏・興奮</button>
+  <button class="scene-btn" onclick="switchScene('fire')">🔥 火災・災害</button>
+</div>
+
+<div class="main">
+
+<!-- ==================== 発熱・体調不良 ==================== -->
+<div class="scene-panel active" id="scene-fever">
+  <div class="scene-header">
+    <div class="scene-icon orange">🤒</div>
+    <div>
+      <div class="scene-name">発熱・体調不良</div>
+      <div class="scene-desc">37.5℃以上の発熱、嘔吐、下痢、強い倦怠感など</div>
+    </div>
+  </div>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="step-circle orange">1</div>
+      <div class="step-body warn">
+        <div class="step-title">🌡️ 状態を確認する</div>
+        <div class="step-detail">
+          <ul>
+            <li>体温を測る</li>
+            <li>顔色・意識・呼吸を確認</li>
+            <li>いつから・どんな症状かを聞く</li>
+            <li>服薬状況・食事量を確認</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle orange">2</div>
+      <div class="step-body">
+        <div class="step-title">📞 管理者へ連絡（必ず）</div>
+        <div class="step-detail">症状・体温・意識状態を伝える。一人で判断しない。</div>
+      </div>
+    </div>
+
+    <div class="branch">
+      <div class="branch-box yes">
+        <div class="bh">✅ 軽症の場合</div>
+        安静にして経過観察。水分補給を促す。30分〜1時間ごとに状態確認し日報に記録。
+      </div>
+      <div class="branch-box no">
+        <div class="bh">🚨 以下があれば即119番</div>
+        意識がない・呼びかけに反応しない・呼吸が苦しい・けいれんが止まらない・40℃以上の高熱
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle gray">3</div>
+      <div class="step-body info">
+        <div class="step-title">📝 記録する</div>
+        <div class="step-detail">体温・症状・対応内容・報告先を日報に記入。家族への連絡は管理者が判断。</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ==================== 転倒・怪我 ==================== -->
+<div class="scene-panel" id="scene-fall">
+  <div class="scene-header">
+    <div class="scene-icon red">🩹</div>
+    <div>
+      <div class="scene-name">転倒・怪我</div>
+      <div class="scene-desc">転倒・打撲・切り傷・骨折の疑いなど</div>
+    </div>
+  </div>
+
+  <div class="alert red">⚠️ 頭を打った場合・意識がない場合は即119番。動かさないこと。</div>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="step-circle red">1</div>
+      <div class="step-body urgent">
+        <div class="step-title">🚨 意識・呼吸を確認</div>
+        <div class="step-detail">呼びかけて反応があるか確認。反応なし→即119番＋管理者へ連絡。</div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle orange">2</div>
+      <div class="step-body warn">
+        <div class="step-title">👀 怪我の状態を確認</div>
+        <div class="step-detail">
+          <ul>
+            <li>出血している→清潔なタオルで圧迫止血</li>
+            <li>骨折の疑い→動かさず固定、無理に立たせない</li>
+            <li>頭部打撲→安静にして経過観察（吐き気・意識変化に注意）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle orange">3</div>
+      <div class="step-body">
+        <div class="step-title">📞 管理者へ連絡（必ず）</div>
+        <div class="step-detail">どこで・どのように転倒したか・現在の状態を報告。受診が必要かを相談する。</div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle gray">4</div>
+      <div class="step-body info">
+        <div class="step-title">📝 事故記録を作成</div>
+        <div class="step-detail">発生時刻・場所・状況・対応内容を記録。写真も撮っておく。行政報告が必要な場合は管理者が対応。</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ==================== 不穏・興奮 ==================== -->
+<div class="scene-panel" id="scene-agitation">
+  <div class="scene-header">
+    <div class="scene-icon orange">😤</div>
+    <div>
+      <div class="scene-name">不穏・興奮状態</div>
+      <div class="scene-desc">大声・暴言・物を壊す・他の利用者への攻撃など</div>
+    </div>
+  </div>
+
+  <div class="alert orange">⚡ 身体拘束は原則禁止。一人で抱え込まず、すぐ管理者に連絡する。</div>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="step-circle orange">1</div>
+      <div class="step-body warn">
+        <div class="step-title">🛡️ まず安全を確保</div>
+        <div class="step-detail">
+          <ul>
+            <li>他の利用者を別室に誘導</li>
+            <li>危険な物（刃物・熱いもの）を遠ざける</li>
+            <li>自分自身も安全な距離を保つ</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle orange">2</div>
+      <div class="step-body">
+        <div class="step-title">👂 落ち着いて話を聴く</div>
+        <div class="step-detail">
+          <ul>
+            <li>低い声・ゆっくり・否定しない</li>
+            <li>「どうしましたか？」と理由を聞く</li>
+            <li>口論・反論はしない</li>
+            <li>「そうですね」「わかりました」と受け止める</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle orange">3</div>
+      <div class="step-body">
+        <div class="step-title">📞 管理者へ連絡</div>
+        <div class="step-detail">一人で解決しようとしない。状況を伝えて指示を仰ぐ。</div>
+      </div>
+    </div>
+
+    <div class="branch">
+      <div class="branch-box yes">
+        <div class="bh">✅ 落ち着いた場合</div>
+        別室で休んでもらう。後から理由を穏やかに確認。日報に経緯を記録。
+      </div>
+      <div class="branch-box no">
+        <div class="bh">🚨 暴力・自傷があれば</div>
+        身の安全を確保してすぐ管理者へ電話。警察・救急が必要か判断を仰ぐ。
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle gray">4</div>
+      <div class="step-body info">
+        <div class="step-title">📝 記録する</div>
+        <div class="step-detail">発生時刻・きっかけ・言動・対応内容を日報に詳しく記入。</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ==================== てんかん発作 ==================== -->
+<!-- ==================== 火災・災害 ==================== -->
+<div class="scene-panel" id="scene-fire">
+  <div class="scene-header">
+    <div class="scene-icon red">🔥</div>
+    <div>
+      <div class="scene-name">火災・災害発生時</div>
+      <div class="scene-desc">火災・地震・洪水など</div>
+    </div>
+  </div>
+
+  <div class="alert red">🚨 人命最優先！まず避難。記録や荷物は後回し。</div>
+
+  <div class="flow">
+    <div class="flow-step">
+      <div class="step-circle red">1</div>
+      <div class="step-body urgent">
+        <div class="step-title">📢 発見・発生時：大声で知らせる</div>
+        <div class="step-detail">「火事だ！」「地震だ！落ち着いて！」と大声で全員に知らせる。</div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle red">2</div>
+      <div class="step-body urgent">
+        <div class="step-title">🚒 119番通報（火災の場合）</div>
+        <div class="step-detail">「火事です。加古川市〇〇（住所）。けが人〇名。」と落ち着いて伝える。</div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle red">3</div>
+      <div class="step-body urgent">
+        <div class="step-title">🏃 全員を避難させる</div>
+        <div class="step-detail">
+          <ul>
+            <li>車椅子・歩行困難な方を優先して誘導</li>
+            <li>エレベーター厳禁・階段を使用</li>
+            <li>ハンカチで口を覆い低い姿勢で移動</li>
+            <li>避難場所に集合・人数確認</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle orange">4</div>
+      <div class="step-body warn">
+        <div class="step-title">📞 管理者へ連絡</div>
+        <div class="step-detail">避難完了・人数・状況を報告。行方不明者がいれば消防に伝える。</div>
+      </div>
+    </div>
+
+    <div class="flow-step">
+      <div class="step-circle blue">5</div>
+      <div class="step-body info">
+        <div class="step-title">🏠 避難場所の確認</div>
+        <div class="step-detail">
+          <ul>
+            <li><strong>山手：</strong>防災マニュアルを確認</li>
+            <li><strong>新神野：</strong>防災マニュアルを確認</li>
+            <li>寒い場合・長時間の場合は毛布・水を確保</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+</div><!-- /main -->
+
+<script>
+function switchScene(name) {
+  document.querySelectorAll('.scene-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.scene-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('scene-' + name).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+</script>
+</body>
+</html>
