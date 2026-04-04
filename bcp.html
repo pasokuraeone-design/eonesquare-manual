@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BCP（業務継続計画）研修｜イーワンスクエア</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap');
+:root{--p:#2C5F8A;--pl:#4A8BBD;--a:#E8834A;--bg:#F7F9FC;--card:#fff;--t:#1A2D3E;--tl:#5A7A92;--bd:#D8E6F0;--ok:#3A9B6F;--ok-bg:#EEF8F3;--wn:#D4700A;--wn-bg:#FEF6F0;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t);padding-bottom:60px;}
+.page-header{background:linear-gradient(135deg,#1A3A6C,#2C5F8A);color:white;padding:0;}
+.back-bar{padding:10px 20px;}
+.back-link{color:rgba(255,255,255,.75);font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border:1px solid rgba(255,255,255,.25);border-radius:20px;}
+.back-link:hover{color:white;background:rgba(255,255,255,.12);}
+.header-body{padding:20px 20px 24px;}
+.header-label{font-size:.68rem;letter-spacing:.2em;color:rgba(255,255,255,.6);margin-bottom:6px;}
+.header-title{font-family:'Noto Serif JP',serif;font-size:1.4rem;font-weight:700;margin-bottom:4px;}
+.header-sub{font-size:.78rem;color:rgba(255,255,255,.65);}
+.header-badge{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:3px 12px;font-size:.72rem;margin-top:8px;}
+.main{max-width:720px;margin:0 auto;padding:24px 16px;}
+.alert{padding:12px 16px;border-radius:10px;font-size:.84rem;margin-bottom:20px;border-left:4px solid;line-height:1.7;}
+.alert.blue{background:#EAF2FA;border-color:var(--pl);color:var(--p);}
+.alert.orange{background:var(--wn-bg);border-color:var(--a);color:var(--wn);}
+.card{background:var(--card);border-radius:14px;border:1px solid var(--bd);margin-bottom:16px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);}
+.card-header{padding:13px 18px;font-size:.88rem;font-weight:700;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;}
+.card-header.blue{background:#EAF2FA;color:var(--p);}
+.card-header.green{background:var(--ok-bg);color:var(--ok);}
+.card-header.orange{background:var(--wn-bg);color:var(--wn);}
+.card-body{padding:16px 18px;font-size:.88rem;line-height:1.8;color:var(--tl);}
+.point-list{padding:0;}
+.point-list li{list-style:none;padding:8px 0 8px 20px;position:relative;border-bottom:1px solid var(--bd);font-size:.86rem;line-height:1.7;}
+.point-list li:last-child{border-bottom:none;}
+.point-list li::before{content:'✓';position:absolute;left:0;color:var(--ok);font-weight:700;}
+.flow-row{display:flex;align-items:center;gap:8px;margin-bottom:10px;font-size:.86rem;}
+.flow-box{flex:1;background:#EAF2FA;border:1px solid var(--pl);border-radius:8px;padding:10px 12px;line-height:1.5;}
+.flow-arrow{color:var(--pl);font-size:1.2rem;flex-shrink:0;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:8px;}
+.col-box{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:12px;}
+.col-box .col-title{font-weight:700;font-size:.82rem;color:var(--p);margin-bottom:6px;}
+.col-box p{font-size:.8rem;color:var(--tl);line-height:1.6;}
+.section-title{font-size:.72rem;font-weight:700;letter-spacing:.12em;color:var(--tl);margin:24px 0 10px;padding-left:2px;}
+.complete-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--ok),#5BC894);color:white;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;margin-top:24px;transition:.2s;}
+.complete-btn:hover{opacity:.9;}
+.complete-btn.done{background:linear-gradient(135deg,#888,#aaa);cursor:default;}
+.complete-msg{text-align:center;font-size:.82rem;color:var(--tl);margin-top:8px;}
+@media(max-width:480px){.two-col{grid-template-columns:1fr;}.flow-row{flex-direction:column;}.flow-arrow{transform:rotate(90deg);}}
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="back-bar">
+    <a href="../index.html" class="back-link">← ポータルトップに戻る</a>
+  </div>
+  <div class="header-body">
+    <div class="header-label">⚖️ 法定研修 — LEGAL TRAINING</div>
+    <div class="header-title">📋 BCP（業務継続計画）研修</div>
+    <div class="header-sub">指定基準第33条の２に基づく義務研修（令和6年度より完全義務化）</div>
+    <div class="header-badge">年1回以上</div>
+  </div>
+</div>
+
+<div class="main">
+
+  <div class="alert orange">⚠️ BCPは令和6年度より<strong>完全義務化</strong>されました。計画の策定・研修・訓練すべてが必要です。</div>
+
+  <div class="section-title">📋 研修内容のポイント</div>
+
+  <div class="card">
+    <div class="card-header blue">ℹ️ BCPとは何か</div>
+    <div class="card-body">
+      BCP（Business Continuity Plan）とは、<strong>感染症や災害が発生した場合でも、利用者が継続してサービスを利用できるよう</strong>、サービス提供の継続と早期業務再開を図るための計画です。「何かあったときにどうするか」をあらかじめ決めておくものです。
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header blue">📌 BCPで考えておくこと</div>
+    <div class="card-body">
+      <div class="two-col">
+        <div class="col-box">
+          <div class="col-title">🦠 感染症BCP</div>
+          <p>職員が感染した場合の代替要員・最低限のサービス維持・感染拡大防止の手順</p>
+        </div>
+        <div class="col-box">
+          <div class="col-title">🌊 自然災害BCP</div>
+          <p>被災した場合の避難先・他事業所との連携・ライフライン途絶時の対応</p>
+        </div>
+      </div>
+      <p style="margin-top:12px;font-size:.83rem;">自力でサービス提供する場合と<strong>他の事業所等へ避難する場合の双方</strong>を事前に検討しておくことが必要です。</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header orange">⚡ 発生時の基本フロー（感染症の場合）</div>
+    <div class="card-body">
+      <div class="flow-row">
+        <div class="flow-box">👤 職員の感染・濃厚接触を確認</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">📞 管理者へ報告・代替要員を手配</div>
+      </div>
+      <div class="flow-row">
+        <div class="flow-box">🏠 利用者への感染防止対策を強化</div>
+        <div class="flow-arrow">→</div>
+        <div class="flow-box">📋 最低限のサービスで継続提供</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header green">✅ 事業所として義務化されていること</div>
+    <div class="card-body">
+      <ul class="point-list">
+        <li>感染症BCP・自然災害BCPの<strong>策定（必須）</strong></li>
+        <li>職員への周知・研修（<strong>年1回以上</strong>）</li>
+        <li>訓練の実施（<strong>年1回以上</strong>）</li>
+        <li>全ての職員が参加できる形で実施することが望ましい</li>
+        <li>新規採用時にも別途実施が推奨されている</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header blue">📚 参考資料（厚生労働省）</div>
+    <div class="card-body">
+      <ul class="point-list">
+        <li><a href="https://www.mhlw.go.jp/content/12200000/000940032.pdf" target="_blank" style="color:var(--pl);">障害福祉サービス事業所等における新型コロナウイルス感染症発生時の業務継続ガイドライン（PDF）</a></li>
+        <li><a href="https://www.mhlw.go.jp/content/12200000/000756659.pdf" target="_blank" style="color:var(--pl);">障害福祉サービス事業所等における自然災害発生時の業務継続ガイドライン（PDF）</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-title">✅ 受講記録</div>
+  <div class="alert blue">内容を確認したら「受講完了」を押してください。受講日時が記録されます。</div>
+  <button class="complete-btn" id="complete-btn" onclick="markComplete()">✅ 受講完了を記録する</button>
+  <div class="complete-msg" id="complete-msg"></div>
+
+</div>
+
+<script>
+const KEY = 'legal_bcp_' + (localStorage.getItem('e1sq4_user') || 'unknown');
+function markComplete() {
+  const now = new Date().toLocaleString('ja-JP');
+  localStorage.setItem(KEY, now);
+  showDone(now);
+}
+function showDone(ts) {
+  const btn = document.getElementById('complete-btn');
+  btn.textContent = '✅ 受講済み';
+  btn.classList.add('done');
+  btn.disabled = true;
+  document.getElementById('complete-msg').textContent = '受講日時：' + ts;
+}
+window.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem(KEY);
+  if (saved) showDone(saved);
+});
+</script>
+</body>
+</html>
