@@ -83,10 +83,14 @@ tr:nth-child(even) td{background:#F5F9FD;}
 .cover-logo{font-size:2.8rem;margin-bottom:14px;}
 .cover-title{font-family:'Noto Serif JP',serif;font-size:1.8rem;font-weight:700;color:var(--p);margin-bottom:6px;}
 .cover-sub{font-size:.95rem;color:var(--tl);margin-bottom:28px;}
-.cover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:520px;margin:0 auto 36px;}
-.cover-chip{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:11px 7px;font-size:.78rem;cursor:pointer;transition:all .2s;color:var(--tl);}
+.cover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:520px;margin:0 auto 16px;}
+.cover-chip{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:11px 7px;font-size:.78rem;cursor:pointer;transition:all .2s;color:var(--tl);text-align:center;}
 .cover-chip:hover{background:#EAF2FA;color:var(--p);border-color:var(--pl);}
 .cover-chip .ci{font-size:1.3rem;display:block;margin-bottom:3px;}
+.cover-section-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--tl);text-align:left;max-width:520px;margin:0 auto 8px;padding-left:2px;}
+.cover-section-label.tool{margin-top:20px;color:var(--a);}
+.cover-grid.tool .cover-chip{border-color:#F5C8A8;}
+.cover-grid.tool .cover-chip:hover{background:#FEF6F0;color:var(--wn);border-color:var(--a);}
 #nav-bar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bd);padding:10px 18px;z-index:100;box-shadow:0 -4px 20px rgba(0,0,0,.08);}
 #nav-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
 .nav-btn{background:var(--p);color:white;border:none;border-radius:10px;padding:9px 22px;font-family:'Noto Sans JP',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .2s;}
@@ -346,6 +350,7 @@ const firebaseConfig = {
 <div class="cover-logo">&#127968;</div>
 <div class="cover-title">共同生活援助 イーワンスクエア</div>
 <div class="cover-sub">運営マニュアル — 研修テキスト</div>
+<div class="cover-section-label">📚 研修テキスト</div>
 <div class="cover-grid">
 <div class="cover-chip" onclick="goToSlide(1)"><span class="ci">&#128161;</span>理念・行動指針</div>
 <div class="cover-chip" onclick="goToSlide(4)"><span class="ci">&#127757;</span>ノーマライゼーション</div>
@@ -355,8 +360,11 @@ const firebaseConfig = {
 <div class="cover-chip" onclick="goToSlide(16)"><span class="ci">&#128737;</span>虐待防止</div>
 <div class="cover-chip" onclick="goToSlide(18)"><span class="ci">&#129440;</span>感染症対策</div>
 <div class="cover-chip" onclick="goToSlide(19)"><span class="ci">&#128336;</span>タイムスケジュール</div>
-<a href="guideline/index.html" class="cover-chip" style="text-decoration:none;display:block;"><span class="ci">📋</span>運営GL・チェックシート</a>
 <div class="cover-chip" onclick="goToSlide(23)"><span class="ci">&#127968;</span>ホーム運営</div>
+</div>
+<div class="cover-section-label tool">🛠 運営ツール・チェックシート</div>
+<div class="cover-grid tool">
+<a href="guideline/index.html" class="cover-chip" style="text-decoration:none;display:block;"><span class="ci">📋</span>運営GL・チェックシート</a>
 </div>
 <p style="color:var(--tl);font-size:.83rem;">「次へ」ボタンで順番に読み進めるか、目次から直接選んでください<br>キーボードの ← → キーでも移動できます</p>
 </div>
