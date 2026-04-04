@@ -334,6 +334,7 @@ const firebaseConfig = {
   <div id="topbar-title">運営マニュアル</div>
   <div style="display:flex;align-items:center;gap:8px;">
     <span id="current-user-badge"></span>
+    <button id="portal-btn" onclick="goToSlide(0)" style="display:none;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);color:white;border-radius:8px;padding:6px 13px;font-size:.8rem;cursor:pointer;font-family:'Noto Sans JP',sans-serif;">&#8962; ポータルトップ</button>
     <button id="prog-btn" onclick="showProg()">&#128218; 進捗管理</button>
     <button id="toc-btn" onclick="toggleToc()">&#9776; 目次</button>
   </div>
@@ -1345,6 +1346,10 @@ function updateUI() {
   document.querySelectorAll('.toc-item').forEach((el,i) => el.classList.toggle('active', i===cur));
   window.scrollTo({top:0, behavior:'smooth'});
   if (currentUser) markRead(currentUser, cur);
+  // トップページではナビバーを非表示、ポータルボタンを非表示
+  const isTop = cur === 0;
+  document.getElementById('nav-bar').style.display = isTop ? 'none' : '';
+  document.getElementById('portal-btn').style.display = isTop ? 'none' : 'block';
 }
 function navigate(dir) { const n=cur+dir; if(n>=0&&n<slides.length){cur=n;updateUI();} }
 function goToSlide(n) { cur=n; updateUI(); closeToc(); }
