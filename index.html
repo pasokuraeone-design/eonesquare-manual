@@ -3,447 +3,1543 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>イーワンスクエア ポータル</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+<title>イーワンスクエア 研修マニュアル</title>
 <style>
-:root {
-  --bg: #f4f6f9;
-  --white: #ffffff;
-  --border: #e2e8f0;
-  --border2: #cbd5e1;
-  --text: #1e293b;
-  --mid: #64748b;
-  --dim: #94a3b8;
-  --green: #059669;
-  --green-light: #d1fae5;
-  --green-mid: #a7f3d0;
-  --blue: #2563eb;
-  --blue-light: #dbeafe;
-  --orange: #d97706;
-  --orange-light: #fef3c7;
-  --red: #dc2626;
-  --red-light: #fee2e2;
-  --purple: #7c3aed;
-  --purple-light: #ede9fe;
-  --gray-light: #f1f5f9;
-  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 16px rgba(0,0,0,0.04);
-  --shadow-hover: 0 4px 12px rgba(0,0,0,0.12), 0 8px 32px rgba(0,0,0,0.08);
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Noto+Serif+JP:wght@400;700&display=swap');
+:root{--p:#2C5F8A;--pl:#4A8BBD;--a:#E8834A;--al:#F5A878;--bg:#F7F9FC;--card:#FFFFFF;--t:#1A2D3E;--tl:#5A7A92;--bd:#D8E6F0;--ok:#3A9B6F;--wn:#D4700A;--dn:#C0392B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t);min-height:100vh;}
+#topbar{background:var(--p);color:white;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;position:fixed;top:0;left:0;right:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.18);}
+#topbar .logo{font-family:'Noto Serif JP',serif;font-size:.95rem;font-weight:700;}
+#topbar-title{font-size:.8rem;opacity:.85;max-width:300px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+#progress-bar{position:fixed;top:44px;left:0;right:0;height:4px;background:var(--bd);z-index:99;}
+#progress-fill{height:100%;background:linear-gradient(90deg,var(--a),var(--al));transition:width .4s ease;}
+#toc-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:200;}
+#toc-overlay.open{display:block;}
+#toc-panel{position:fixed;top:0;left:0;width:310px;height:100vh;background:var(--card);z-index:201;overflow-y:auto;padding:20px 0 40px;box-shadow:4px 0 24px rgba(0,0,0,.18);transform:translateX(-100%);transition:transform .3s ease;}
+#toc-panel.open{transform:translateX(0);}
+#toc-panel h2{padding:0 18px 14px;font-size:.95rem;color:var(--p);border-bottom:2px solid var(--bd);margin-bottom:6px;}
+.toc-item{padding:8px 18px;cursor:pointer;font-size:.8rem;border-left:3px solid transparent;transition:all .2s;display:flex;align-items:center;gap:8px;color:var(--tl);}
+.toc-item:hover{background:var(--bg);color:var(--p);border-left-color:var(--pl);}
+.toc-item.active{background:#EAF2FA;color:var(--p);border-left-color:var(--p);font-weight:500;}
+.toc-cat{font-size:.7rem;font-weight:700;letter-spacing:.08em;padding:10px 18px 3px;color:var(--tl);text-transform:uppercase;}
+.cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+#toc-btn{background:none;border:1px solid rgba(255,255,255,.4);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:.8rem;color:white;display:flex;align-items:center;gap:5px;}
+#toc-btn:hover{background:rgba(255,255,255,.15);}
+#main{margin-top:48px;max-width:860px;margin-left:auto;margin-right:auto;width:100%;padding:22px 18px 110px;}
+.slide{display:none;animation:fadeIn .3s ease;}
+.slide.active{display:block;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+.card{background:var(--card);border-radius:16px;padding:28px 32px;box-shadow:0 2px 16px rgba(44,95,138,.08);border:1px solid var(--bd);}
+.slide-header{display:flex;align-items:center;gap:14px;margin-bottom:22px;padding-bottom:16px;border-bottom:2px solid var(--bd);}
+.slide-icon{width:46px;height:46px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0;}
+.slide-chapter{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px;}
+.slide-title{font-family:'Noto Serif JP',serif;font-size:1.3rem;font-weight:700;line-height:1.3;}
+.content h3{font-size:1rem;font-weight:700;color:var(--p);margin:20px 0 9px;padding-left:11px;border-left:4px solid var(--a);}
+.content h4{font-size:.92rem;font-weight:700;margin:14px 0 7px;display:flex;align-items:center;gap:5px;}
+.content h4::before{content:'▶';font-size:.58rem;color:var(--a);}
+.content p{line-height:1.85;font-size:.9rem;margin-bottom:10px;}
+.content ul{padding-left:0;margin-bottom:10px;}
+.content ul li{list-style:none;padding:4px 0 4px 18px;position:relative;font-size:.89rem;line-height:1.7;}
+.content ul li::before{content:'・';position:absolute;left:0;color:var(--pl);}
+.content ol{padding-left:18px;margin-bottom:10px;}
+.content ol li{font-size:.89rem;line-height:1.7;padding:3px 0;}
+.hl{background:#EAF2FA;border:1px solid var(--pl);border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.88rem;line-height:1.8;}
+.hl strong{color:var(--p);}
+.warn{background:#FEF6F0;border:1px solid var(--a);border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.88rem;line-height:1.8;}
+.warn .lbl{font-weight:700;color:var(--wn);margin-bottom:5px;}
+.danger{background:#FDF0EF;border:1px solid #E57373;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.88rem;line-height:1.8;}
+.danger .lbl{font-weight:700;color:var(--dn);margin-bottom:5px;}
+.ok{background:#EEF8F3;border:1px solid #76C89A;border-radius:10px;padding:14px 18px;margin:14px 0;font-size:.88rem;line-height:1.8;}
+.ok strong{color:var(--ok);}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.86rem;table-layout:fixed;}
+th{background:var(--p);color:white;padding:9px 13px;text-align:left;font-weight:600;}
+th:first-child{width:130px;}
+td{padding:9px 13px;border-bottom:1px solid var(--bd);line-height:1.6;vertical-align:top;word-break:keep-all;}
+td:first-child{width:130px;white-space:nowrap;}
+tr:nth-child(even) td{background:#F5F9FD;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+@media(max-width:580px){.two-col{grid-template-columns:1fr;}}
+.mc{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:13px 15px;}
+.mc .mct{font-weight:700;font-size:.86rem;color:var(--p);margin-bottom:5px;}
+.mc p,.mc li{font-size:.83rem;}
+.step-list{margin:14px 0;}
+.step-item{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start;}
+.step-num{background:var(--p);color:white;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.82rem;flex-shrink:0;margin-top:2px;}
+.step-body{flex:1;font-size:.89rem;line-height:1.7;}
+.step-body strong{color:var(--p);display:block;margin-bottom:3px;}
+.tr-row{display:flex;gap:0;margin-bottom:5px;}
+.tr-t{background:var(--p);color:white;font-weight:700;font-size:.83rem;padding:9px 12px;border-radius:8px 0 0 8px;min-width:68px;display:flex;align-items:center;justify-content:center;}
+.tr-c{flex:1;background:#F5F9FD;border:1px solid var(--bd);border-radius:0 8px 8px 0;padding:9px 13px;font-size:.86rem;line-height:1.65;}
+.tr-c ul{margin:3px 0 0;}
+.contact-box{background:linear-gradient(135deg,#EAF2FA,#F0EBF8);border:2px solid var(--p);border-radius:14px;padding:18px 22px;text-align:center;margin:18px 0;}
+.contact-box .cl{font-size:.76rem;font-weight:700;color:var(--tl);letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;}
+.contact-box .cn{font-size:1.05rem;font-weight:700;color:var(--p);margin-bottom:4px;}
+.contact-box .ct{font-size:1.35rem;font-weight:700;color:var(--a);letter-spacing:.05em;}
+.case-box{background:#F8F4FF;border:1px solid #C3A8E8;border-radius:10px;padding:14px 18px;margin:12px 0;font-size:.88rem;}
+.case-box .cq{font-weight:700;color:#7B4F9E;margin-bottom:7px;}
+.cover-card{text-align:center;padding:50px 36px;}
+.cover-logo{font-size:2.8rem;margin-bottom:14px;}
+.cover-title{font-family:'Noto Serif JP',serif;font-size:1.8rem;font-weight:700;color:var(--p);margin-bottom:6px;}
+.cover-sub{font-size:.95rem;color:var(--tl);margin-bottom:28px;}
+.cover-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:520px;margin:0 auto 36px;}
+.cover-chip{background:var(--bg);border:1px solid var(--bd);border-radius:10px;padding:11px 7px;font-size:.78rem;cursor:pointer;transition:all .2s;color:var(--tl);}
+.cover-chip:hover{background:#EAF2FA;color:var(--p);border-color:var(--pl);}
+.cover-chip .ci{font-size:1.3rem;display:block;margin-bottom:3px;}
+#nav-bar{position:fixed;bottom:0;left:0;right:0;background:var(--card);border-top:1px solid var(--bd);padding:10px 18px;z-index:100;box-shadow:0 -4px 20px rgba(0,0,0,.08);}
+#nav-inner{max-width:860px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.nav-btn{background:var(--p);color:white;border:none;border-radius:10px;padding:9px 22px;font-family:'Noto Sans JP',sans-serif;font-size:.86rem;font-weight:700;cursor:pointer;transition:all .2s;}
+.nav-btn:hover{background:var(--pl);transform:translateY(-1px);}
+.nav-btn:disabled{background:var(--bd);color:var(--tl);cursor:default;transform:none;}
+.nav-btn.sec{background:var(--bg);color:var(--p);border:1px solid var(--bd);}
+.nav-btn.sec:hover{background:#EAF2FA;}
+#page-indicator{font-size:.8rem;color:var(--tl);text-align:center;}
+#slide-name{font-size:.72rem;color:var(--tl);margin-top:2px;max-width:240px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+/* ===== PROGRESS PANEL ===== */
+#prog-panel{
+  display:none;position:fixed;inset:0;background:rgba(10,20,35,.95);
+  z-index:1000;overflow-y:auto;
+  font-family:'Noto Sans JP',sans-serif;
+}
+#prog-panel.show{display:block;}
+.pp-header{
+  background:#1e3a5f;padding:14px 22px;display:flex;
+  align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:2;
+}
+.pp-logo{color:white;font-family:'Noto Serif JP',serif;font-size:.95rem;font-weight:700;}
+.pp-close{
+  background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);
+  color:white;border-radius:8px;padding:7px 16px;cursor:pointer;
+  font-size:.85rem;font-family:'Noto Sans JP',sans-serif;
+}
+.pp-close:hover{background:rgba(255,255,255,.25);}
+.pp-body{max-width:600px;margin:0 auto;padding:32px 20px 60px;}
+.pp-title{color:white;font-family:'Noto Serif JP',serif;font-size:1.5rem;text-align:center;margin-bottom:6px;}
+.pp-sub{color:rgba(255,255,255,.5);font-size:.85rem;text-align:center;margin-bottom:28px;}
 
-body {
-  font-family: 'Noto Sans JP', sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
+/* name list */
+.pn-item{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;padding:14px 16px;margin-bottom:10px;
+  display:flex;align-items:center;gap:12px;
 }
+.pn-main{flex:1;cursor:pointer;}
+.pn-main:hover .pn-name{color:#7EC8F0;}
+.pn-name{color:white;font-weight:700;font-size:.95rem;margin-bottom:4px;}
+.pn-info{color:rgba(255,255,255,.5);font-size:.76rem;margin-bottom:5px;}
+.pn-bar-wrap{height:5px;background:rgba(255,255,255,.1);border-radius:3px;overflow:hidden;}
+.pn-bar-inner{height:100%;border-radius:3px;background:linear-gradient(90deg,#4A8BBD,#7EC8F0);transition:width .3s;}
+.pn-bar-inner.done{background:linear-gradient(90deg,#3A9B6F,#5BC894);}
+.pn-btns{display:flex;gap:6px;}
+.pn-btn{
+  background:none;border:1px solid rgba(255,255,255,.18);border-radius:7px;
+  color:rgba(255,255,255,.55);padding:5px 10px;cursor:pointer;font-size:.78rem;
+  font-family:'Noto Sans JP',sans-serif;
+}
+.pn-btn:hover{background:rgba(255,255,255,.1);color:white;}
+.pn-btn.red:hover{border-color:#E57373;color:#FF8A80;background:rgba(192,57,43,.2);}
 
-/* === HEADER === */
-.header {
-  background: var(--white);
-  border-bottom: 1px solid var(--border);
-  padding: 40px 24px 36px;
-  text-align: center;
-  box-shadow: var(--shadow);
+.pp-add{
+  width:100%;background:none;border:2px dashed rgba(255,255,255,.2);
+  border-radius:12px;padding:14px;color:rgba(255,255,255,.45);
+  font-size:.88rem;cursor:pointer;font-family:'Noto Sans JP',sans-serif;
+  margin-top:4px;transition:all .2s;
 }
-.header-logo {
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  color: var(--dim);
-  text-transform: uppercase;
-  margin-bottom: 12px;
+.pp-add:hover{border-color:rgba(255,255,255,.45);color:white;background:rgba(255,255,255,.05);}
+.pp-admin-link{
+  display:block;text-align:center;margin-top:16px;
+  color:rgba(255,255,255,.35);font-size:.78rem;cursor:pointer;
+  text-decoration:underline;background:none;border:none;
+  font-family:'Noto Sans JP',sans-serif;width:100%;
 }
-.header-title {
-  font-family: 'Noto Serif JP', serif;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--text);
-  letter-spacing: 0.05em;
-  margin-bottom: 6px;
-  line-height: 1.3;
-}
-.header-sub {
-  font-size: 0.8rem;
-  color: var(--mid);
-  letter-spacing: 0.08em;
-}
-.header-dot {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 14px;
-  font-size: 0.68rem;
-  color: var(--green);
-  letter-spacing: 0.08em;
-  background: var(--green-light);
-  padding: 4px 12px;
-  border-radius: 20px;
-}
-.header-dot::before {
-  content: '';
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--green);
-  animation: pulse 2s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.pp-admin-link:hover{color:rgba(255,255,255,.6);}
+.pp-empty{text-align:center;padding:40px 20px;}
+.pp-empty-icon{font-size:2.4rem;margin-bottom:12px;}
+.pp-empty-text{color:rgba(255,255,255,.4);font-size:.88rem;line-height:1.8;}
 
-/* === MAIN === */
-.main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 32px 20px 80px;
+/* study view */
+.sv-back{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:white;border-radius:8px;padding:7px 14px;cursor:pointer;
+  font-size:.82rem;font-family:'Noto Sans JP',sans-serif;margin-bottom:18px;
 }
+.sv-back:hover{background:rgba(255,255,255,.18);}
+.sv-user{color:white;font-weight:700;font-size:1rem;margin-bottom:3px;}
+.sv-prog{color:rgba(255,255,255,.55);font-size:.76rem;margin-bottom:5px;}
+.sv-bar-wrap{height:7px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden;margin-bottom:20px;}
+.sv-bar-inner{height:100%;border-radius:4px;background:linear-gradient(90deg,#4A8BBD,#7EC8F0);transition:width .4s;}
+.sv-complete{
+  display:none;background:linear-gradient(135deg,#3A9B6F,#5BC894);
+  border-radius:12px;padding:16px;text-align:center;color:white;margin-bottom:18px;
+}
+.sv-complete.show{display:block;}
+.sv-ch-label{
+  font-size:.72rem;font-weight:700;letter-spacing:.1em;
+  color:rgba(255,255,255,.4);margin-bottom:8px;padding-left:2px;
+}
+.sv-slide{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:11px 14px;display:flex;align-items:center;
+  gap:10px;cursor:pointer;margin-bottom:6px;transition:all .2s;
+}
+.sv-slide:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);transform:translateX(3px);}
+.sv-slide.read{background:rgba(58,155,111,.12);border-color:rgba(91,200,148,.3);}
+.sv-chk{
+  width:22px;height:22px;border-radius:50%;border:2px solid rgba(255,255,255,.22);
+  display:flex;align-items:center;justify-content:center;
+  color:white;font-size:.75rem;flex-shrink:0;
+}
+.sv-slide.read .sv-chk{background:#3A9B6F;border-color:#3A9B6F;}
+.sv-slide-title{flex:1;font-size:.85rem;color:rgba(255,255,255,.8);line-height:1.4;}
+.sv-slide.read .sv-slide-title{color:#5BC894;}
+.sv-ch-section{margin-bottom:18px;}
 
-/* === NOTICE === */
-.notice-strip {
-  background: var(--blue-light);
-  border: 1px solid #bfdbfe;
-  border-radius: 12px;
-  padding: 14px 18px;
-  margin-bottom: 28px;
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 0.8rem;
-  color: #1e40af;
-  line-height: 1.8;
-}
-.notice-icon { font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
+/* admin view */
+.av-sum-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px;}
+.av-sum-box{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:14px;text-align:center;}
+.av-sum-num{font-size:1.7rem;font-weight:700;color:white;}
+.av-sum-lbl{font-size:.76rem;color:rgba(255,255,255,.45);margin-top:2px;}
+.av-person{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:15px 17px;margin-bottom:10px;}
+.av-ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.av-pname{color:white;font-weight:700;font-size:.92rem;}
+.av-ppct{font-size:.84rem;font-weight:700;}
+.av-pbar{height:8px;background:rgba(255,255,255,.1);border-radius:4px;overflow:hidden;margin-bottom:9px;}
+.av-pbar-fill{height:100%;border-radius:4px;}
+.av-chips{display:flex;flex-wrap:wrap;gap:5px;}
+.av-chip{font-size:.72rem;padding:2px 9px;border-radius:20px;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.4);}
+.av-chip.done{background:rgba(58,155,111,.18);border-color:rgba(91,200,148,.35);color:#5BC894;}
+.av-chip.part{background:rgba(232,131,74,.1);border-color:rgba(232,131,74,.28);color:#F5A878;}
+.av-reset{background:none;border:1px solid rgba(255,255,255,.14);border-radius:5px;color:rgba(255,255,255,.35);cursor:pointer;font-size:.73rem;padding:2px 8px;font-family:'Noto Sans JP',sans-serif;}
+.av-reset:hover{color:#FF8A80;border-color:#E57373;}
 
-/* === SECTION LABEL === */
-.sec-label {
-  font-size: 0.65rem;
-  letter-spacing: 0.18em;
-  color: var(--dim);
-  text-transform: uppercase;
-  margin-bottom: 12px;
-  padding-left: 2px;
-  font-weight: 500;
+/* inline modal - shown inside pp-body */
+#pp-modal{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.8);z-index:1100;
+  align-items:center;justify-content:center;
 }
+#pp-modal.show{display:flex;}
+.pm-box{
+  background:#1a2d3e;border:1px solid rgba(255,255,255,.18);
+  border-radius:14px;padding:26px;width:300px;
+  box-shadow:0 10px 40px rgba(0,0,0,.6);
+}
+.pm-title{color:white;font-size:.95rem;font-weight:700;margin-bottom:14px;}
+.pm-input{
+  width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);
+  border-radius:9px;padding:10px 13px;font-size:.92rem;
+  font-family:'Noto Sans JP',sans-serif;color:white;
+  margin-bottom:13px;outline:none;box-sizing:border-box;
+}
+.pm-input::placeholder{color:rgba(255,255,255,.3);}
+.pm-input:focus{border-color:#4A8BBD;}
+.pm-btns{display:flex;gap:9px;}
+.pm-ok{flex:1;background:#2C5F8A;color:white;border:none;border-radius:9px;padding:10px;font-size:.88rem;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;}
+.pm-ok:hover{background:#4A8BBD;}
+.pm-cancel{flex:1;background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.14);border-radius:9px;padding:10px;font-size:.88rem;cursor:pointer;font-family:'Noto Sans JP',sans-serif;}
 
-/* === PORTAL GRID === */
-.portal-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 14px;
-  margin-bottom: 36px;
+/* topbar progress button */
+#prog-btn{
+  background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);
+  color:white;border-radius:8px;padding:6px 13px;font-size:.8rem;
+  cursor:pointer;font-family:'Noto Sans JP',sans-serif;
+  display:flex;align-items:center;gap:5px;transition:all .2s;
 }
-
-.portal-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 22px;
-  text-decoration: none;
-  color: var(--text);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: all 0.2s;
-  position: relative;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.portal-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 4px;
-  border-radius: 14px 14px 0 0;
-}
-.portal-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--border2);
-}
-
-.card-green::before { background: linear-gradient(90deg, var(--green), #34d399); }
-.card-blue::before { background: linear-gradient(90deg, var(--blue), #60a5fa); }
-.card-orange::before { background: linear-gradient(90deg, var(--orange), #fbbf24); }
-.card-red::before { background: linear-gradient(90deg, var(--red), #f87171); }
-.card-purple::before { background: linear-gradient(90deg, var(--purple), #a78bfa); }
-.card-gray::before { background: linear-gradient(90deg, var(--dim), #cbd5e1); }
-
-.card-icon {
-  width: 46px; height: 46px;
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem;
-  flex-shrink: 0;
-}
-.card-green .card-icon { background: var(--green-light); }
-.card-blue .card-icon { background: var(--blue-light); }
-.card-orange .card-icon { background: var(--orange-light); }
-.card-red .card-icon { background: var(--red-light); }
-.card-purple .card-icon { background: var(--purple-light); }
-.card-gray .card-icon { background: var(--gray-light); }
-
-.card-content { flex: 1; }
-.card-title {
-  font-size: 0.98rem;
-  font-weight: 700;
-  margin-bottom: 5px;
-  color: var(--text);
-  line-height: 1.3;
-}
-.card-desc {
-  font-size: 0.77rem;
-  color: var(--mid);
-  line-height: 1.7;
-}
-.card-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px;
-  margin-top: 10px;
-}
-.tag {
-  font-size: 0.62rem;
-  padding: 2px 8px;
-  border-radius: 20px;
-  font-weight: 500;
-  letter-spacing: 0.04em;
-}
-.card-green .tag { background: var(--green-light); color: var(--green); }
-.card-blue .tag { background: var(--blue-light); color: var(--blue); }
-.card-orange .tag { background: var(--orange-light); color: var(--orange); }
-.card-red .tag { background: var(--red-light); color: var(--red); }
-.card-purple .tag { background: var(--purple-light); color: var(--purple); }
-.card-gray .tag { background: var(--gray-light); color: var(--mid); }
-
-.card-arrow {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  color: var(--dim);
-  font-size: 0.75rem;
-  gap: 4px;
-  transition: all 0.2s;
-}
-.portal-card:hover .card-arrow { color: var(--mid); gap: 8px; }
-
-/* === COMING SOON === */
-.coming-soon {
-  opacity: 0.5;
-  cursor: default;
-  pointer-events: none;
-}
-.cs-badge {
-  position: absolute;
-  top: 14px; right: 14px;
-  font-size: 0.6rem;
-  padding: 2px 8px;
-  border-radius: 20px;
-  background: var(--gray-light);
-  color: var(--dim);
-  border: 1px solid var(--border);
-  letter-spacing: 0.06em;
-}
-
-/* === EXTERNAL LINKS === */
-.ext-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
-  margin-bottom: 40px;
-}
-.ext-card {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 14px 16px;
-  text-decoration: none;
-  color: var(--text);
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.2s;
-  box-shadow: var(--shadow);
-  font-size: 0.82rem;
-}
-.ext-card:hover {
-  transform: translateY(-1px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--border2);
-}
-.ext-icon { font-size: 1.2rem; flex-shrink: 0; }
-.ext-title { font-weight: 600; font-size: 0.82rem; }
-.ext-sub { font-size: 0.7rem; color: var(--mid); margin-top: 1px; }
-.ext-arrow { margin-left: auto; color: var(--dim); font-size: 0.75rem; }
-
-/* === FOOTER === */
-.footer {
-  text-align: center;
-  padding: 28px 24px;
-  font-size: 0.68rem;
-  color: var(--dim);
-  letter-spacing: 0.06em;
-  border-top: 1px solid var(--border);
-  line-height: 2.2;
-  background: var(--white);
-}
-
-@media(max-width:600px){
-  .header-title { font-size: 1.4rem; }
-  .portal-grid { grid-template-columns: 1fr; }
-  .ext-grid { grid-template-columns: 1fr; }
+#prog-btn:hover{background:rgba(255,255,255,.28);}
+#current-user-badge{
+  display:none;background:rgba(255,255,255,.2);border-radius:20px;
+  padding:3px 12px;font-size:.76rem;color:white;
 }
 </style>
+
+<!-- Firebase SDK -->
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAA0mLMGOB_E3GHs4zYHsuK6T198rtO8s4",
+  authDomain: "eonesquare-manual.firebaseapp.com",
+  databaseURL: "https://eonesquare-manual-default-rtdb.firebaseio.com",
+  projectId: "eonesquare-manual",
+  storageBucket: "eonesquare-manual.firebasestorage.app",
+  messagingSenderId: "10072241364477",
+  appId: "1:10072241364477:web:94ff888c93c41aab00e2ca"
+};
+
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // ===== FIREBASE DATA FUNCTIONS =====
+  // These override the localStorage functions
+  
+  window.fbSave = async function(data) {
+    try {
+      await set(ref(db, 'progress'), data);
+    } catch(e) {
+      console.warn('Firebase save failed, using localStorage:', e);
+      try { localStorage.setItem('e1sq4', JSON.stringify(data)); } catch(e2) {}
+    }
+  };
+
+  window.fbLoad = async function() {
+    try {
+      const snapshot = await get(ref(db, 'progress'));
+      if (snapshot.exists()) {
+        return snapshot.val();
+      }
+    } catch(e) {
+      console.warn('Firebase load failed, using localStorage:', e);
+    }
+    // fallback to localStorage
+    try {
+      const s = localStorage.getItem('e1sq4');
+      if (s) return JSON.parse(s);
+    } catch(e) {}
+    return null;
+  };
+
+  window.fbListen = function(callback) {
+    onValue(ref(db, 'progress'), (snapshot) => {
+      if (snapshot.exists()) {
+        callback(snapshot.val());
+      }
+    });
+  };
+
+  // Initialize app data from Firebase
+  window.fbLoad().then(data => {
+    if (data) {
+      window._fbData = data;
+    }
+    window._fbReady = true;
+    // Trigger app init
+    if (window._onFbReady) window._onFbReady(data);
+  });
+</script>
 </head>
 <body>
 
-<!-- HEADER -->
-<header class="header">
-  <div class="header-logo">E · O N E · S Q U A R E</div>
-  <div class="header-title">イーワンスクエア<br>スタッフポータル</div>
-  <div class="header-sub">共同生活援助　山手・新神野</div>
-  <div class="header-dot">運営中</div>
-</header>
-
-<!-- MAIN -->
-<main class="main">
-
-  <div class="notice-strip">
-    <div class="notice-icon">📌</div>
-    <div>このポータルは職員専用の情報サイトです。マニュアル・防災情報・各種手順書をここから確認できます。わからないことがあれば管理者（藤田）に連絡してください。</div>
+<!-- MANUAL TOPBAR -->
+<div id="topbar">
+  <div class="logo" onclick="goToSlide(0)" style="cursor:pointer;" title="トップへ戻る">&#127968; イーワンスクエア</div>
+  <div id="topbar-title">運営マニュアル</div>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <span id="current-user-badge"></span>
+    <button id="prog-btn" onclick="showProg()">&#128218; 進捗管理</button>
+    <button id="toc-btn" onclick="toggleToc()">&#9776; 目次</button>
   </div>
+</div>
+<div id="progress-bar"><div id="progress-fill"></div></div>
+<div id="toc-overlay" onclick="closeToc()"></div>
+<div id="toc-panel"><h2>&#128203; 目次</h2><div id="toc-list"></div></div>
 
-  <div class="sec-label">マニュアル・手順書</div>
-  <div class="portal-grid">
+<!-- MANUAL SLIDES -->
+<div id="main">
+<div class="slide" data-chapter="はじめに" data-title="運営マニュアル トップ" data-cat="0">
 
-    <a href="./manual.html" class="portal-card card-green">
-      <div class="card-icon">📚</div>
-      <div class="card-content">
-        <div class="card-title">研修マニュアル</div>
-        <div class="card-desc">障害特性・支援の基本・虐待防止・感染症・身体拘束など、職員研修の全内容。</div>
-        <div class="card-tags">
-          <span class="tag">障害特性</span>
-          <span class="tag">虐待防止</span>
-          <span class="tag">身体拘束</span>
-          <span class="tag">感染症</span>
-        </div>
-      </div>
-      <div class="card-arrow">開く →</div>
-    </a>
+<div class="card cover-card">
+<div class="cover-logo">&#127968;</div>
+<div class="cover-title">共同生活援助 イーワンスクエア</div>
+<div class="cover-sub">運営マニュアル — 研修テキスト</div>
+<div class="cover-grid">
+<div class="cover-chip" onclick="goToSlide(1)"><span class="ci">&#128161;</span>理念・行動指針</div>
+<div class="cover-chip" onclick="goToSlide(4)"><span class="ci">&#127757;</span>ノーマライゼーション</div>
+<div class="cover-chip" onclick="goToSlide(6)"><span class="ci">&#9851;</span>障がいを知る</div>
+<div class="cover-chip" onclick="goToSlide(13)"><span class="ci">&#128066;</span>傾聴技法</div>
+<div class="cover-chip" onclick="goToSlide(14)"><span class="ci">&#9878;</span>合理的配慮</div>
+<div class="cover-chip" onclick="goToSlide(16)"><span class="ci">&#128737;</span>虐待防止</div>
+<div class="cover-chip" onclick="goToSlide(18)"><span class="ci">&#129440;</span>感染症対策</div>
+<div class="cover-chip" onclick="goToSlide(19)"><span class="ci">&#128336;</span>タイムスケジュール</div>
+<a href="guideline/index.html" class="cover-chip" style="text-decoration:none;display:block;"><span class="ci">📋</span>運営GL・チェックシート</a>
+<div class="cover-chip" onclick="goToSlide(23)"><span class="ci">&#127968;</span>ホーム運営</div>
+</div>
+<p style="color:var(--tl);font-size:.83rem;">「次へ」ボタンで順番に読み進めるか、目次から直接選んでください<br>キーボードの ← → キーでも移動できます</p>
+</div>
 
-    <a href="./bousai.html" class="portal-card card-orange">
-      <div class="card-icon">🔥</div>
-      <div class="card-content">
-        <div class="card-title">防災マニュアル</div>
-        <div class="card-desc">山手・新神野それぞれの避難先・警戒レベル別行動基準・持ち出し品・緊急連絡先。</div>
-        <div class="card-tags">
-          <span class="tag">避難先</span>
-          <span class="tag">警戒レベル</span>
-          <span class="tag">持ち出し品</span>
-          <span class="tag">緊急連絡先</span>
-        </div>
-      </div>
-      <div class="card-arrow">開く →</div>
-    </a>
+</div>
 
-    <a href="./kansen.html" class="portal-card card-blue coming-soon">
-      <div class="cs-badge">準備中</div>
-      <div class="card-icon">🦠</div>
-      <div class="card-content">
-        <div class="card-title">感染症対策マニュアル</div>
-        <div class="card-desc">嘔吐処理の手順・感染拡大防止・報告フロー・消毒方法の詳細手順。</div>
-        <div class="card-tags">
-          <span class="tag">嘔吐処理</span>
-          <span class="tag">消毒方法</span>
-          <span class="tag">報告フロー</span>
-        </div>
-      </div>
-      <div class="card-arrow">開く →</div>
-    </a>
+<div class="slide" data-chapter="理念・使命" data-title="会社の理念・使命・目指す社内風土" data-cat="1">
 
-    <a href="./gyakutai.html" class="portal-card card-red coming-soon">
-      <div class="cs-badge">準備中</div>
-      <div class="card-icon">🚫</div>
-      <div class="card-content">
-        <div class="card-title">虐待防止・身体拘束</div>
-        <div class="card-desc">虐待の定義・発見時の通報フロー・身体拘束適正化の手順と記録方法。</div>
-        <div class="card-tags">
-          <span class="tag">虐待防止</span>
-          <span class="tag">通報先</span>
-          <span class="tag">身体拘束</span>
-        </div>
-      </div>
-      <div class="card-arrow">開く →</div>
-    </a>
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#EAF2FA;color:var(--p);">&#128161;</div>
+<div><div class="slide-chapter" style="color:#2C5F8A;">理念・使命</div><div class="slide-title">会社の理念・使命・目指す社内風土</div></div>
+</div><div class="content">
+<div class="hl"><strong>私たちの使命</strong><br>「利用者さんが心豊かで笑顔溢れる安定的な生活を送れるよう支援すること」</div>
+<h3>スポットライトは利用者さんへ</h3>
+<p>私たちは<strong>黒子</strong>です。スポットライトは常に利用者さんが照らされ輝いています。支援者が主役になってはいけません。</p>
+<h3>大切にする輪</h3>
+<div class="two-col">
+<div class="mc"><div class="mct">&#128066; 傾聴</div><p>相手の話に真摯に耳を傾け、気持ちに共感しながら理解しようとする技法</p></div>
+<div class="mc"><div class="mct">&#129309; 理解</div><p>本人の過去・今・将来の夢、障害のことを受け取り、理解される経験を提供する</p></div>
+<div class="mc"><div class="mct">&#10024; 承認</div><p>「あなたがそこにいることに、私は確かに気づいている」と伝える行為</p></div>
+<div class="mc"><div class="mct">&#128226; 報・連・相</div><p>報告・連絡・相談を徹底する。連絡ミスが周囲の大混乱を招きます</p></div>
+</div>
+</div></div>
 
-    <a href="./kujo.html" class="portal-card card-purple coming-soon">
-      <div class="cs-badge">準備中</div>
-      <div class="card-icon">💬</div>
-      <div class="card-content">
-        <div class="card-title">苦情・利用者対応</div>
-        <div class="card-desc">苦情の受け付け手順・記録方法・対応結果の報告フロー・家族への連絡。</div>
-        <div class="card-tags">
-          <span class="tag">苦情対応</span>
-          <span class="tag">記録方法</span>
-          <span class="tag">家族連絡</span>
-        </div>
-      </div>
-      <div class="card-arrow">開く →</div>
-    </a>
+</div>
 
-    <a href="./routine.html" class="portal-card card-gray coming-soon">
-      <div class="cs-badge">準備中</div>
-      <div class="card-icon">📋</div>
-      <div class="card-content">
-        <div class="card-title">日常業務ルール</div>
-        <div class="card-desc">費用徴収・記録の書き方・引き継ぎの方法・物品管理・シフトのルール。</div>
-        <div class="card-tags">
-          <span class="tag">費用徴収</span>
-          <span class="tag">記録</span>
-          <span class="tag">引き継ぎ</span>
-        </div>
-      </div>
-      <div class="card-arrow">開く →</div>
-    </a>
+<div class="slide" data-chapter="理念・使命" data-title="私たちの５つの悪行（絶対にしてはいけないこと）" data-cat="1">
 
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#FDF0EF;color:var(--dn);">&#9888;</div>
+<div><div class="slide-chapter" style="color:#2C5F8A;">理念・使命</div><div class="slide-title">私たちの５つの悪行（絶対にしてはいけないこと）</div></div>
+</div><div class="content">
+<div class="danger"><div class="lbl">&#9940; 絶対に行ってはいけない行為</div>以下の行為は利用者さんの尊厳を傷つけ信頼を失う重大な問題です。</div>
+<div class="step-list">
+<div class="step-item"><div class="step-num" style="background:var(--dn);">1</div><div class="step-body"><strong>虐待（身体的・精神的・性的・経済的・放棄）</strong>どんな理由があっても虐待は絶対に許されません</div></div>
+<div class="step-item"><div class="step-num" style="background:var(--dn);">2</div><div class="step-body"><strong>プライバシーの侵害</strong>利用者さんの個人情報・生活情報を無断で第三者に漏らすこと</div></div>
+<div class="step-item"><div class="step-num" style="background:var(--dn);">3</div><div class="step-body"><strong>金銭の横領・不正取扱い</strong>利用者さんのお金を無断で使う・着服する行為</div></div>
+<div class="step-item"><div class="step-num" style="background:var(--dn);">4</div><div class="step-body"><strong>無断欠勤・連絡なしの離席</strong>利用者さんを一人にして安全が確保できない状況を作ること</div></div>
+<div class="step-item"><div class="step-num" style="background:var(--dn);">5</div><div class="step-body"><strong>ハラスメント行為</strong>同僚・利用者・ご家族へのパワハラ・セクハラ等</div></div>
+</div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="理念・使命" data-title="一緒に働きたい人" data-cat="1">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#EEF8F3;color:var(--ok);">&#129309;</div>
+<div><div class="slide-chapter" style="color:#2C5F8A;">理念・使命</div><div class="slide-title">一緒に働きたい人</div></div>
+</div><div class="content">
+<div class="hl"><strong>求める姿勢</strong><br>「自分が主役になってはダメ」という意識を常に持ち、利用者さんの笑顔のために動ける人。うまくいかないことを一人で抱え込まず、チームで共有できる人。</div>
+<p>思いやりがある・誠実さがある・素直に学べる・チームワークを大切にする・報告・連絡・相談ができる・利用者主体の支援ができる</p>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="福祉の基礎知識" data-title="ノーマライゼーションとは" data-cat="2">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#EEF8F3;color:var(--ok);">&#127757;</div>
+<div><div class="slide-chapter" style="color:#3A7D5C;">福祉の基礎知識</div><div class="slide-title">ノーマライゼーションとは</div></div>
+</div><div class="content">
+<div class="hl"><strong>ノーマライゼーション</strong>とは、「障がいのある人もない人も、互いに支え合い、地域で活き活きと明るく豊かに暮らしていける社会を目指す」理念です。1950年代ヨーロッパで広がり、現在は世界的な理念です。</div>
+<h3>８つの基本原理</h3>
+<div class="step-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>１日のノーマルなリズムを送る</strong>朝起き、食事し、活動先へ行き、夜寝る。普通の１日を送れる支援をしましょう</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>１週間のノーマルなリズムを送る</strong>平日は活動先、週末はゆっくり。移動支援で外出の機会も作りましょう</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>ノーマルな一年のリズムを送る</strong>お正月・クリスマスなどの行事に参加し、季節を感じられる生活を</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>当たり前の成長過程をふむ</strong>おしゃれ・仕事の責任・老年期の知恵など、ライフスタイルを大切に</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-body"><strong>ノーマルな個人の尊厳と自己決定権</strong>本人の意思・希望に耳を傾け、できるだけ実行に移すこと</div></div>
+<div class="step-item"><div class="step-num">6</div><div class="step-body"><strong>ノーマルな性的関係</strong>恋愛・交際・結婚を考えられる環境で生活することが大切</div></div>
+<div class="step-item"><div class="step-num">7</div><div class="step-body"><strong>平均的経済水準を保証されること</strong>障害者年金・生活保護・最低賃金などの経済支援を受けられること</div></div>
+<div class="step-item"><div class="step-num">8</div><div class="step-body"><strong>普通の地域の普通の家に住むこと</strong>大規模施設ではなく、地域に溶け込んだ普通の住居で生活すること</div></div>
+</div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="福祉の基礎知識" data-title="福祉の仕組み・グループホームとは" data-cat="2">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#EEF8F3;color:var(--ok);">&#127963;</div>
+<div><div class="slide-chapter" style="color:#3A7D5C;">福祉の基礎知識</div><div class="slide-title">福祉の仕組み・グループホームとは</div></div>
+</div><div class="content">
+<div class="hl"><strong>「幸せ」や「豊かさ」を意味する言葉であり、全ての人々に最低限の幸福と社会的援助を提供する</strong>という理念を表しています。一人をみんなで支える考え方です。</div>
+<div class="warn"><div class="lbl">&#9888; 報告ミスに注意！</div>薬の飲み忘れ・不穏な状態・「内緒にして」と言われたことなど、連絡ミスがあると周囲に大混乱が生じます。<strong>報告・連絡・相談をしっかりやりましょう！</strong></div>
+<h3>障がい者グループホームとは</h3>
+<div class="hl">障がいをお持ちの方が共同生活を営む住居です（正式名称：共同生活援助）。障害者総合支援法のもと県が指定する法人が運営します。18歳以上65歳（延長可能）までの、知的・身体・精神・発達障がい・難病のある方が対象です。</div>
+<h3>主な関連事業所</h3>
+<table>
+<tr><th>カテゴリ</th><th>事業所名</th><th>内容</th></tr>
+<tr><td>宿泊型</td><td>グループホーム（私たち）</td><td>障害者の生活を守る共同生活援助</td></tr>
+<tr><td>就労系</td><td>就労継続支援B型・A型</td><td>訓練・工賃支給・雇用契約など</td></tr>
+<tr><td>就労系</td><td>就労移行支援</td><td>一般就職を目指す専門学校的な場</td></tr>
+<tr><td>相談</td><td>相談支援事業所</td><td>計画作成・関係機関との連絡調整</td></tr>
+<tr><td>移動</td><td>移動支援</td><td>一人での外出が困難な方の外出支援</td></tr>
+</table>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="障がいを知る" data-title="障がいを知る・障害区分" data-cat="3">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#F8F4FF;color:#7B4F9E;">&#9851;</div>
+<div><div class="slide-chapter" style="color:#7B4F9E;">障がいを知る</div><div class="slide-title">障がいを知る・障害区分</div></div>
+</div><div class="content">
+<div class="hl"><strong>障がいとは、</strong>身体障がい／知的障がい／精神障がい／発達障がいの４種類に分かれ、社会的障壁により継続的に日常生活・社会生活に相当な制限を受ける状態です。私たちの仕事は「障がい者支援」です。障がいに詳しくなると、その人の気持ちが少し分かるようになります。</div>
+<h3>障害支援区分（目安）</h3>
+<table>
+<tr><th>区分</th><th>身体障がい</th><th>精神障がい</th><th>知的障がい</th></tr>
+<tr><td><strong>区分6</strong></td><td>寝たきり・４肢うち３つ以上麻痺</td><td>医療関係人の付添が必要・精神病院入院</td><td>幼児〜幼稚園児程度</td></tr>
+<tr><td><strong>区分5</strong></td><td>４肢うち２つ以上麻痺・目耳の不自由</td><td>精神病院入院か通院中</td><td>小学校1〜2年生程度</td></tr>
+<tr><td><strong>区分4</strong></td><td>車椅子７割程度・４肢うち１つ麻痺</td><td>重い精神疾患があるが半分くらい働ける</td><td>小学校3〜6年生程度</td></tr>
+<tr><td><strong>区分3</strong></td><td>後遺症あり・４肢中１つ動かせない</td><td>精神疾患でたまに休んでしまう</td><td>中学生程度・部分的に幼さがある</td></tr>
+<tr><td><strong>区分2</strong></td><td>見た目ではわからない・耳が聞こえない等</td><td>服薬していれば働ける程度</td><td>高校生程度だが部分的に幼さがある</td></tr>
+<tr><td><strong>区分1</strong></td><td>上記と同様で少し程度が低い</td><td>同様</td><td>同様</td></tr>
+</table>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="障がいを知る" data-title="身体障がいを知る・個人モデルと社会モデル" data-cat="3">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#F8F4FF;color:#7B4F9E;">&#129470;</div>
+<div><div class="slide-chapter" style="color:#7B4F9E;">障がいを知る</div><div class="slide-title">身体障がいを知る・個人モデルと社会モデル</div></div>
+</div><div class="content">
+<h3>身体障がいの種類</h3>
+<table>
+<tr><th>種類</th><th>一般的な特徴</th></tr>
+<tr><td><strong>肢体不自由</strong></td><td>上肢・下肢・体幹機能に障害があり、立つ・座る・歩くなどの日常動作が困難</td></tr>
+<tr><td><strong>視覚障害</strong></td><td>まったく見えない〜文字がぼけて読めないなど様々。障害物に気づかない場合も</td></tr>
+<tr><td><strong>聴覚障害</strong></td><td>外見ではわかりにくい。全く聞こえない方から聞こえづらい方まで様々</td></tr>
+<tr><td><strong>内部障害</strong></td><td>心臓・腎臓・呼吸器・膀胱・直腸・HIVなど。外見からはわからない「見えない障害」</td></tr>
+<tr><td><strong>高次脳機能障害</strong></td><td>脳損傷後の注意障害・記憶障害・失語・遂行機能障害・感情コントロール困難など</td></tr>
+</table>
+<h3>個人モデルと社会モデル</h3>
+<div class="two-col">
+<div class="mc"><div class="mct">&#128100; 個人モデル</div><p>「個人に障がいがある」という考え方。車椅子に乗っているので足や脊髄に障がいがあると見る</p></div>
+<div class="mc"><div class="mct">&#127959; 社会モデル</div><p>「障害は社会が作り出している」という考え方。階段がなければ車椅子でも通れる</p></div>
+</div>
+<div class="ok"><strong>社会モデルを理解し、社会的障壁を取り除くことが求められています。</strong><br>知的障害の方に絵文字で伝える、精神障害の方に余計な一言を言わない——これが<strong>合理的配慮</strong>です。</div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="障がいを知る" data-title="知的障がいを知る" data-cat="3">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#F8F4FF;color:#7B4F9E;">&#129504;</div>
+<div><div class="slide-chapter" style="color:#7B4F9E;">障がいを知る</div><div class="slide-title">知的障がいを知る</div></div>
+</div><div class="content">
+<div class="hl"><strong>知的障害とは、</strong>発達期（おおむね18歳まで）に知的機能の発達に遅れが生じ、日常生活や社会生活に支障をきたす状態です。グループホームでは<strong>軽度・中度の方が多く</strong>います（小学校3〜6年生くらいの知的レベル）。普通に会話し気を使ってくれるので障がいがあることを忘れてしまいますが、特性を理解して支援しましょう。</div>
+<h3>軽度の方への支援ポイント</h3>
+<div class="step-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>覚えることが苦手</strong>約束を忘れることはしばしば。覚えるまで何度も丁寧に説明しましょう</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>コミュニケーションが苦手</strong>話したいことを最後まで聴く・話しやすい空気を作る支援を</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>計算が苦手</strong>お小遣い帳を一緒につけたり、補助をしていきましょう</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>文章・言葉の理解が苦手</strong>二重否定や抽象的な表現は避け、分かりやすく噛み砕いた説明を</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-body"><strong>複雑な指示の理解が苦手</strong>指示は一つずつ。「お風呂に入ったあとに部屋片付けて」は２つの指示です</div></div>
+</div>
+<h3>重度の方への支援ポイント</h3>
+<div class="step-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>数・量の概念の理解が難しい</strong>指折り数える・一緒に計算するなどの支援が必要</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>言語コミュニケーションが困難</strong>短い単語・身振り手振り・絵を描いて説明する</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>日常生活（食事・身支度・入浴・排泄）が困難</strong>できない部分を補助する</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>衝動的な行動をおさえることが難しい</strong>個別支援計画や上長から本人の特性をよく聞いて対応する</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-body"><strong>何度も同じことを言う</strong>気になって確認しているだけです。「また同じ確認？」とは思わず、何度でも答えましょう</div></div>
+</div>
+<div class="ok"><strong>急かさずにゆっくりと支援を行うことが大事です。</strong>知的障害の方は観察力があり、私たちを本当に見ています。</div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="障がいを知る" data-title="強度行動障がいを知る" data-cat="3">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#FDF0EF;color:var(--dn);">&#9889;</div>
+<div><div class="slide-chapter" style="color:#7B4F9E;">障がいを知る</div><div class="slide-title">強度行動障がいを知る</div></div>
+</div><div class="content">
+<div class="hl"><strong>強度行動障害とは、</strong>周囲の人の暮らしに影響を及ぼす行動が高い頻度で起き、特別な支援を必要としている状態です。全国に約8,000人程度。生まれつきではなく、「こうしたい！」と思ったことができずにパニックになってしまうのです（<strong>障がいの特性と環境のミスマッチ</strong>）。</div>
+<table>
+<tr><th>種類</th><th>具体例</th></tr>
+<tr><td><strong>ひどい自傷</strong></td><td>自分で顔を引っ掻く、壁に頭を打ち付けるなど</td></tr>
+<tr><td><strong>強い他傷</strong></td><td>かみつく・殴る・髪を引っ張る・頭突きなど</td></tr>
+<tr><td><strong>激しいこだわり</strong></td><td>気になるものがあると動けない、止めてもやめられない</td></tr>
+<tr><td><strong>激しい物壊し</strong></td><td>ガラス・家具・ドアなどを壊し、自他に危害を及ぼす</td></tr>
+<tr><td><strong>睡眠の大きな乱れ</strong></td><td>昼夜逆転・寝床についていられない</td></tr>
+<tr><td><strong>食事関係の強い障害</strong></td><td>特定のものしか食べない・食べられないものを口に入れる</td></tr>
+<tr><td><strong>著しい多動・騒がしさ</strong></td><td>走り回る・危険な場所に登る・大声が止まらない</td></tr>
+</table>
+<div class="warn"><div class="lbl">&#128218; 特別で高度な支援技術が必要です</div>まずは専門の資格取得など知識習得を進めましょう。このマニュアルだけでは解説が難しい障害です。</div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="障がいを知る" data-title="精神障がいを知る①（種類と特性）" data-cat="3">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#F8F4FF;color:#7B4F9E;">&#129513;</div>
+<div><div class="slide-chapter" style="color:#7B4F9E;">障がいを知る</div><div class="slide-title">精神障がいを知る①（種類と特性）</div></div>
+</div><div class="content">
+<div class="hl"><strong>精神障害とは、</strong>精神疾患のため精神機能に障害が生じ、日常生活や社会参加に困難をきたしている状態のことです。</div>
+<table>
+<tr><th>障害名</th><th>特性</th></tr>
+<tr><td><strong>うつ病</strong></td><td>脳の機能障害。眠れない・食欲がない・一日中気分が落ち込む・何も楽しめないなどが続く。ものの見方が否定的になる</td></tr>
+<tr><td><strong>統合失調症</strong></td><td>こころや考えがまとまりづらくなる。陽性症状（幻覚・妄想・幻聴）と陰性症状（意欲低下・感情表現の減少）がある。周囲から見ると独り言・被害を訴える・支離滅裂な会話などのサインが現れる</td></tr>
+<tr><td><strong>適応障害</strong></td><td>特定の状況がつらく、気分や行動面に症状が現れる。ストレス要因から離れると改善しやすい。慢性化する場合はカウンセリングが有効</td></tr>
+<tr><td><strong>愛着障害</strong></td><td>乳幼児期に養育者との愛着形成がうまくいかなかった状態。近年の福祉利用者に非常に多い。「過度に人を恐れる」か「誰にでもなれなれしい」症状。親との関係を見て判断する</td></tr>
+<tr><td><strong>双極性障害（躁うつ病）</strong></td><td>躁状態（ハイテンション・眠らなくても活発・散財）とうつ状態を繰り返す。躁のときは病気の自覚がない。うつ病だけの治療では悪化させる場合があるため注意</td></tr>
+<tr><td><strong>強迫性障害</strong></td><td>頭から離れない考え（強迫観念）とやめられない行為（強迫行為）。過剰な手洗い・鍵の何度も確認など。こころの病気と気づかない人も多いが治療で改善する</td></tr>
+<tr><td><strong>睡眠障害</strong></td><td>不眠症をはじめ様々な睡眠の問題。夜の睡眠が障害されると日中にも眠気・だるさ・集中力低下が現れる</td></tr>
+<tr><td><strong>摂食障害</strong></td><td>拒食症（食事をほとんどとらない）と過食症（極端に大量に食べる）がある。低栄養から命に関わることも。本人はなかなか治療したがらないため治療の重要性を伝えることが必要</td></tr>
+<tr><td><strong>解離性障害</strong></td><td>自分が自分である感覚が失われる。記憶が抜け落ちたり、気づかない場所にいるなど。多重人格障害（解離性同一性障害）もこれに含まれる。つらい体験への防衛反応と考えられている</td></tr>
+<tr><td><strong>パニック障害・不安障害</strong></td><td>突然の動悸・めまい・発汗・窒息感などの発作。閉じられた空間を避けるようになることがある。薬による治療と心理療法（苦手なことに慣れていく）が行われる</td></tr>
+<tr><td><strong>PTSD</strong></td><td>強烈なショック体験後、時間がたってから強い恐怖を感じる。フラッシュバック・不眠・頭痛など。数週間〜何年もたってから症状が出ることもある</td></tr>
+<tr><td><strong>アルコール依存症</strong></td><td>長期飲酒でお酒なしでいられなくなる。離脱症状（手の震え・発汗・頻脈など）を避けるために飲み続けてしまう。「否認の病」ともいわれ本人は病気を認めたがらない傾向がある</td></tr>
+<tr><td><strong>パーソナリティ障害</strong></td><td>大多数とは違う反応・行動をすることで本人や周囲に問題が生じる。妄想性・シゾイド・統合失調型・反社会性・境界性・演技性・自己愛性・回避性・依存性・強迫性の10種類がある。「性格が悪い」という意味ではない</td></tr>
+<tr><td><strong>てんかん</strong></td><td>突然意識を失う「てんかん発作」を繰り返す。発作は脳の神経細胞が突然異常な電気活動を起こすことで生じる。発作は一過性で終了後は回復するのが特徴</td></tr>
+</table>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="障がいを知る" data-title="精神障がいを知る②（共通点・支援方法・てんかん対応）" data-cat="3">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#F8F4FF;color:#7B4F9E;">&#128172;</div>
+<div><div class="slide-chapter" style="color:#7B4F9E;">障がいを知る</div><div class="slide-title">精神障がいを知る②（共通点・支援方法・てんかん対応）</div></div>
+</div><div class="content">
+<h3>精神障がいに一貫して言えること</h3>
+<div class="hl">多くの症状に共通するのは「<strong>意識の固定化</strong>」です。過去のネガティブな出来事や一つの不安に意識が固定され、周囲が見えなくなります。そのため忘れ物・頼み事を忘れる・被害妄想などが起きやすくなります。この特性が理解でき対応できれば、精神障害はそれほど難しい障害ではなくなります。</div>
+<h3>精神障がいの方の共通した状態</h3>
+<div class="step-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>いつも頭の中でネガティブな考えごとをしている</strong>過去のことが頭の中でぐるぐる回り、脳が休めない状態。アドレナリンがいつも放出している</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>体が疲れやすい</strong>脳がグルグル回っているので体も疲れやすい。一日中寝ていたい心境になりやすい</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>忘れ物が多くなる</strong>何かをやろうとしても忘れる。頼み事をされても忘れる場合がある</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>理解を求めるようになる</strong>「あの人は分かってくれない」と感じやすい。まず理解者になってあげることが重要</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-body"><strong>被害妄想が多くなる</strong>少し離れたところでひそひそ話をしていると「自分の悪口を言われている」と感じやすい</div></div>
+<div class="step-item"><div class="step-num">6</div><div class="step-body"><strong>２次障害で精神障害になった方がほとんど</strong>知的・発達障害がベースにあり、いじめ・虐待・仕事のストレスなどが原因となることが多い。この点を念頭におくことが重要</div></div>
+</div>
+<h3>精神障がいの方への支援ポイント（７か条）</h3>
+<div class="step-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>話を遮らずに、最後まで聞く</strong>話を遮る人は「理解してくれない人」になります。まず聴き手に徹してください</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>アドバイスは絶対に禁止</strong>「カウンセリングに行くのはどうですか？」→「分かってくれない」というクレームに発展した事例があります。話したいだけでアドバイスは求めていません</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>アドバイスを求められたら、相手の意向を確認する</strong>「◯◯さんはどうしたいですか？」と聞くと、本人が自分で答えを出してくれます</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>余計な一言を絶対に言わない</strong>「髪を切ってキレイになりましたね！」→「それまでは汚かったということ？」と受け取られることも。「髪を切ったのですね」と事実だけを伝える</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-body"><strong>「がんばれ」禁止</strong>「がんばっていない」という裏側がある言葉です。代わりに「がんばっているもんね！」と承認すると、本人はがんばりだします</div></div>
+<div class="step-item"><div class="step-num">6</div><div class="step-body"><strong>「凛」とした毅然とした態度で接する</strong>「ダメなものはダメ」「約束は約束」。うろたえていると隙を突かれることがあります</div></div>
+<div class="step-item"><div class="step-num">7</div><div class="step-body"><strong>「◯◯するに越したことはない」という話術を使う</strong>「仕事に行った方がいいですよ」（限定）より「行くに越したことはないですよ」（選択の余地あり）の方が受け入れられやすい</div></div>
+</div>
+<h3>てんかん発作時の対処法</h3>
+<div class="warn">
+<div class="lbl">&#9888; 発作時の注意事項</div>
+<ul style="margin-top:6px;">
+<li>名前を呼んだり、体を押さえたり揺さぶってはいけません</li>
+<li>口の中に指やタオルを無理に突っ込んではいけません（歯が折れたり、噛まれてけがをします）</li>
+<li>下顎を下から軽くあげて舌を噛まないようにサポートしましょう</li>
+<li>発作後は顔を横に向ける（嘔吐物が気管に詰まらないように）</li>
+<li>普通は1〜数分で発作が収まり、10〜20分以内に意識が回復することが多い</li>
+<li>長時間止まらない・意識が戻らない場合はすぐに病院へ</li>
+<li>発作後に寝てしまった場合はそのまま眠らせてください（脳を休ませることで回復します）</li>
+<li>発作後のもうろう状態で危険なものに触れたりしないよう軽く寄り添って保護しましょう</li>
+</ul>
+</div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="障がいを知る" data-title="発達障がいを知る（ASD・ADHD・LD）" data-cat="3">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#F8F4FF;color:#7B4F9E;">&#127752;</div>
+<div><div class="slide-chapter" style="color:#7B4F9E;">障がいを知る</div><div class="slide-title">発達障がいを知る（ASD・ADHD・LD）</div></div>
+</div><div class="content">
+<div class="hl"><strong>発達障害とは、</strong>「脳機能の発達の偏り」と「環境・周囲との関わりのミスマッチ」から社会生活・コミュニケーションに困難が生じる障害です。2006年に7,000人余りだった発達障害の児童数が2019年には7万人を超えています。今では福祉利用者の半分以上に当てはまるのではないかと感じています。</div>
+<h3>① ASD（自閉スペクトラム症）</h3>
+<p>大きな特性は「コミュニケーションが苦手」「物事への強いこだわり」「興味の幅が狭い」の3つです。</p>
+<div class="two-col">
+<div class="mc"><div class="mct">&#128172; コミュニケーション</div><ul><li>会話が噛み合わない・いきなり違う話をしてしまう</li><li>思ったことをそのまま口にする</li><li>相手の気持ちを読み取れない</li><li>お世辞・嫌味のニュアンスがわからない</li><li>あいまいな言葉がわからず会話が成立しない</li><li>相手の立場・場の空気を考えて話すことが苦手</li></ul></div>
+<div class="mc"><div class="mct">&#128260; こだわり・興味</div><ul><li>風呂・食事の順番を強く気にする</li><li>極端な偏食がある（食感も含む）</li><li>好きなことはずっとやり続ける（過集中）</li><li>スケジュール変更でパニックになることも</li><li>ゲーム・アイドル・アニメ・電車などに熱狂する</li><li>関心のあるものを徹底的に収集する</li></ul></div>
+</div>
+<h4>ASD支援のポイント</h4>
+<div class="step-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>その人の特性を理解する</strong>こだわりや興味は千差万別。まず本人を知ることから</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>本人の興味のあるものに興味を示す</strong>好きなアニメのキャラクターなど関心を持ってもらえると「理解されている」と感じてもらえます</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>望ましい行動をしっかりと褒める</strong>「がんばったね」「成長したね」「よくやってるね」。発達障害の方の多くはこれまで褒められることが少なく自信を持てません。褒められるとその部分がさらに成長します</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>スケジュール変更は事前に伝える</strong>ルーチンが変わることでパニックを起こすことがあります。必ず分かりやすく事前に伝えましょう</div></div>
+<div class="step-item"><div class="step-num">5</div><div class="step-body"><strong>指示・依頼のタイミングを見極める</strong>ゲームやアニメに集中しているときは指示が全く入りません</div></div>
+</div>
+<div class="ok"><strong>何よりも、温かい空間作りが一番の支援だと感じています。最高の空間を共に作りましょう！</strong></div>
+<h3>② ADHD（注意欠如・多動症）</h3>
+<div class="two-col">
+<div class="mc"><div class="mct">&#128532; のび太タイプ（不注意）</div><ul><li>作業が不正確・忘れ物・なくし物が多い</li><li>集中が続かない・すぐ諦める</li><li>ぼんやりと空想にふけることがある</li></ul></div>
+<div class="mc"><div class="mct">&#128548; ジャイアンタイプ（衝動・多動）</div><ul><li>思い立ったらすぐ行動してしまう</li><li>瞬間湯沸かし器のように怒りが爆発</li><li>おしゃべりが止まらない・順番を待てない</li></ul></div>
+</div>
+<div class="hl">ADHDは大人になるにつれ症状がおさまると言われています。ただし福祉サービスを受ける方の多くは社会生活に支障をきたしている状態があります。</div>
+<h4>大人のADHDでよくある状態と支援</h4>
+<table>
+<tr><th>よくある状態</th><th>支援のポイント</th></tr>
+<tr><td>忘れ物をしてしまう</td><td>準備をしても忘れることがあります。声かけをしてあげてください</td></tr>
+<tr><td>お金を使いすぎてしまう</td><td>欲しい物を後先考えずに買ってしまいます。お小遣い帳などで金銭管理をしましょう</td></tr>
+<tr><td>怒りを抑えるのに苦労する</td><td>口論になると爆発した怒りが鎮まらなくなります。口論にならないよう気をつけましょう</td></tr>
+<tr><td>熱しやすく冷めやすい</td><td>最初は勢いがいいが継続性があまりありません。チャレンジ精神を褒めていきましょう</td></tr>
+<tr><td>喋りだしたら止まらない</td><td>興奮して話し出すと止まらなくなる傾向があります。程よいタイミングで話を切れるようにしましょう</td></tr>
+</table>
+<h3>③ LD（学習障害）</h3>
+<p>「読む・書く・計算する」ことに困難をきたしながら、知的障害ではない障害です。成人の有病率は約4%。有名人ではトム・クルーズ・ミッツ・マングローブさんが告白しています。</p>
+<div class="two-col">
+<div class="mc"><div class="mct">&#128214; 読字障害</div><p>文章を読むのが極端に遅く、読み間違えることが多い</p></div>
+<div class="mc"><div class="mct">&#9999; 書字障害</div><p>文字の形・位置・大きさの認識や、手と目を同時に使う協調運動が苦手</p></div>
+<div class="mc"><div class="mct">&#128290; 算数障害</div><p>九九が覚えられない・数の大小がわからない・文章問題で何を問われているかわからない</p></div>
+</div>
+<div class="ok"><strong>その人しか分からないハンデです。本人を理解することが一番の特効薬だと感じています。</strong><br>本人の特性に合わせた工夫・分かりやすいマニュアル・デジタル機器の活用・メンタル面のケアが有効です。</div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="支援スキル" data-title="周囲を幸せにする「傾聴技法」・意思決定支援" data-cat="2">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#EEF8F3;color:var(--ok);">&#128066;</div>
+<div><div class="slide-chapter" style="color:#3A7D5C;">支援スキル</div><div class="slide-title">周囲を幸せにする「傾聴技法」・意思決定支援</div></div>
+</div><div class="content">
+<div class="hl"><strong>傾聴とは、</strong>相手の話に真摯に耳を傾け、相手の気持ちに共感しながら理解しようとするコミュニケーション技法です。この技法が身につくと、障害者支援だけでなく家庭円満・人間関係すべてに活かせます。それくらい重要な技法です。</div>
+<h3>傾聴の前提</h3>
+<p>傾聴とは<strong>「話しを聴くことを前提にする」</strong>ということです。相手が話したいことが自由に話せる場作りが重要です。自分の主観的なアドバイスを挟んではいけません。</p>
+<h3>傾聴技法の４種類</h3>
+<div class="step-list">
+<div class="step-item"><div class="step-num">1</div><div class="step-body"><strong>相槌（あいづち）を打つ</strong>人の話を聞きながら、うなずいたり「そうですね」と同意・同感のしるしを示します。話し手に「話を聞いてもらっている」という安心感を与えることができます。</div></div>
+<div class="step-item"><div class="step-num">2</div><div class="step-body"><strong>おうむ返しをする</strong>「昨日楽しかった」と言われたら、「昨日楽しかったのですね」と同じ内容を返します。相手は「正確に聞いてくれている」と感じ、信頼を得やすい技法のひとつです。</div></div>
+<div class="step-item"><div class="step-num">3</div><div class="step-body"><strong>要約をして確認をする</strong>ある程度話を聞いた後に「◯◯さんはこのようにお考えということですね？」と要約して確認します。相手は話したいことの整理をすることができます。</div></div>
+<div class="step-item"><div class="step-num">4</div><div class="step-body"><strong>気持ちを汲む</strong>「それは楽しかったね」「悲しかったね」「辛かったね」と相手の感情を汲み取り、共感します。真剣に聴けば聴くほど、自然とこのような言葉が出てきます。</div></div>
+</div>
+<div class="ok"><strong>黄金比率：自分の話は２割、相手の話が８割</strong><br>少しだけ時間をとって話を聞いてみてください。そうか、これも仕事なんだとわかってくれると思います。</div>
+<h3>意思決定支援</h3>
+<div class="hl"><strong>意思決定支援とは、</strong>障がいのある人が自分の意思や希望に基づいて選択や決定を行えるように、必要な情報や環境を整えたり、サポートを提供したりする取り組みのことです。</div>
+<p>「意思決定支援」における私たちの仕事は、<strong>何を提供すべきかではなく、本人が何を言いたいか、何を望んでいるかを聴き出すこと</strong>です。本人の真意を引き出す質問力が求められます。</p>
+<div class="case-box">
+<div class="cq">&#128021; 事例：「犬を飼いたい」と言い出したFさん</div>
+グループホームはペット禁止。しかし「犬を飼いたい」という真意を探ったところ、「他人が居室に勝手に入ってきて怖い」という気持ちからの訴えでした。居室の扉に施錠できる鍵をつけることで解決。→ <strong>真意を引き出す傾聴が大切です。</strong>
+</div>
+<div class="hl">
+<strong>意思決定支援の４原則</strong><br>
+①すべての人には意思があるという前提に立つ<br>
+②「私たちのことを私たち抜きで決めないで」（障害者権利条約のメッセージ）<br>
+③「私の人生を私として生きる」という感覚を大切に<br>
+④本人の意思が尊重され、尊厳が確保される社会の実現を目指す
+</div>
+<div class="ok"><strong>当グループホームではご本人の意思を大事にし、意思決定支援を行っていきます。</strong></div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="支援スキル" data-title="2024年義務化開始 合理的配慮を学ぼう" data-cat="2">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#EEF8F3;color:var(--ok);">&#9878;</div>
+<div><div class="slide-chapter" style="color:#3A7D5C;">支援スキル</div><div class="slide-title">2024年義務化開始 合理的配慮を学ぼう</div></div>
+</div><div class="content">
+<div class="hl"><strong>合理的配慮とは、</strong>障害のある人の社会的な障壁を取り除くために必要な対応をすることです。「義務化になったからやる」というものではなく、意識してごく当たり前の知識・配慮として取り組みをしていきましょう。</div>
+<h3>視覚障害の方への配慮例</h3>
+<ul>
+<li>正面から「私は◯◯ですがお手伝いしましょうか？」と声をかけて行き先を確認し案内する</li>
+<li>研修資料をPDFやテキストデータにデジタル化して事前に送付する</li>
+<li>盲導犬利用の方と犬アレルギーの方が同席する場合、双方の了解のもと配席を変更する</li>
+<li>衣料品の形状・色・布地の肌触りを口頭で説明する</li>
+<li>配膳時に食器の位置や料理内容を説明する</li>
+</ul>
+<h3>聴覚障害の方への配慮例</h3>
+<ul>
+<li>筆談用のホワイトボードを用意する</li>
+<li>左耳が聞こえやすい場合は左から声をかけることを周知徹底する</li>
+<li>食事ができたら本人のいるところへ行き肩を叩き、ボードを見せる</li>
+<li>保険加入など重要な手続きは担当者に筆談を交えた説明を依頼する</li>
+</ul>
+<h3>肢体不自由の方への配慮例</h3>
+<ul>
+<li>受付が2階にあってエレベーターがない場合は1階の部屋で臨時対応する</li>
+<li>記帳台が高すぎる場合はバインダーを貸す</li>
+<li>押し引きドアが難しい場合は電話をもらい職員がドア開閉をする</li>
+<li>料理を食べやすい大きさにカットし取りやすく盛り付ける</li>
+</ul>
+<h3>知的障害の方への配慮例</h3>
+<ul>
+<li>契約書に振り仮名を付けたひらがな入り書類を用意する</li>
+<li>言葉だけの指示が難しい場合は身振り手振りやボードも使う</li>
+<li>咀嚼が苦手な場合は食材を小さく切ったりミキサーで加工する</li>
+<li>集会が苦手な場合は少し離れた場所に席を用意し、必要ならイヤーマフを使う</li>
+</ul>
+<h3>発達障害の方への配慮例</h3>
+<ul>
+<li>待合室での順番待ちが難しい場合は視界が遮られるスペースに椅子を移動する</li>
+<li>作業内容を1週間前に渡して安心してもらう</li>
+<li>パニックになった場合は落ち着くまで一人になれる場所に移動する</li>
+<li>触覚過敏がある場合は体に直接触れない・予告してから接触する</li>
+</ul>
+<div class="danger"><div class="lbl">&#10060; してはいけない対応</div>「前例がないので対応できません」「障害のある人だけ特別扱いできません」「◯◯の障害がある人には対応できません」は合理的配慮を断る理由になりません。個別に柔軟に検討しましょう。</div>
+<div class="ok"><strong>利用者さんにとって最高の居場所にできるよう、合理的配慮を取り入れましょう！</strong></div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="支援スキル" data-title="障害者手帳について" data-cat="2">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#EEF8F3;color:var(--ok);">&#128203;</div>
+<div><div class="slide-chapter" style="color:#3A7D5C;">支援スキル</div><div class="slide-title">障害者手帳について</div></div>
+</div><div class="content">
+<div class="hl">障がいのある方には、要件に伴い手帳が発行されます。手帳には①療育手帳 ②精神障害者保健福祉手帳 ③身体障害者手帳の3種類があります。</div>
+<h3>①療育手帳（知的障がいのある方）</h3>
+<p>基本的には、重度「A」と重度以外の中軽度「B」の2種類で区分されています。自治体によって名称や細分化の方法が異なります（例：東京都は1〜4度、愛知県は1〜4度など）。</p>
+<h3>②精神障害者保健福祉手帳（精神疾患のある方）</h3>
+<p>発達障害・高次脳機能障害・てんかん・依存症も含まれます。1〜3級に区分されます。</p>
+<table>
+<tr><th>等級</th><th>目安</th></tr>
+<tr><td><strong>1級（重度）</strong></td><td>周囲の援助がなければほとんど自力で生活を送ることができない程度</td></tr>
+<tr><td><strong>2級（中度）</strong></td><td>必ずしも周囲のサポートが必要なわけではないが、日常生活は困難な程度</td></tr>
+<tr><td><strong>3級（軽度）</strong></td><td>日常生活・社会生活に一定の制限がかかる程度</td></tr>
+</table>
+<h3>③身体障害者手帳（身体の障がいのある方）</h3>
+<p>日常生活における支障の程度・症状の種類により7つの障害等級に区分され、6級以上に交付されます。等級の数字が小さいほど障害の程度は重くなります。</p>
+<h3>手帳取得のメリット</h3>
+<ul>
+<li>税金控除の対象になる（所得税・住民税の控除）</li>
+<li>各種公共料金などの割引がある（交通機関・NHK受信料・携帯電話料金・公共施設入館料など）</li>
+<li>医療費などの助成がある（自立支援医療費制度など）</li>
+<li>補装具費用が安くなる（原則1割負担）</li>
+<li>障害者雇用で就職できる（障害の特性に合わせた就労条件）</li>
+</ul>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="虐待防止" data-title="虐待防止について学ぼう①（種類と背景）" data-cat="4">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#FDF0EF;color:var(--dn);">&#128737;</div>
+<div><div class="slide-chapter" style="color:#C0392B;">虐待防止</div><div class="slide-title">虐待防止について学ぼう①（種類と背景）</div></div>
+</div><div class="content">
+<div class="hl">虐待は「しよう！」と思ってする人はほぼ皆無とされています。<strong>少しの気の緩み、認識の違いから発生</strong>します。「小さな不適切な関わり」が積み重なり感覚がマヒし、エスカレートしていくのです。</div>
+<h3>障がい者虐待の５種類</h3>
+<table>
+<tr><th>種類</th><th>内容</th><th>具体例</th></tr>
+<tr><td><strong style="color:var(--dn);">身体的虐待</strong></td><td>外傷が生じる暴行、正当な理由なく身体を拘束すること</td><td>平手打ち・殴る・蹴る・縛り付ける・閉じ込めるなど</td></tr>
+<tr><td><strong style="color:var(--dn);">性的虐待</strong></td><td>わいせつな行為をすること・させること</td><td>性的な行為・接触の強要、わいせつな映像を見せるなど</td></tr>
+<tr><td><strong style="color:var(--dn);">心理的虐待</strong></td><td>著しい暴言・拒絶的な対応・心理的外傷を与える言動</td><td>怒鳴る・ののしる・無視をする・子ども扱いするなど</td></tr>
+<tr><td><strong style="color:var(--dn);">放棄・放置</strong></td><td>衰弱させるような著しい減食・長時間の放置</td><td>食事や水分を与えない・入浴させない・病気でも受診させないなど</td></tr>
+<tr><td><strong style="color:var(--dn);">経済的虐待</strong></td><td>財産を不当に処分すること</td><td>年金や賃金を渡さない・同意なしに財産を処分するなど</td></tr>
+</table>
+<div class="warn"><div class="lbl">&#9888; グループホームでの注意点</div>職員が一人勤務で密室性が高い状況です。うまくいかなかった時も一人で受け止めなければなりません。追い詰められやすい立場にあるからこそ、日頃からの連携と相談が大切です。<br><br><strong>「聴く姿勢」こそ良い支援の始まりであり、虐待を防ぐ近道です。</strong></div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="虐待防止" data-title="虐待防止について学ぼう②（身体拘束・発見時の対応）" data-cat="4">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#FDF0EF;color:var(--dn);">&#128680;</div>
+<div><div class="slide-chapter" style="color:#C0392B;">虐待防止</div><div class="slide-title">虐待防止②（身体拘束・発見時の対応）</div></div>
+</div><div class="content">
+<h3>身体拘束について</h3>
+<div class="danger"><div class="lbl">&#9940; 原則：身体拘束は禁止</div>「正当な理由なく障害者の身体を拘束すること」は身体的虐待とされています。</div>
+<p>やむを得ず身体拘束を行う場合は、以下の<strong>３要件すべてに当てはまる場合のみ</strong>、慎重に判断します。</p>
+<div class="step-list">
+<div class="step-item"><div class="step-num" style="background:var(--dn);">1</div><div class="step-body"><strong>切迫性</strong>利用者本人または他の利用者等の生命・身体・権利が危険にさらされる可能性が著しく高いこと</div></div>
+<div class="step-item"><div class="step-num" style="background:var(--dn);">2</div><div class="step-body"><strong>非代替性</strong>身体拘束以外に代替する方法がないことを複数職員で確認すること。最も制限の少ない方法を選択する</div></div>
+<div class="step-item"><div class="step-num" style="background:var(--dn);">3</div><div class="step-body"><strong>一時性</strong>身体拘束は一時的であること。必要な最も短い時間にとどめること</div></div>
+</div>
+<p>身体拘束を行う場合は①その様態及び時間 ②利用者の心身の状況と緊急やむを得ない理由 ③その他必要な事項を記録します。</p>
+<h3>虐待を発見したら</h3>
+<div class="hl">虐待を受けたと思われる障害者を発見した場合は、<strong>事実が確認できなくても通報する義務があります</strong>（疑いを持った時点で通報）。現場サイドで各自通報すると混乱するため、<strong>まず責任者へ連絡</strong>してください。</div>
+<div class="contact-box">
+<div class="cl">&#128222; 虐待防止責任者への連絡先</div>
+<div class="cn">イーワンスクエア山手・新神野</div>
+<div class="cn" style="font-size:.9rem;margin-bottom:3px;">藤田さよ子</div>
+<div class="ct">070-4318-7571</div>
+</div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="感染症対策" data-title="感染症対策について" data-cat="5">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#FEF6F0;color:var(--wn);">&#129440;</div>
+<div><div class="slide-chapter" style="color:#D4700A;">感染症対策</div><div class="slide-title">感染症対策について</div></div>
+</div><div class="content">
+<div class="hl">グループホームでは、感染症に対する抵抗力が弱い方もおり、集団生活で感染が広がりやすい状況にあります。感染の被害を最小限にするために、<strong>平常時からの対策</strong>と<strong>発生時の迅速な対応</strong>が必要です。</div>
+<h3>感染対策の３本柱</h3>
+<div class="step-list">
+<div class="step-item">
+<div class="step-num">1</div>
+<div class="step-body">
+<strong>感染源の排除</strong>
+<p>感染源となるもの：排泄物（嘔吐物・便・尿）、血液・体液・分泌物（膿・唾液）、使用した器具・器材、それらに触れた手指で扱った食品など</p>
+<div style="background:#F5F9FD;border-radius:8px;padding:12px;margin-top:8px;font-size:.86rem;">
+<strong>手洗いのポイント（「手洗いに始まり、手洗いに終わる」）</strong><br>
+①時計・指輪を外す　②爪は短く切る　③雑になりやすい部位に注意　④水道栓の開閉は手首や肘でできるものが望ましい　⑤手を完全に乾燥させる<br><br>
+「石けんと流水による手洗い」と「消毒薬による手指消毒」の２種類があります。<br>
+<strong>１回のケアに１回の手洗いが基本です。</strong>
+</div>
+<div style="background:#FEF6F0;border-radius:8px;padding:12px;margin-top:8px;font-size:.86rem;">
+<strong>標準予防策：</strong>血液・体液・排泄物などを扱うときは、手袋・マスク・エプロンなどを必ず着用してください。すべての利用者に対して適用されます。
+</div>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">2</div>
+<div class="step-body">
+<strong>感染経路の遮断</strong>
+<table style="margin-top:8px;">
+<tr><th>感染経路</th><th>特徴</th><th>主な原因微生物</th></tr>
+<tr><td><strong>空気感染</strong></td><td>咳・くしゃみで飛沫核として伝播。空中に浮遊し飛散する</td><td>結核・麻しん・水痘</td></tr>
+<tr><td><strong>飛沫感染</strong></td><td>咳・くしゃみ・会話で感染。飛沫は1m以内の床に落下する</td><td>インフルエンザ・風しんなど</td></tr>
+<tr><td><strong>接触感染</strong>（経口含む）</td><td>手指・食品・器具を介して伝播。最も頻度が高い</td><td>ノロウィルス・腸管出血性大腸菌・MRSAなど</td></tr>
+</table>
+<p style="margin-top:8px;font-size:.86rem;"><strong>感染経路の遮断とは：</strong>①感染源を持ち込まないこと ②感染源を広げないこと ③感染源を持ち出さないこと。手洗い・うがい・環境清掃が基本です。</p>
+</div>
+</div>
+<div class="step-item">
+<div class="step-num">3</div>
+<div class="step-body">
+<strong>宿主（人間）の抵抗力の向上</strong>
+<p>規則正しい生活・十分な睡眠・バランスの良い食事・適度な運動が免疫力の維持につながります。利用者さんが規則正しい生活を送れるよう支援しましょう。</p>
+</div>
+</div>
+</div>
+<div class="ok">感染症は発生自体を完全になくすことはできません。異常を早急に察知し、迅速で適切な対応を図ることが求められます。<strong>異常に気づいたら即座に管理者へ報告してください。</strong></div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="タイムスケジュール" data-title="夕勤タイムスケジュール（16:00〜22:00）" data-cat="6">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#E8F4FD;color:#1A6B8A;">&#127750;</div>
+<div><div class="slide-chapter" style="color:#1A6B8A;">タイムスケジュール</div><div class="slide-title">夕勤タイムスケジュール（16:00〜22:00）</div></div>
+</div><div class="content">
+<div class="tr-row"><div class="tr-t">16:00</div><div class="tr-c"><ul>
+<li>郵便物の確認</li>
+<li>電話の転送解除</li>
+<li>日報・ノートの確認（きちんと読んでください！）</li>
+<li>食材の搬入・仕分け（日にち・曜日・冷蔵・冷凍を間違わないように！）</li>
+<li>洗濯物（タオル・ふきんなど）の取り込み（利用者のものは帰りの遅い時のみ）</li>
+<li>消毒液を作る（前日のものは破棄する）</li>
+<li>※順次帰宅されます。「おかえりなさい！」と大きな声で気持ちよく！</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">16:45</div><div class="tr-c"><ul>
+<li>夕食の準備開始（夕食準備でも「おかえりなさい！」と声かけください）</li>
+<li>入浴と洗濯への声かけ（万一順番が変わる場合は丁寧に事情を説明する）</li>
+<li>洗濯干し声かけ（きちんと干せているか部屋で確認してあげましょう！）</li>
+<li>食前の内服薬の準備（飲み忘れは事故の元。忘れずにお願いします）</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">18:30</div><div class="tr-c"><ul>
+<li>夕食開始</li>
+<li>食後の内服薬の確認（飲み忘れは事故の元。忘れずにお願いします）</li>
+<li>薬を飲んだかの日報チェック</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">19:00</div><div class="tr-c"><ul>
+<li>入浴の声かけ</li>
+<li>食器の片付け</li>
+<li>レンジ周りの清掃</li>
+<li>麦茶の確認</li>
+<li>風呂掃除（全員終わらない場合は夜勤者に引き継ぎください）</li>
+<li>※片付けは入居者と会話をしながら。いつもと違うことがないか確認しましょう！</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">20:00</div><div class="tr-c">見守り</div></div>
+<div class="tr-row"><div class="tr-t">20:30</div><div class="tr-c"><ul>
+<li>①明日の予定の確認 → 朝食・出発時間変更の有無確認。休日前は休日の予定を聞くこと</li>
+<li>②日報記入 → 個人ファイル以外の日報は入居者がいるところで書いてもOK。日報記入に夢中になると周りが見えなくなります。常に周囲に気にかけを！</li>
+<li>③夜勤者の方に申し送り → 必要なことのみ速やかに行い、次の方に業務をお願いしてください</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">22:00</div><div class="tr-c" style="background:#EEF8F3;font-weight:700;color:var(--ok);font-size:1rem;">&#127775; １日お疲れ様でした！</div></div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="タイムスケジュール" data-title="夜勤タイムスケジュール（22:00〜9:00）" data-cat="6">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#E8F4FD;color:#1A6B8A;">&#127769;</div>
+<div><div class="slide-chapter" style="color:#1A6B8A;">タイムスケジュール</div><div class="slide-title">夜勤タイムスケジュール（22:00〜9:00）</div></div>
+</div><div class="content">
+<div class="tr-row"><div class="tr-t">22:00</div><div class="tr-c"><ul>
+<li>申し送り</li>
+<li>日報の確認（きちんと読んでください）</li>
+<li>眠剤の確認（飲み忘れのないようにしてあげましょう）</li>
+<li>風呂掃除（申し送りのときに終わっているか確認）</li>
+<li>食器の片づけ（申し送りのときに終わっているか確認）</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">23:00</div><div class="tr-c"><ul>
+<li>リビングのテレビを消し、入居者に部屋に戻るよう声かけ</li>
+<li>洗剤・物品の補充</li>
+<li>日報の記入</li>
+<li>ふきん消毒</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">0:00</div><div class="tr-c"><ul>
+<li>全室巡回 → 電気・テレビ・エアコンの消し忘れ確認（起きていれば声かけをする）</li>
+<li>※空き時間に日報などコピーしたりメモ紙を作りましょう</li>
+<li>※入居者のファイルやノートもこの時間に確認</li>
+<li style="background:#EAF2FA;padding:4px 8px;border-radius:6px;font-weight:700;color:var(--p);">（休憩 3時間）</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">3:00</div><div class="tr-c"><ul>
+<li>全室巡回</li>
+<li>上記と同様に、異変がないか巡回をする</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">5:00</div><div class="tr-c">朝食の準備開始</div></div>
+<div class="tr-row"><div class="tr-t">6:00</div><div class="tr-c"><ul>
+<li>タオル洗濯（月・水・金・日のみ）</li>
+<li>※新しいタオルをかけるのを忘れずに</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">6:30</div><div class="tr-c"><ul>
+<li>順次入居者起床</li>
+<li>食前内服薬の準備</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">7:30</div><div class="tr-c"><ul>
+<li>朝食開始（出勤時間に合わせて対応をする）</li>
+<li>食後の内服薬の準備</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">8:00</div><div class="tr-c"><ul>
+<li>入居者出勤</li>
+<li>食器片付け・レンジ周り清掃</li>
+<li>トイレ掃除・掃除機かけ</li>
+<li>ゴミカレンダーチェックとゴミ出し（月２回しかないものもあるので必ず確認）</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">8:30</div><div class="tr-c"><ul>
+<li>日報記入</li>
+<li>全室確認（エアコン・電気が消えているか・整理整頓されているか）</li>
+<li>戸締り確認（窓・電気・やり忘れ）</li>
+<li>電話を転送にする</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">9:00</div><div class="tr-c" style="background:#EEF8F3;font-weight:700;color:var(--ok);font-size:1rem;">&#127775; １日お疲れ様でした！</div></div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="タイムスケジュール" data-title="土日祝 日勤タイムスケジュール（9:00〜16:00）" data-cat="6">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#E8F4FD;color:#1A6B8A;">&#9728;</div>
+<div><div class="slide-chapter" style="color:#1A6B8A;">タイムスケジュール</div><div class="slide-title">土日祝 日勤タイムスケジュール（9:00〜16:00）</div></div>
+</div><div class="content">
+<div class="tr-row"><div class="tr-t">9:00</div><div class="tr-c"><ul>
+<li>申し送り</li>
+<li>日報確認（きちんと読んでください）</li>
+<li>外出・外泊の確認（きちんと確認ください）</li>
+<li>入居者の昼食の有無の確認</li>
+<li>昼食の材料チェック</li>
+<li>炊飯</li>
+<li>掃除（普段できていないところをお願いします）</li>
+<li style="padding-left:20px;color:var(--tl);">→ 風呂の排水溝、換気扇、玄関まわり、床、廊下など</li>
+<li>入居者に掃除の声掛け（必要なら手伝って一緒にしてあげてください）</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">11:00</div><div class="tr-c">昼食の準備開始</div></div>
+<div class="tr-row"><div class="tr-t">11:30</div><div class="tr-c">食前内服薬の確認（飲み忘れのないようにしてあげましょう）</div></div>
+<div class="tr-row"><div class="tr-t">12:00</div><div class="tr-c"><ul>
+<li>昼食開始</li>
+<li>食後内服薬の確認（飲み忘れのないようにしてあげましょう）</li>
+<li>食器の片付け</li>
+<li>休憩45分</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">14:30</div><div class="tr-c"><ul>
+<li>土曜日：掃除（午前中の続き）</li>
+<li>祝日：入居者に掃除の声掛け（午前中の続き）</li>
+<li>日曜日：在庫確認（ストック管理表をみながら行ってください）</li>
+</ul></div></div>
+<div class="tr-row"><div class="tr-t">15:30</div><div class="tr-c">日報記入</div></div>
+<div class="tr-row"><div class="tr-t">16:00</div><div class="tr-c"><ul>
+<li>申し送り</li>
+<li style="font-weight:700;color:var(--ok);">退勤</li>
+</ul></div></div>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="タイムスケジュール" data-title="定期的な清掃スケジュール" data-cat="6">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#E8F4FD;color:#1A6B8A;">&#128197;</div>
+<div><div class="slide-chapter" style="color:#1A6B8A;">タイムスケジュール</div><div class="slide-title">定期的な清掃スケジュール</div></div>
+</div><div class="content">
+<table>
+<tr><th>内容</th><th>担当・頻度</th></tr>
+<tr><td><strong>エアコン清掃</strong></td><td>2・5・8・11月の土日日勤者（3ヶ月に一度）<br>フィルター・エアコン本体（特に上の方）</td></tr>
+<tr><td><strong>庭・周辺の草木</strong></td><td>年間通して。特に4〜8月は強化月間<br>雑草・伸びすぎた木の枝の除去</td></tr>
+<tr><td><strong>レンジフード</strong></td><td>第4土曜の夜勤者（21時以降）<br>レンジフード全体の油とり・フィルター清掃・交換</td></tr>
+<tr><td><strong>電子レンジ</strong></td><td>毎週月曜の夜勤者<br>油汚れの除去</td></tr>
+<tr><td><strong>歯ブラシ・コップ消毒</strong></td><td>第一木曜の夜勤者<br>キッチン漂白剤に30分つける</td></tr>
+<tr><td><strong>バスマット・キッチンマット洗濯</strong></td><td>毎週日曜の日勤者</td></tr>
+<tr><td><strong>窓拭き</strong></td><td>3・6・9・12月の土日日勤者</td></tr>
+<tr><td><strong>入居者の布団干し</strong></td><td>月に一度程度、土日日勤者</td></tr>
+<tr><td><strong>入居者の部屋掃除</strong></td><td>入居者さんのお部屋の状況を鑑みつつ頻度を決める。基本はご自身が普段から綺麗にできる体制をつくる。普段できない場合は週末にまとめて</td></tr>
+</table>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="ホーム運営" data-title="食事のつくり方・提供方法・片付け" data-cat="6">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#E8F4FD;color:#1A6B8A;">&#127869;</div>
+<div><div class="slide-chapter" style="color:#1A6B8A;">ホーム運営</div><div class="slide-title">食事のつくり方・提供方法・片付け</div></div>
+</div><div class="content">
+<table>
+<tr><th>項目</th><th>内容</th></tr>
+<tr><td><strong>メニュー表確認</strong></td><td>食材は宅配にて基本毎日届く（土日祭日はその分まとめて）。メニュー表で献立を確認する</td></tr>
+<tr><td><strong>調理方法</strong></td><td>メニュー表にのっとり調理。調味料がない場合はある調味料でアレンジ。調理方法に不安がある場合は慣れた方法でOK（魚の煮付け→焼き魚、卵焼き→目玉焼き など）。手を抜くための変更は禁止。入居者を考えたアレンジは大歓迎！</td></tr>
+<tr><td><strong>調理時の注意</strong></td><td>味見は必ず小皿で。調味料の使いすぎに注意（高カロリー防止）。使ったものはすぐ片付ける（包丁の出しっぱなし厳禁）</td></tr>
+<tr><td><strong>提供方法</strong></td><td>①ランチョンマット・コップなどは入居者ご自身で用意 ②個別のお皿で提供（盛り皿でださない） ③ご飯・おかずは入居者ご自身で運んでもらう ④基本食事時間18時30分。不在の場合は別途盛り付け・再加熱して温かい状態で提供</td></tr>
+<tr><td><strong>提供時の注意</strong></td><td>おかわりを必要以上に求めてくる場合は管理者に相談。満腹神経がゆるい方が多い。与えすぎは糖尿病・高血圧につながる</td></tr>
+<tr><td><strong>片付け方法</strong></td><td>基本、入居者さんが皿洗い・食器棚へ入れる。洗い残し・拭き残しの見守りをする。食後はテーブルを布巾でふく</td></tr>
+<tr><td><strong>片付け時の注意</strong></td><td>手伝いたくても見守ることが重要。皿洗いができない場合は別途個別支援計画を用意する</td></tr>
+</table>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="ホーム運営" data-title="掃除・片付けについて" data-cat="6">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#E8F4FD;color:#1A6B8A;">&#129529;</div>
+<div><div class="slide-chapter" style="color:#1A6B8A;">ホーム運営</div><div class="slide-title">掃除・片付けについて</div></div>
+</div><div class="content">
+<h3>キッチンまわり（食後ごとに）</h3>
+<table>
+<tr><th>箇所</th><th>方法</th></tr>
+<tr><td><strong>コンロ</strong></td><td>油汚れ・吹き出し汚れを排除。落ちないものは洗剤を使う。火の出る部分の「爪」は外して行う</td></tr>
+<tr><td><strong>シンク・排水溝</strong></td><td>片付け後は洗剤・スポンジでシンクをきれいに。三角コーナーもヌメヌメなくす。排水溝ネットは夕食時のみ替える。鉄の受け皿はスポンジできれいに</td></tr>
+<tr><td><strong>調理器具</strong></td><td>常にきれいな状態を保つ。コゲをそのままにしない。使った場所に戻すこと</td></tr>
+<tr><td><strong>冷蔵庫</strong></td><td>食材は常に前だしする。入居者のものは名前を書いてわかるように。炊いたお米が残った場合はラップを巻いて日付を書いて冷蔵庫へ。毎週水曜の夜勤に掃除・整理整頓</td></tr>
+</table>
+<h3>風呂掃除</h3>
+<table>
+<tr><th>箇所</th><th>方法</th></tr>
+<tr><td><strong>浴槽</strong></td><td>髪の毛を事前に除去（そのまま流すと排水が詰まる）。専用洗剤・スポンジで洗う。終了後は手でツルツルになっているか確認</td></tr>
+<tr><td><strong>排水溝</strong></td><td>フタ・受け部分を毎回きれいにする。ヌメヌメ・髪の毛は除去。清掃後フタを開けておく</td></tr>
+<tr><td><strong>シャンプー等</strong></td><td>専用ボトルを各2本ずつ用意。①なくなったら交換 ②ボトルを洗い乾かす ③ノートに記入 ④翌日の夜勤者が詰め替え</td></tr>
+</table>
+<h3>掃除機がけ（朝8時頃から）</h3>
+<table>
+<tr><th>箇所</th><th>方法</th></tr>
+<tr><td><strong>キッチン・リビング</strong></td><td>入居者さんを部屋に促す。テーブル下の椅子をどかしてかける。ソファー下も毎日。四角の掃除を意識し隅々まで</td></tr>
+<tr><td><strong>廊下・玄関・階段・トイレ内</strong></td><td>玄関は靴をどけてかける</td></tr>
+<tr><td><strong>吸い込みが悪くなったら</strong></td><td>ゴミパックの交換サイン。気づいたら率先して交換しよう。助け合いの気持ちが大事</td></tr>
+</table>
+</div></div>
+
+</div>
+
+<div class="slide" data-chapter="ホーム運営" data-title="郵便物・在庫管理・トラブルシューティング" data-cat="6">
+
+<div class="card"><div class="slide-header">
+<div class="slide-icon" style="background:#E8F4FD;color:#1A6B8A;">&#128236;</div>
+<div><div class="slide-chapter" style="color:#1A6B8A;">ホーム運営</div><div class="slide-title">郵便物・在庫管理・トラブルシューティング</div></div>
+</div><div class="content">
+<h3>郵便物の取り扱い</h3>
+<table>
+<tr><th>種類</th><th>対応</th></tr>
+<tr><td><strong>入居者さん宛て</strong></td><td>本人と中身を確認し、適切なアドバイスをする。内容が難しい場合は管理者までLINE連絡。役所関係の書類は管理者を通すこと</td></tr>
+<tr><td><strong>ホーム・会社宛て</strong></td><td>写メを撮り、LINEで管理者まで連絡</td></tr>
+<tr><td><strong>宅急便</strong></td><td>すぐに中身を確認。在庫・備品なら所定の場所へ。不明な場合は管理者へLINE</td></tr>
+<tr><td><strong>不在票</strong></td><td>次回配達日を決め（平日は夕方16時以降に指定）。不在票に「連絡済み」と書いてノートにはさむ。物が届いたら不在票を破棄する</td></tr>
+<tr><td><strong>回覧板</strong></td><td>回覧内容を確認し、写メを撮って管理者まで連絡。次の方へ回す</td></tr>
+</table>
+<h3>在庫管理・発注</h3>
+<table>
+<tr><th>品目</th><th>担当・発注先</th></tr>
+<tr><td>調味料・米</td><td>毎週日曜の日勤者がストック管理表でチェック。気づいた人がお買い物アプリで発注</td></tr>
+<tr><td>日用品</td><td>毎週日曜の日勤者がチェック。気づいた人がお買い物アプリで発注</td></tr>
+<tr><td>事務関連備品</td><td>毎週日曜の日勤者がチェック。気づいた人がお買い物アプリで発注</td></tr>
+</table>
+<h3>トラブルシューティング</h3>
+<table>
+<tr><th>状況</th><th>対応</th></tr>
+<tr><td><strong>暴れています</strong></td><td>身体拘束は禁止。自分ではどうにもできない場合はすぐに管理者へ電話。連絡がつかない場合はLINE報告</td></tr>
+<tr><td><strong>不穏になりました</strong></td><td>本人の話を聴く姿勢を持つ。不穏の状態を管理者へ報告し対応を検討する</td></tr>
+<tr><td><strong>送ってと言われました</strong></td><td>車での送迎はしていません。お断りすること</td></tr>
+<tr><td><strong>薬を飲みたくないと言っています</strong></td><td>①理解を示す →②飲みたくない理由を聞く →③承認する →④飲まない場合のデメリットを伝える →⑤次の受診日を話す。解決しない場合は管理者へ電話連絡。解決した場合でも報告をあげる</td></tr>
+<tr><td><strong>熱が出ています</strong></td><td>管理者へ連絡。病院は家族もしくは社内スタッフが連れて行く</td></tr>
+<tr><td><strong>熱もないのに休みたいと言っています</strong></td><td>①理解 →②理由を聞く →③行くよう促す。解決しない場合は管理者へ連絡</td></tr>
+<tr><td><strong>帰りがいつもより遅い</strong></td><td>予定時間を過ぎても帰らない場合は管理者へ連絡</td></tr>
+<tr><td><strong>お金を貸してと言われました</strong></td><td>金銭の貸し借りは絶対に禁止。管理者へ報告</td></tr>
+<tr><td><strong>お菓子などをあげると言っています</strong></td><td>もらわない・あげないが基本姿勢。お土産などの場合は快くいただく</td></tr>
+<tr><td><strong>調味料がありません</strong></td><td>まず在庫確認。代替え調理を検討。どうしようもない場合は管理者へ相談</td></tr>
+</table>
+<h3>個人情報の取り扱い</h3>
+<div class="danger"><div class="lbl">&#128274; 注意</div>個人情報が記してあるファイル・ノート類は、鍵付きの書庫に入れ保管すること。保管内容：個別支援計画書・アセスメントシート・送りノート・個人ノート・実績記録表。管理責任者：サービス管理責任者。ホーム責任者：ホームのリーダー。</div>
+</div></div>
+
+</div>
+</div>
+
+<!-- MANUAL NAV -->
+<div id="nav-bar">
+  <div id="nav-inner">
+    <button class="nav-btn sec" id="btn-prev" onclick="navigate(-1)">&#9664; 前へ</button>
+    <div style="text-align:center;">
+      <div id="page-indicator"><strong id="cur-page">1</strong> / <strong id="total-pages">?</strong></div>
+      <div id="slide-name"></div>
+    </div>
+    <button class="nav-btn" id="btn-next" onclick="navigate(1)">次へ &#9654;</button>
   </div>
+</div>
 
-  <div class="sec-label">外部リンク・参考サイト</div>
-  <div class="ext-grid">
-
-    <a href="https://pasokuraeone-design.github.io/eone-checklist/" target="_blank" class="ext-card">
-      <div class="ext-icon">☑️</div>
-      <div>
-        <div class="ext-title">年次チェックリスト</div>
-        <div class="ext-sub">県提出チェックリスト管理</div>
-      </div>
-      <div class="ext-arrow">↗</div>
-    </a>
-
-    <a href="https://www.kakogawa-bousai.jp/" target="_blank" class="ext-card">
-      <div class="ext-icon">🌊</div>
-      <div>
-        <div class="ext-title">加古川市防災ポータル</div>
-        <div class="ext-sub">避難情報・警戒レベルを確認</div>
-      </div>
-      <div class="ext-arrow">↗</div>
-    </a>
-
-    <a href="https://web.pref.hyogo.lg.jp/kf30/documents/r7cl19.xlsx" target="_blank" class="ext-card">
-      <div class="ext-icon">📄</div>
-      <div>
-        <div class="ext-title">兵庫県チェックリスト</div>
-        <div class="ext-sub">R7年度Excel（県公式）</div>
-      </div>
-      <div class="ext-arrow">↗</div>
-    </a>
-
+<!-- PROGRESS PANEL (full screen overlay) -->
+<div id="prog-panel">
+  <div class="pp-header">
+    <div class="pp-logo">&#127968; イーワンスクエア 研修進捗</div>
+    <button class="pp-close" onclick="hideProg()">&#10005; 閉じる</button>
   </div>
+  <div class="pp-body" id="pp-body">
+    <!-- content rendered by JS -->
+  </div>
+</div>
 
-</main>
+<!-- MODAL (separate, highest z-index) -->
+<div id="pp-modal">
+  <div class="pm-box">
+    <div class="pm-title" id="pm-title">名前を追加</div>
+    <input class="pm-input" id="pm-input" type="text" placeholder="名前を入力（例：山田さん）" maxlength="20">
+    <div class="pm-btns">
+      <button class="pm-cancel" onclick="hideModal()">キャンセル</button>
+      <button class="pm-ok" id="pm-ok" onclick="submitModal()">追加する</button>
+    </div>
+  </div>
+</div>
 
-<footer class="footer">
-  イーワンスクエア スタッフポータル｜共同生活援助　山手・新神野<br>
-  管理者：藤田　／　令和7年度
-</footer>
+<script>
+// ===== SLIDE DATA =====
+const SD = [
+  {c:'はじめに',t:'運営マニュアル トップ'},
+  {c:'理念・使命',t:'会社の理念・使命・目指す社内風土'},
+  {c:'理念・使命',t:'私たちの５つの悪行（絶対にしてはいけないこと）'},
+  {c:'理念・使命',t:'一緒に働きたい人'},
+  {c:'福祉の基礎知識',t:'ノーマライゼーションとは'},
+  {c:'福祉の基礎知識',t:'福祉の仕組み・グループホームとは'},
+  {c:'障がいを知る',t:'障がいを知る・障害区分'},
+  {c:'障がいを知る',t:'身体障がいを知る・個人モデルと社会モデル'},
+  {c:'障がいを知る',t:'知的障がいを知る'},
+  {c:'障がいを知る',t:'強度行動障がいを知る'},
+  {c:'障がいを知る',t:'精神障がいを知る①（種類と特性）'},
+  {c:'障がいを知る',t:'精神障がいを知る②（共通点・支援方法・てんかん対応）'},
+  {c:'障がいを知る',t:'発達障がいを知る（ASD・ADHD・LD）'},
+  {c:'支援スキル',t:'周囲を幸せにする「傾聴技法」・意思決定支援'},
+  {c:'支援スキル',t:'2024年義務化開始 合理的配慮を学ぼう'},
+  {c:'支援スキル',t:'障害者手帳について'},
+  {c:'虐待防止',t:'虐待防止について学ぼう①（種類と背景）'},
+  {c:'虐待防止',t:'虐待防止について学ぼう②（身体拘束・発見時の対応）'},
+  {c:'感染症対策',t:'感染症対策について'},
+  {c:'タイムスケジュール',t:'夕勤タイムスケジュール（16:00〜22:00）'},
+  {c:'タイムスケジュール',t:'夜勤タイムスケジュール（22:00〜9:00）'},
+  {c:'タイムスケジュール',t:'土日祝 日勤タイムスケジュール（9:00〜16:00）'},
+  {c:'タイムスケジュール',t:'定期的な清掃スケジュール'},
+  {c:'ホーム運営',t:'食事のつくり方・提供方法・片付け'},
+  {c:'ホーム運営',t:'掃除・片付けについて'},
+  {c:'ホーム運営',t:'郵便物・在庫管理・トラブルシューティング'}
+];
+const TOTAL = SD.length;
+const CHAPTERS = [...new Set(SD.map(s=>s.c))];
+const CH_COLORS = {
+  'はじめに':'#4A8BBD','理念・使命':'#4A8BBD','福祉の基礎知識':'#5BC894',
+  '障がいを知る':'#C3A8E8','支援スキル':'#5BC894','虐待防止':'#FF8A80',
+  '感染症対策':'#F5A878','タイムスケジュール':'#7EC8F0','ホーム運営':'#7EC8F0'
+};
 
+// ===== IN-MEMORY DATA (no localStorage) =====
+let db = { staff: [], prog: {} };
+
+// Normalize Firebase data (Firebase converts arrays to indexed objects)
+function normalizeFbData(data) {
+  if (!data) return { staff: [], prog: {} };
+  const result = { staff: [], prog: {} };
+  if (data.staff) {
+    result.staff = Array.isArray(data.staff) ? data.staff : Object.values(data.staff);
+  }
+  if (data.prog) {
+    Object.keys(data.prog).forEach(name => {
+      const p = data.prog[name];
+      if (Array.isArray(p)) result.prog[name] = p;
+      else if (typeof p === 'object') result.prog[name] = Object.values(p).map(Number);
+      else result.prog[name] = [];
+    });
+  }
+  return result;
+}
+
+// Firebase-backed save/load with localStorage fallback
+function save() {
+  if (window.fbSave) {
+    window.fbSave(db);
+  }
+  try { localStorage.setItem('e1sq4', JSON.stringify(db)); } catch(e) {}
+}
+function load() {
+  try {
+    const s = localStorage.getItem('e1sq4');
+    if (s) {
+      const parsed = JSON.parse(s);
+      db = normalizeFbData(parsed);
+    }
+  } catch(e) {}
+}
+load();
+
+// ===== STATE VARIABLES (declared early to avoid hoisting issues) =====
+let currentUser = '';
+let currentView = 'list';
+let modalMode = 'add';
+let modalTarget = '';
+
+// When Firebase is ready, merge with Firebase data (Firebase wins)
+window._onFbReady = function(fbData) {
+  if (fbData) {
+    db = normalizeFbData(fbData);
+    try { localStorage.setItem('e1sq4', JSON.stringify(db)); } catch(e) {}
+    if (document.getElementById('prog-panel').classList.contains('show')) {
+      renderView(currentView);
+    }
+    if (currentUser) {
+      const badge = document.getElementById('current-user-badge');
+      if (badge) badge.textContent = currentUser + ' さん';
+    }
+  }
+};
+
+// Listen for real-time changes from other devices
+setTimeout(() => {
+  if (window.fbListen) {
+    window.fbListen(function(fbData) {
+      if (fbData) {
+        db = normalizeFbData(fbData);
+        try { localStorage.setItem('e1sq4', JSON.stringify(db)); } catch(e) {}
+        if (document.getElementById('prog-panel').classList.contains('show')) {
+          renderView(currentView);
+        }
+      }
+    });
+  }
+}, 2000);
+
+function getStaff() { return db.staff || []; }
+function getProg(name) { return db.prog[name] || []; }
+function markRead(name, idx) {
+  if (!db.prog[name]) db.prog[name] = [];
+  if (!db.prog[name].includes(idx)) db.prog[name].push(idx);
+  save();
+}
+function resetProg(name) { db.prog[name] = []; save(); }
+function addStaff(name) { if (!db.staff.includes(name)) { db.staff.push(name); save(); } }
+function renameStaff(old, nw) {
+  db.staff = db.staff.map(n => n===old ? nw : n);
+  db.prog[nw] = db.prog[old] || [];
+  delete db.prog[old];
+  save();
+}
+function deleteStaff(name) {
+  db.staff = db.staff.filter(n => n !== name);
+  delete db.prog[name];
+  save();
+  if (currentUser === name) { currentUser = ''; document.getElementById('current-user-badge').style.display='none'; }
+}
+
+// ===== MANUAL SLIDE ENGINE =====
+const slides = document.querySelectorAll('.slide');
+let cur = 0;
+function updateUI() {
+  slides.forEach((s,i) => s.classList.toggle('active', i===cur));
+  document.getElementById('cur-page').textContent = cur+1;
+  document.getElementById('total-pages').textContent = slides.length;
+  document.getElementById('btn-prev').disabled = cur===0;
+  document.getElementById('btn-next').disabled = cur===slides.length-1;
+  document.getElementById('progress-fill').style.width = (cur/(slides.length-1)*100)+'%';
+  const title = slides[cur].dataset.title || '';
+  document.getElementById('slide-name').textContent = title;
+  document.getElementById('topbar-title').textContent = title;
+  document.querySelectorAll('.toc-item').forEach((el,i) => el.classList.toggle('active', i===cur));
+  window.scrollTo({top:0, behavior:'smooth'});
+  if (currentUser) markRead(currentUser, cur);
+}
+function navigate(dir) { const n=cur+dir; if(n>=0&&n<slides.length){cur=n;updateUI();} }
+function goToSlide(n) { cur=n; updateUI(); closeToc(); }
+function toggleToc() { document.getElementById('toc-panel').classList.toggle('open'); document.getElementById('toc-overlay').classList.toggle('open'); }
+function closeToc() { document.getElementById('toc-panel').classList.remove('open'); document.getElementById('toc-overlay').classList.remove('open'); }
+
+// Build TOC
+const tocColors = {'はじめに':'#2C5F8A','理念・使命':'#2C5F8A','福祉の基礎知識':'#3A7D5C','障がいを知る':'#7B4F9E','支援スキル':'#3A7D5C','虐待防止':'#C0392B','感染症対策':'#D4700A','タイムスケジュール':'#1A6B8A','ホーム運営':'#1A6B8A'};
+let lastCat = '';
+const tocList = document.getElementById('toc-list');
+slides.forEach((s,i) => {
+  const ch = s.dataset.chapter||'', title = s.dataset.title||'';
+  const color = tocColors[ch]||'#2C5F8A';
+  if(ch!==lastCat){const d=document.createElement('div');d.className='toc-cat';d.textContent=ch;tocList.appendChild(d);lastCat=ch;}
+  const item = document.createElement('div');
+  item.className = 'toc-item'+(i===0?' active':'');
+  item.innerHTML = '<span class="cat-dot" style="background:'+color+'"></span>'+title;
+  item.onclick = ()=>goToSlide(i);
+  tocList.appendChild(item);
+});
+document.addEventListener('keydown', e => {
+  if(document.getElementById('prog-panel').classList.contains('show')) return;
+  if(e.key==='ArrowRight'||e.key==='ArrowDown') navigate(1);
+  if(e.key==='ArrowLeft'||e.key==='ArrowUp') navigate(-1);
+});
+updateUI();
+
+// ===== PROGRESS PANEL =====
+
+function showProg() {
+  document.getElementById('prog-panel').classList.add('show');
+  renderView('list');
+}
+function hideProg() {
+  document.getElementById('prog-panel').classList.remove('show');
+}
+
+function renderView(view) {
+  currentView = view;
+  const body = document.getElementById('pp-body');
+  if(view==='list') body.innerHTML = buildListHTML();
+  else if(view==='study') body.innerHTML = buildStudyHTML();
+  else if(view==='admin') body.innerHTML = buildAdminHTML();
+}
+
+function buildListHTML() {
+  const staff = getStaff();
+  let html = '<div style="text-align:center;font-size:2rem;margin:0 0 10px">&#128218;</div>';
+  html += '<div class="pp-title">研修マニュアル</div>';
+  html += '<div class="pp-sub">名前を選んで学習を始めましょう</div>';
+  if(staff.length===0){
+    html += '<div class="pp-empty"><div class="pp-empty-icon">&#128100;</div><div class="pp-empty-text">まだ職員が登録されていません。<br>下の「名前を追加する」から追加してください。</div></div>';
+  } else {
+    staff.forEach((name,ni)=>{
+      const p=getProg(name), pct=Math.round(p.length/TOTAL*100), done=pct===100;
+      html += '<div class="pn-item">';
+      html += '<div class="pn-main" onclick="selectUser(getStaff()['+ni+'])">';
+      html += '<div class="pn-name">&#128100; '+name+'</div>';
+      html += '<div class="pn-info">'+p.length+' / '+TOTAL+' ページ読了　'+pct+'%</div>';
+      html += '<div class="pn-bar-wrap"><div class="pn-bar-inner '+(done?'done':'')+'" style="width:'+pct+'%"></div></div>';
+      html += '</div>';
+      html += '<div class="pn-btns">';
+      html += '<button class="pn-btn" onclick="openModal(\'edit\',getStaff()['+ni+'])">&#9998;</button>';
+      html += '<button class="pn-btn red" onclick="doDelete(getStaff()['+ni+'])">&#128465;</button>';
+      html += '</div></div>';
+    });
+  }
+  html += '<button class="pp-add" onclick="openModal(\'add\')">&#43; 名前を追加する</button>';
+  html += '<button class="pp-admin-link" onclick="renderView(\'admin\')">&#128200; 管理者画面（全員の進捗）</button>';
+  return html;
+}
+
+function buildStudyHTML() {
+  const p=getProg(currentUser), pct=Math.round(p.length/TOTAL*100);
+  let html = `<button class="sv-back" onclick="renderView('list')">&#9664; 戻る</button>`;
+  html += `<div class="sv-user">&#128100; ${currentUser} さんの学習</div>`;
+  html += `<div class="sv-prog">${p.length} / ${TOTAL} ページ読了（${pct}%）</div>`;
+  html += `<div class="sv-bar-wrap"><div class="sv-bar-inner" style="width:${pct}%"></div></div>`;
+  if(pct===100) html += '<div class="sv-complete show">&#127881; 全ページ読了完了！お疲れ様でした！</div>';
+  CHAPTERS.forEach(ch=>{
+    const color=CH_COLORS[ch]||'#4A8BBD';
+    const idxs=SD.map((s,i)=>({...s,i})).filter(s=>s.c===ch);
+    const done=idxs.filter(s=>p.includes(s.i)).length;
+    html += `<div class="sv-ch-section"><div class="sv-ch-label" style="color:${color}">&#11044; ${ch}（${done}/${idxs.length}）</div>`;
+    idxs.forEach(s=>{
+      const isRead=p.includes(s.i);
+      html += '<div class="sv-slide'+(isRead?' read':'')+'" onclick="jumpTo('+s.i+')">';
+      html += '<div class="sv-chk">'+(isRead?'&#10003;':'')+'</div>';
+      html += '<div class="sv-slide-title">'+s.t+'</div>';
+      html += '<span style="color:rgba(255,255,255,.25);font-size:.7rem;">&#9654;</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+  });
+  return html;
+}
+
+function buildAdminHTML() {
+  const staff=getStaff();
+  const now=new Date();
+  let html = `<button class="sv-back" onclick="renderView('list')">&#9664; 戻る</button>`;
+  html += `<div class="pp-title" style="text-align:left;font-size:1.2rem;margin-bottom:2px;">&#128200; 管理者画面</div>`;
+  html += `<div class="pp-sub" style="text-align:left;margin-bottom:18px;">${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日現在</div>`;
+  const allP=staff.map(n=>getProg(n));
+  const comp=allP.filter(p=>p.length===TOTAL).length;
+  const avg=staff.length?Math.round(allP.reduce((a,p)=>a+p.length,0)/staff.length/TOTAL*100):0;
+  html += `<div class="av-sum-row">
+    <div class="av-sum-box"><div class="av-sum-num">${staff.length}</div><div class="av-sum-lbl">登録人数</div></div>
+    <div class="av-sum-box"><div class="av-sum-num" style="color:#5BC894">${comp}</div><div class="av-sum-lbl">全ページ読了</div></div>
+    <div class="av-sum-box"><div class="av-sum-num" style="color:#F5A878">${avg}%</div><div class="av-sum-lbl">平均進捗率</div></div>
+  </div>`;
+  if(staff.length===0){html+='<p style="text-align:center;color:rgba(255,255,255,.4);padding:30px;">まだ職員が登録されていません</p>';return html;}
+  const sorted=[...staff].sort((a,b)=>getProg(b).length-getProg(a).length);
+  sorted.forEach((name,ni)=>{
+    const p=getProg(name),pct=Math.round(p.length/TOTAL*100);
+    const bc=pct===100?'linear-gradient(90deg,#3A9B6F,#5BC894)':'linear-gradient(90deg,#2C5F8A,#4A8BBD)';
+    const pc=pct===100?'#5BC894':pct>=50?'#F5A878':'rgba(255,255,255,.45)';
+    const chips=CHAPTERS.map(ch=>{
+      const idxs=SD.map((s,i)=>({...s,i})).filter(s=>s.c===ch);
+      const d=idxs.filter(s=>p.includes(s.i)).length;
+      const cls=d===idxs.length?'done':d>0?'part':'';
+      return '<span class="av-chip '+cls+'">'+ch+' '+d+'/'+idxs.length+'</span>';
+    }).join('');
+    const si = sorted.indexOf(name);
+    html += '<div class="av-person">';
+    html += '<div class="av-ph">';
+    html += '<div class="av-pname">&#128100; '+name+'</div>';
+    html += '<div style="display:flex;align-items:center;gap:8px;">';
+    html += '<div class="av-ppct" style="color:'+pc+'">'+p.length+'/'+TOTAL+'（'+pct+'%）</div>';
+    html += '<button class="av-reset" onclick="doReset(sorted['+si+'])">&#8635;</button>';
+    html += '</div></div>';
+    html += '<div class="av-pbar"><div class="av-pbar-fill" style="width:'+pct+'%;background:'+bc+'"></div></div>';
+    html += '<div class="av-chips">'+chips+'</div>';
+    html += '</div>';
+  });
+  return html;
+}
+
+function selectUser(name) {
+  currentUser = name;
+  const badge = document.getElementById('current-user-badge');
+  badge.textContent = name+' さん';
+  badge.style.display = 'block';
+  hideProg();
+  markRead(name, cur);
+}
+
+function jumpTo(idx) {
+  markRead(currentUser, idx);
+  cur = idx;
+  updateUI();
+  hideProg();
+}
+
+function doDelete(name) {
+  if(confirm('「'+name+'」を削除しますか？\n進捗データも一緒に削除されます。')){
+    deleteStaff(name);
+    renderView('list');
+  }
+}
+function doReset(name) {
+  if(confirm('「'+name+'」の進捗をリセットしますか？')){
+    resetProg(name);
+    renderView('admin');
+  }
+}
+
+// ===== MODAL =====
+function openModal(mode, target='') {
+  modalMode = mode; modalTarget = target;
+  const input = document.getElementById('pm-input');
+  const title = document.getElementById('pm-title');
+  const ok = document.getElementById('pm-ok');
+  if(mode==='add') {
+    title.textContent = '名前を追加';
+    ok.textContent = '追加する';
+    input.value = '';
+  } else {
+    title.textContent = '名前を編集';
+    ok.textContent = '変更する';
+    input.value = target;
+  }
+  document.getElementById('pp-modal').classList.add('show');
+  setTimeout(() => input.focus(), 50);
+}
+function hideModal() {
+  document.getElementById('pp-modal').classList.remove('show');
+}
+function submitModal() {
+  const val = document.getElementById('pm-input').value.trim();
+  if(!val) { alert('名前を入力してください'); return; }
+  if(modalMode==='add') {
+    if(getStaff().includes(val)) { alert('その名前はすでに登録されています'); return; }
+    addStaff(val);
+  } else {
+    if(val !== modalTarget && getStaff().includes(val)) { alert('その名前はすでに登録されています'); return; }
+    if(val !== modalTarget) renameStaff(modalTarget, val);
+  }
+  hideModal();
+  renderView('list');
+}
+document.getElementById('pm-input').addEventListener('keydown', e => { if(e.key==='Enter') submitModal(); });
+document.getElementById('pp-modal').addEventListener('click', e => { if(e.target===document.getElementById('pp-modal')) hideModal(); });
+</script>
 </body>
 </html>
