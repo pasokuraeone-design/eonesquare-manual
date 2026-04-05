@@ -3,472 +3,1090 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>虐待防止研修｜イーワンスクエア</title>
+<title>運営ガイドライン準拠モジュール｜イーワンスクエア</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@700&display=swap');
-:root{--p:#2C5F8A;--pl:#4A8BBD;--a:#E8834A;--bg:#F7F9FC;--card:#fff;--t:#1A2D3E;--tl:#5A7A92;--bd:#D8E6F0;--dn:#C0392B;--dn-bg:#FDF0EF;--ok:#3A9B6F;--ok-bg:#EEF8F3;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{font-family:'Noto Sans JP',sans-serif;background:var(--bg);color:var(--t);padding-bottom:60px;}
+  :root {
+    --primary: #1a3a5c;
+    --primary-light: #2a5080;
+    --accent: #e85d26;
+    --accent-soft: #f5a07a;
+    --success: #2e7d5e;
+    --success-light: #d4edda;
+    --warning: #8b5e00;
+    --warning-light: #fff3cd;
+    --danger: #9b2335;
+    --danger-light: #f8d7da;
+    --bg: #f4f6f9;
+    --card: #ffffff;
+    --border: #dde3ea;
+    --text: #1e2d3d;
+    --text-sub: #5a6a7a;
+    --text-light: #8a9aaa;
 
-.page-header{background:linear-gradient(135deg,#8B1A2E,#C0392B);color:white;padding:0;}
-.back-bar{padding:10px 20px;}
-.back-link{color:rgba(255,255,255,.75);font-size:.8rem;text-decoration:none;display:inline-flex;align-items:center;gap:5px;padding:4px 10px;border:1px solid rgba(255,255,255,.25);border-radius:20px;transition:.2s;}
-.back-link:hover{color:white;background:rgba(255,255,255,.12);}
-.header-body{padding:20px 20px 24px;}
-.header-label{font-size:.68rem;letter-spacing:.2em;color:rgba(255,255,255,.6);margin-bottom:6px;}
-.header-title{font-family:'Noto Serif JP',serif;font-size:1.4rem;font-weight:700;margin-bottom:4px;}
-.header-sub{font-size:.78rem;color:rgba(255,255,255,.65);}
-.header-badge{display:inline-block;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:3px 12px;font-size:.72rem;margin-top:8px;}
+    /* 研修コンテンツ用カラー */
+    --pink: #e8476a;
+    --pink-light: #fde8ec;
+    --pink-mid: #f9b8c6;
+    --blue: #3a8fd9;
+    --blue-light: #e6f2fb;
+    --yellow: #f0b429;
+    --yellow-light: #fff8e6;
+    --green: #2eaa6a;
+    --green-light: #e6f7ef;
+    --orange: #e07a30;
+    --orange-light: #fef3e8;
+    --gray-line: #e4e8f0;
+    --navy: #1a3a5c;
+    --navy-light: #4a72b8;
+  }
 
-.main{max-width:720px;margin:0 auto;padding:24px 16px;}
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-.alert{padding:12px 16px;border-radius:10px;font-size:.84rem;margin-bottom:20px;border-left:4px solid;line-height:1.7;}
-.alert.red{background:var(--dn-bg);border-color:var(--dn);color:var(--dn);}
-.alert.blue{background:#EAF2FA;border-color:var(--pl);color:var(--p);}
+  body {
+    font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    font-size: 14px;
+  }
 
-.card{background:var(--card);border-radius:14px;border:1px solid var(--bd);margin-bottom:16px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);}
-.card-header{padding:13px 18px;font-size:.88rem;font-weight:700;border-bottom:1px solid var(--bd);display:flex;align-items:center;gap:8px;}
-.card-header.red{background:var(--dn-bg);color:var(--dn);}
-.card-header.blue{background:#EAF2FA;color:var(--p);}
-.card-header.green{background:var(--ok-bg);color:var(--ok);}
-.card-body{padding:16px 18px;font-size:.88rem;line-height:1.8;color:var(--tl);}
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: rgba(255,255,255,0.75);
+    font-size: 12px;
+    text-decoration: none;
+    padding: 4px 10px;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .back-link:hover {
+    color: white;
+    background: rgba(255,255,255,0.12);
+    border-color: rgba(255,255,255,0.5);
+  }
 
-.video-wrap{background:#000;border-radius:12px;overflow:hidden;margin-bottom:8px;position:relative;padding-top:56.25%;}
-.video-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
-.video-label{font-size:.75rem;color:var(--tl);text-align:center;margin-top:6px;margin-bottom:20px;}
+  /* ========== HEADER ========== */
+  .page-header {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+    color: white;
+    padding: 32px 40px 28px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .page-header .label {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-soft);
+    margin-bottom: 6px;
+  }
+  .page-header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+  .page-header .subtitle { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 4px; }
 
-table{width:100%;border-collapse:collapse;font-size:.84rem;}
-th{background:var(--p);color:white;padding:9px 12px;text-align:left;font-size:.8rem;}
-td{padding:9px 12px;border-bottom:1px solid var(--bd);line-height:1.6;vertical-align:top;}
-tr:nth-child(even) td{background:#F5F9FD;}
+  /* ========== TABS ========== */
+  .tab-bar {
+    background: var(--primary);
+    display: flex;
+    gap: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .tab-btn {
+    flex-shrink: 0;
+    padding: 12px 22px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.6);
+    background: none;
+    border: none;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+  .tab-btn:hover { color: rgba(255,255,255,0.9); }
+  .tab-btn.active { color: white; border-bottom-color: var(--accent); }
 
-.point-list{padding:0;}
-.point-list li{list-style:none;padding:8px 0 8px 20px;position:relative;border-bottom:1px solid var(--bd);font-size:.86rem;line-height:1.7;}
-.point-list li:last-child{border-bottom:none;}
-.point-list li::before{content:'✓';position:absolute;left:0;color:var(--ok);font-weight:700;}
+  /* ========== LAYOUT ========== */
+  .main-content { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
 
-.section-title{font-size:.72rem;font-weight:700;letter-spacing:.12em;color:var(--tl);margin:24px 0 10px;padding-left:2px;}
+  /* ========== 研修コンテンツ用スタイル ========== */
 
-/* ===== スライドショー ===== */
-.slideshow-wrap{background:var(--card);border-radius:14px;border:1px solid var(--bd);overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.05);margin-bottom:16px;}
-.slideshow-header{padding:13px 18px;font-size:.88rem;font-weight:700;border-bottom:1px solid var(--bd);display:flex;align-items:center;justify-content:space-between;background:#EAF2FA;color:var(--p);}
-.slideshow-header-left{display:flex;align-items:center;gap:8px;}
-.slide-counter{font-size:.78rem;color:var(--tl);font-weight:400;}
+  /* セクションヘッダー */
+  .sec-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px; padding-bottom: 10px;
+    border-bottom: 2px solid var(--gray-line);
+  }
+  .sec-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .ic-yellow { background: var(--yellow-light); }
+  .ic-pink   { background: var(--pink-light); }
+  .ic-blue   { background: var(--blue-light); }
+  .ic-green  { background: var(--green-light); }
+  .ic-navy   { background: #dce6f5; }
 
-.slideshow-img-wrap{position:relative;background:#0a1628;overflow:hidden;}
-.slideshow-img-wrap img{width:100%;display:block;transition:opacity .3s ease;}
-.slideshow-img-wrap img.fade{opacity:0;}
+  .sec-title-wrap .ch-label { font-size: 10px; color: var(--text-light); font-weight: 600; letter-spacing: 0.05em; }
+  .sec-title-wrap h2 { font-size: 17px; font-weight: 700; color: var(--primary); line-height: 1.3; }
 
-.slideshow-nav{display:flex;align-items:center;justify-content:space-between;padding:12px 16px;border-top:1px solid var(--bd);background:#fafcff;}
-.nav-btn{padding:8px 20px;border-radius:8px;border:1px solid var(--bd);background:white;font-family:'Noto Sans JP',sans-serif;font-size:.82rem;cursor:pointer;color:var(--t);transition:.15s;display:flex;align-items:center;gap:5px;}
-.nav-btn:hover:not(:disabled){background:var(--p);color:white;border-color:var(--p);}
-.nav-btn:disabled{opacity:.35;cursor:default;}
-.nav-btn.primary{background:var(--p);color:white;border-color:var(--p);}
-.nav-btn.primary:hover:not(:disabled){background:#1f4a6e;}
+  /* カード */
+  .r-card {
+    background: var(--card); border-radius: 12px;
+    padding: 16px 18px; border: 1px solid var(--border);
+    margin-bottom: 10px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    border-top: 3px solid var(--primary);
+  }
+  .r-card.c-pink   { border-top-color: var(--pink); }
+  .r-card.c-blue   { border-top-color: var(--blue); }
+  .r-card.c-green  { border-top-color: var(--green); }
+  .r-card.c-yellow { border-top-color: var(--yellow); }
+  .r-card.c-orange { border-top-color: var(--orange); }
+  .r-card h3 {
+    font-size: 13px; font-weight: 700; color: var(--primary);
+    margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
+  }
+  .r-card.c-pink h3   { color: var(--pink); }
+  .r-card.c-blue h3   { color: var(--blue); }
+  .r-card.c-green h3  { color: var(--green); }
+  .r-card.c-orange h3 { color: var(--orange); }
+  .r-card p, .r-card li { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
+  .r-card ul { padding-left: 16px; }
+  .r-card li { margin-bottom: 3px; }
 
-.slide-dots{display:flex;gap:5px;flex-wrap:wrap;justify-content:center;max-width:300px;}
-.slide-dot{width:8px;height:8px;border-radius:50%;background:var(--bd);border:none;cursor:pointer;transition:.2s;padding:0;}
-.slide-dot.active{background:var(--p);transform:scale(1.3);}
+  /* カードグリッド */
+  .r-grid { display: grid; gap: 10px; }
+  .r-grid.col2 { grid-template-columns: 1fr 1fr; }
+  .r-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
 
-.progress-bar-wrap{height:3px;background:var(--bd);}
-.progress-bar{height:100%;background:linear-gradient(90deg,var(--p),var(--pl));transition:width .3s ease;}
+  /* ボックス */
+  .r-box { border-radius: 10px; padding: 13px 17px; margin: 8px 0; }
+  .r-box-pink   { background: var(--pink-light);   border-left: 4px solid var(--pink); }
+  .r-box-blue   { background: var(--blue-light);   border-left: 4px solid var(--blue); }
+  .r-box-yellow { background: var(--yellow-light); border-left: 4px solid var(--yellow); }
+  .r-box-green  { background: var(--green-light);  border-left: 4px solid var(--green); }
+  .r-box-navy   { background: #dce6f5;             border-left: 4px solid var(--primary); }
+  .r-box-orange { background: var(--orange-light); border-left: 4px solid var(--orange); }
+  .r-box h3 { font-size: 13px; font-weight: 700; margin-bottom: 5px; display: flex; align-items: center; gap: 5px; }
+  .r-box-pink h3   { color: var(--pink); }
+  .r-box-blue h3   { color: var(--blue); }
+  .r-box-yellow h3 { color: #8b6000; }
+  .r-box-green h3  { color: var(--green); }
+  .r-box-navy h3   { color: var(--primary); }
+  .r-box-orange h3 { color: var(--orange); }
+  .r-box p { font-size: 13px; color: var(--text); line-height: 1.7; }
+  .r-box strong { color: var(--primary); }
 
-.slideshow-note{padding:10px 16px;font-size:.78rem;color:var(--tl);text-align:center;border-top:1px solid var(--bd);background:#f8fbff;}
+  /* テーブル */
+  .r-tbl-wrap { background: var(--card); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .r-tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .r-tbl thead tr { background: var(--primary); }
+  .r-tbl thead th { padding: 11px 14px; color: #fff; font-weight: 700; text-align: left; }
+  .r-tbl tbody tr { border-bottom: 1px solid var(--border); }
+  .r-tbl tbody tr:last-child { border-bottom: none; }
+  .r-tbl tbody tr:nth-child(even) { background: var(--bg); }
+  .r-tbl tbody td { padding: 11px 14px; vertical-align: top; line-height: 1.6; color: var(--text); }
+  .r-cat { font-weight: 700; color: var(--primary); white-space: nowrap; }
+  .r-pink-row td { background: #fff2f5 !important; }
+  .r-pink-row .r-cat { color: var(--pink); }
 
-/* ===== クイズ ===== */
-.complete-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--ok),#5BC894);color:white;border:none;border-radius:12px;font-size:1rem;font-weight:700;cursor:pointer;font-family:'Noto Sans JP',sans-serif;margin-top:24px;transition:.2s;}
-.complete-btn:hover{opacity:.9;}
-.complete-btn.done{background:linear-gradient(135deg,#888,#aaa);cursor:default;}
-.complete-msg{text-align:center;font-size:.82rem;color:var(--tl);margin-top:8px;}
+  /* ポイントリスト */
+  .r-plist { list-style: none; padding: 0; }
+  .r-plist li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 9px; font-size: 13px; color: var(--text); line-height: 1.65; }
+  .r-pdot { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .r-pdot.pink { background: var(--pink); }
+  .r-pdot.blue { background: var(--blue); }
+  .r-pdot.green { background: var(--green); }
+
+  /* 義務3項目グリッド */
+  .ob-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .ob-item { background: var(--card); border-radius: 10px; padding: 14px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05); border-top: 3px solid var(--primary); border: 1px solid var(--border); }
+  .ob-item.p { border-top-color: var(--pink); }
+  .ob-item.b { border-top-color: var(--blue); }
+  .ob-num { width: 34px; height: 34px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 900; margin: 0 auto 8px; }
+  .ob-item.p .ob-num { background: var(--pink); }
+  .ob-item.b .ob-num { background: var(--blue); }
+  .ob-item h3 { font-size: 12.5px; font-weight: 700; color: var(--primary); margin-bottom: 5px; }
+  .ob-item p { font-size: 11.5px; color: var(--text-sub); line-height: 1.5; }
+
+  /* フロー */
+  .r-flow { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; background: var(--card); padding: 13px 16px; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .r-fb { background: var(--primary); color: #fff; padding: 7px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; }
+  .r-fb.p { background: var(--pink); }
+  .r-fb.b { background: var(--blue); }
+  .r-farr { color: var(--text-light); font-size: 15px; font-weight: 700; }
+
+  /* 区切りラベル */
+  .r-divlabel { font-size: 11px; color: var(--text-light); font-weight: 700; letter-spacing: 0.06em; margin: 12px 0 6px; display: flex; align-items: center; gap: 6px; }
+  .r-divlabel::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* セクション間余白 */
+  .r-section { margin-bottom: 28px; }
+
+  /* ========== 既存スタイル（BCP・チェックリスト用）========== */
+  .section-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-title .icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .icon-warning { background: var(--warning-light); }
+  .section-title h2 { font-size: 18px; font-weight: 700; color: var(--primary); }
+  .section-title .law-ref { font-size: 11px; color: var(--text-light); background: var(--bg); border: 1px solid var(--border); padding: 2px 8px; border-radius: 20px; margin-left: auto; white-space: nowrap; }
+
+  .card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .card-header { padding: 14px 20px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
+  .card-body { padding: 20px; }
+  .card-header.red    { background: var(--danger-light);  color: var(--danger); }
+  .card-header.yellow { background: var(--warning-light); color: var(--warning); }
+  .card-header.green  { background: var(--success-light); color: var(--success); }
+  .card-header.blue   { background: #dbeafe; color: #1e40af; }
+
+  .req-box { background: #f8f9ff; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 16px; margin-bottom: 12px; font-size: 13.5px; }
+  .req-box .req-title { font-weight: 700; font-size: 12px; color: var(--primary); letter-spacing: 0.5px; margin-bottom: 6px; }
+  .req-box ul { padding-left: 16px; }
+  .req-box ul li { margin-bottom: 4px; color: var(--text-sub); }
+
+  .three-req { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .req-item { background: var(--danger-light); border-radius: 10px; padding: 14px; text-align: center; }
+  .req-item .req-num { font-size: 24px; font-weight: 900; color: var(--danger); line-height: 1; }
+  .req-item .req-label { font-size: 13px; font-weight: 700; color: var(--danger); margin: 4px 0; }
+  .req-item .req-desc { font-size: 11px; color: var(--text-sub); }
+
+  .schedule-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .schedule-table th { background: var(--primary); color: white; padding: 10px 12px; text-align: left; font-size: 12px; font-weight: 600; }
+  .schedule-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+  .schedule-table tr:last-child td { border-bottom: none; }
+  .schedule-table tr:nth-child(even) td { background: var(--bg); }
+
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .badge-red    { background: var(--danger-light);  color: var(--danger); }
+  .badge-yellow { background: var(--warning-light); color: var(--warning); }
+  .badge-green  { background: var(--success-light); color: var(--success); }
+  .badge-blue   { background: #dbeafe; color: #1e40af; }
+
+  .checklist-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+  .progress-bar-wrap { flex: 1; min-width: 200px; }
+  .progress-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-sub); margin-bottom: 4px; }
+  .progress-bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--success), #4caf84); border-radius: 4px; transition: width 0.4s ease; }
+
+  .check-group { margin-bottom: 24px; }
+  .check-group-title { font-size: 12px; font-weight: 700; color: var(--text-light); letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 0; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
+
+  .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 12px; border-radius: 8px; margin-bottom: 6px; transition: background 0.15s; cursor: pointer; }
+  .check-item:hover { background: var(--bg); }
+  .check-item.checked { background: var(--success-light); }
+  .check-item.ng { background: var(--danger-light); }
+  .check-item input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; cursor: pointer; accent-color: var(--success); flex-shrink: 0; }
+  .check-item-content { flex: 1; }
+  .check-item-no { font-size: 10px; color: var(--text-light); font-weight: 700; }
+  .check-item-text { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .check-item-ref { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+  .check-item select { margin-top: 6px; font-size: 12px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 6px; background: white; color: var(--text); cursor: pointer; }
+
+  .alert { padding: 12px 16px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: flex; gap: 8px; align-items: flex-start; }
+  .alert-danger  { background: var(--danger-light);  color: var(--danger);  border-left: 4px solid var(--danger); }
+  .alert-warning { background: var(--warning-light); color: var(--warning); border-left: 4px solid #f0a500; }
+  .alert-info    { background: #dbeafe; color: #1e40af; border-left: 4px solid #3b82f6; }
+
+  .save-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--border); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 -4px 16px rgba(0,0,0,0.08); z-index: 99; }
+  .save-bar .status-text { font-size: 13px; color: var(--text-sub); }
+  .btn { padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 700; border: none; cursor: pointer; transition: all 0.2s; }
+  .btn-primary { background: var(--primary); color: white; }
+  .btn-primary:hover { background: var(--primary-light); }
+  .btn-accent { background: var(--accent); color: white; }
+  .btn-accent:hover { opacity: 0.9; }
+  .btn-sm { padding: 6px 14px; font-size: 12px; }
+
+  @media (max-width: 600px) {
+    .page-header { padding: 20px; }
+    .main-content { padding: 20px 12px 80px; }
+    .three-req, .ob-grid, .r-grid.col2, .r-grid.col3 { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
-<div class="page-header">
-  <div class="back-bar">
-    <a href="../index.html" class="back-link">← ポータルトップに戻る</a>
+<header class="page-header">
+  <div style="margin-bottom:10px">
+    <a href="../index.html" class="back-link">← スタッフポータルに戻る</a>
   </div>
-  <div class="header-body">
-    <div class="header-label">⚖️ 法定研修 — LEGAL TRAINING</div>
-    <div class="header-title">🛡️ 虐待防止研修</div>
-    <div class="header-sub">障害者虐待防止法に基づく義務研修</div>
-    <div class="header-badge">年1回以上 ・ 新規採用時必須</div>
-  </div>
+  <div class="label">E-ONE SQUARE STAFF PORTAL</div>
+  <h1>📋 運営ガイドライン準拠モジュール</h1>
+  <div class="subtitle">共同生活援助における運営や支援に関するガイドライン（令和8年2月・厚生労働省）準拠</div>
+</header>
+
+<div class="tab-bar">
+  <button class="tab-btn active" onclick="switchTab('abuse', this)">虐待防止研修</button>
+  <button class="tab-btn" onclick="switchTab('bcp', this)">BCP・緊急時対応</button>
+  <button class="tab-btn" onclick="switchTab('checklist', this)">自己チェックシート</button>
 </div>
 
-<div class="main">
+<!-- ============================
+     TAB 1: 虐待防止研修（全面リニューアル）
+============================= -->
+<div class="tab-panel active" id="tab-abuse">
+<div class="main-content">
 
-  <div class="alert red">⚠️ この研修を実施しないと<strong>虐待防止措置未実施減算</strong>の対象になります。必ず受講・記録してください。</div>
-
-  <!-- 動画 -->
-  <div class="section-title">📺 研修動画（厚生労働省 公式）</div>
-  <div class="alert blue">💡 この動画は<strong>身体拘束適正化研修と共通</strong>です。どちらか一方を視聴すれば両方の研修動画視聴は完了です。受講記録はそれぞれのページで個別に記録してください。</div>
-  <a href="https://www.youtube.com/playlist?list=PLMG33RKISnWjEfcEBKMLOQvbWlWxh8tUF" target="_blank" style="display:block;background:#FF0000;color:white;text-align:center;padding:16px;border-radius:12px;text-decoration:none;font-weight:700;font-size:.95rem;margin-bottom:20px;">
-    ▶ YouTubeで視聴する（厚生労働省 公式・共通講義）
-  </a>
-
-  <!-- スライドショー -->
-  <div class="section-title">🖼️ 研修スライド（全17枚）</div>
-  <div class="alert blue">📖 スライドを全て読んでから、下の理解度クイズに挑戦してください！</div>
-
-  <div class="slideshow-wrap">
-    <div class="progress-bar-wrap">
-      <div class="progress-bar" id="progress-bar" style="width:5.88%"></div>
+  <!-- はじめに -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-yellow">⚖️</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">はじめに</div>
+        <h2>なぜこの研修が必要なのか</h2>
+      </div>
     </div>
-    <div class="slideshow-header">
-      <div class="slideshow-header-left">🖼️ 研修スライド</div>
-      <span class="slide-counter" id="slide-counter">1 / 17</span>
+    <div class="r-box r-box-yellow">
+      <h3>⚠️ 令和4年度から義務化されました</h3>
+      <p>障害福祉サービス等の報酬改定により、<strong>①虐待防止委員会の開催、②職員研修の実施、③虐待防止責任者の設置</strong>が義務化されました。不備がある場合は<strong>減算の対象</strong>となります。身体拘束適正化も同時に義務化されています。</p>
     </div>
-    <div class="slideshow-img-wrap">
-      <img id="slide-img" src="slides/slide_01.jpg" alt="スライド1">
+    <div class="r-box r-box-navy">
+      <h3>📋 障害者虐待防止法（平成24年施行）</h3>
+      <p>「何人も、障害者に対し、虐待をしてはならない」（第3条）。施設設置者には、<strong>職員研修の実施・苦情解決体制の整備・虐待防止措置</strong>を講ずることが義務づけられています（第15条）。</p>
     </div>
-    <div class="slideshow-nav">
-      <button class="nav-btn" id="btn-prev" onclick="changeSlide(-1)" disabled>← 前へ</button>
-      <div class="slide-dots" id="slide-dots"></div>
-      <button class="nav-btn primary" id="btn-next" onclick="changeSlide(1)">次へ →</button>
-    </div>
-    <div class="slideshow-note">👆 スマホの場合は左右スワイプでも操作できます</div>
   </div>
 
-  <!-- 研修内容のポイント -->
-  <div class="section-title">📋 研修内容のポイント</div>
+  <!-- 第1章：虐待の5種類 -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-navy">📋</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第1章 セクション1</div>
+        <h2>障害者虐待の5種類</h2>
+      </div>
+    </div>
+    <div class="r-box r-box-pink">
+      <h3>🔴 重要なポイント</h3>
+      <p>「指導のつもり」「しつけのため」であっても、<strong>本人が傷ついたり追い込まれたりすれば虐待</strong>です。意図は問われません。「どこまでが不適切か」より、<strong>不適切な支援そのものをなくす</strong>ことが大切です。</p>
+    </div>
+    <div class="r-tbl-wrap" style="margin-top:10px;">
+      <table class="r-tbl">
+        <thead>
+          <tr><th style="width:28%">種類</th><th>具体例</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="r-cat">身体的虐待</td>
+            <td>叩く・蹴る・<strong>正当な理由のない身体拘束</strong>・つなぎ服の着用</td>
+          </tr>
+          <tr>
+            <td class="r-cat">性的虐待</td>
+            <td>性的な行為の強要・わいせつな映像を見せる</td>
+          </tr>
+          <tr>
+            <td class="r-cat">心理的虐待</td>
+            <td>怒鳴る・無視・子ども扱いする・差別的言動</td>
+          </tr>
+          <tr class="r-pink-row">
+            <td class="r-cat">放棄・放置<br><small style="font-weight:400">（ネグレクト）</small></td>
+            <td>食事を与えない・入浴させない・受診させない</td>
+          </tr>
+          <tr>
+            <td class="r-cat">経済的虐待</td>
+            <td>年金・賃金を渡さない・無断で財産を処分する</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="r-box r-box-blue" style="margin-top:10px;">
+      <h3>ℹ️ 身体拘束の3要件（やむを得ない場合のみ）</h3>
+      <p><strong>切迫性</strong>（生命・身体に危険）・<strong>非代替性</strong>（他の方法がない）・<strong>一時性</strong>（短期間のみ）の3つをすべて満たす場合のみ、<strong>組織判断のうえで記録に残します</strong>。</p>
+    </div>
+  </div>
+
+  <!-- 第1章：背景 -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-pink">⚠️</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第1章 セクション2</div>
+        <h2>虐待が起きやすい背景</h2>
+      </div>
+    </div>
+    <div class="r-box r-box-pink">
+      <h3>🔴 虐待は「特別な人」がするわけではない</h3>
+      <p>虐待は「しよう！」と思っている人はほぼいません。<strong>職員の孤立・ストレス・少しの気の緩み</strong>から発生します。「小さな不適切な関わり」が積み重なり感覚がマヒしエスカレートしていくのです。グループホームは一人勤務で密室性が高く、追い詰められやすい環境です。<strong>日頃からの連携と相談が大切です。</strong></p>
+    </div>
+    <div class="r-grid col3" style="margin-top:10px;">
+      <div class="r-card c-pink">
+        <h3>🚪 密室性が高い</h3>
+        <p>外部の目が届きにくく、閉鎖的な環境で支援が行われる</p>
+      </div>
+      <div class="r-card c-blue">
+        <h3>😰 職員の負担</h3>
+        <p>一人夜勤・人手不足・行動障害への対応困難などストレスが蓄積</p>
+      </div>
+      <div class="r-card c-yellow">
+        <h3>📉 力関係の差</h3>
+        <p>利用者は「不当なこと」と訴えることが難しい非対称な関係</p>
+      </div>
+    </div>
+    <div class="r-box r-box-yellow" style="margin-top:10px;">
+      <h3>💡 自分に問いかけてみましょう</h3>
+      <p>「自分がされたら嫌なことを利用者にしていませんか。常に相手の立場で、適切な支援を心がけましょう」（厚生労働省通知より）</p>
+    </div>
+  </div>
+
+  <!-- 第2章：体制整備 -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-blue">🏛️</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第2章 セクション1</div>
+        <h2>虐待防止のための体制整備</h2>
+      </div>
+    </div>
+    <div class="ob-grid">
+      <div class="ob-item">
+        <div class="ob-num">1</div>
+        <h3>虐待防止委員会</h3>
+        <p>定期開催し、結果を全職員に周知。法人単位での設置も可。</p>
+      </div>
+      <div class="ob-item p">
+        <div class="ob-num">2</div>
+        <h3>職員研修の実施</h3>
+        <p>年1回以上。外部研修への参加も認められる。</p>
+      </div>
+      <div class="ob-item b">
+        <div class="ob-num">3</div>
+        <h3>責任者の設置</h3>
+        <p>虐待防止責任者を置く（管理者兼務可）。</p>
+      </div>
+    </div>
+    <div class="r-box r-box-green">
+      <h3>✅ チェックリストを活用しよう</h3>
+      <p>「A：体制整備チェックリスト」と「C：職員セルフチェックリスト」を最低年1回実施し、PDCAサイクルで継続的に改善していきましょう。形式的に整備するだけでなく、<strong>実際に機能させること</strong>が重要です。</p>
+    </div>
+    <div class="r-box r-box-orange" style="margin-top:8px;">
+      <h3>⚠️ 不備があると減算になります</h3>
+      <p>身体拘束適正化については①記録の整備、②委員会開催、③指針の作成、④研修の実施がすべて義務。令和5年度からは訪問系サービスも含め全項目が減算適用対象です。</p>
+    </div>
+  </div>
+
+  <!-- 第3章：通報義務 -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-pink">🚨</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第3章 セクション1・2</div>
+        <h2>通報義務と発生時の対応</h2>
+      </div>
+    </div>
+    <div class="r-box r-box-pink">
+      <h3>🚨 通報は「義務」です（第16条）</h3>
+      <p>虐待を受けたと思われる障害者を発見した者は、<strong>速やかに市町村に通報しなければなりません</strong>。守秘義務はこの通報を妨げません。通報したことによる不利益な取り扱いは禁止されています。<strong>「通報しない」という選択肢はありません。</strong></p>
+    </div>
+    <div class="r-divlabel">📋 発生時の対応フロー</div>
+    <div class="r-flow" style="margin-bottom:12px;">
+      <div class="r-fb p">虐待を発見・気づく</div>
+      <div class="r-farr">→</div>
+      <div class="r-fb">管理者へ報告</div>
+      <div class="r-farr">→</div>
+      <div class="r-fb">市町村へ通報</div>
+      <div class="r-farr">→</div>
+      <div class="r-fb b">事実確認・対応</div>
+    </div>
+    <div class="r-grid col2">
+      <div class="r-card c-green">
+        <h3>✅ 通報することで</h3>
+        <ul>
+          <li>利用者の被害を最小限に留められる</li>
+          <li>職員のやり直しの機会が残る</li>
+          <li>施設の処分・賠償が大きくならない</li>
+          <li>再発防止・支援質向上のきっかけに</li>
+        </ul>
+      </div>
+      <div class="r-card c-pink">
+        <h3>⚠️ 「軽微だから」は禁物</h3>
+        <ul>
+          <li>不適切ケアは虐待へとエスカレートする</li>
+          <li>早期発見こそが最も効果的な防止策</li>
+          <li>迷ったら必ず管理者に相談する</li>
+          <li>「通報は全ての人を救う」</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 早期発見 -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-green">🔍</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第3章 セクション1</div>
+        <h2>虐待早期発見のチェックポイント</h2>
+      </div>
+    </div>
+    <div class="r-grid col2">
+      <div class="r-card c-pink">
+        <h3>🔴 身体面のサイン</h3>
+        <ul>
+          <li>説明のつかない傷・あざ・骨折</li>
+          <li>急激な体重減少・不衛生な状態</li>
+          <li>オムツかぶれがひどい</li>
+          <li>医療・介護の放置</li>
+        </ul>
+      </div>
+      <div class="r-card c-blue">
+        <h3>🔵 精神面のサイン</h3>
+        <ul>
+          <li>過度な不安・萎縮・おびえ</li>
+          <li>特定の職員を怖がる</li>
+          <li>急な問題行動の増加</li>
+          <li>無気力・ふさぎ込み</li>
+        </ul>
+      </div>
+      <div class="r-card">
+        <h3>💰 経済面のサイン</h3>
+        <ul>
+          <li>手元のお金が極端に少ない</li>
+          <li>金銭管理の状況が不透明</li>
+          <li>突然の大きな出費・財産減少</li>
+        </ul>
+      </div>
+      <div class="r-card c-yellow">
+        <h3>👥 職場環境のサイン</h3>
+        <ul>
+          <li>特定職員の言動への違和感</li>
+          <li>支援記録の不自然な記載</li>
+          <li>職員間の報告・連絡がない</li>
+        </ul>
+      </div>
+    </div>
+    <div class="r-box r-box-blue" style="margin-top:10px;">
+      <h3>💡 「なんとなく変」が大切</h3>
+      <p>明確な証拠がなくても、「なんとなくいつもと違う」と感じたら必ず管理者に相談しましょう。チームで見守る意識が虐待防止の基盤です。</p>
+    </div>
+  </div>
+
+  <!-- まとめ -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-green">✅</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第4章 まとめ</div>
+        <h2>今日の研修の要点</h2>
+      </div>
+    </div>
+    <ul class="r-plist">
+      <li><div class="r-pdot">1</div><div>虐待には5つの類型があり、<strong>身体拘束も正当な理由がなければ身体的虐待</strong>にあたる</div></li>
+      <li><div class="r-pdot">2</div><div>虐待は特別な人が起こすのではなく、<strong>どの施設でも起こり得る</strong>。ストレス・孤立・密室性が背景にある</div></li>
+      <li><div class="r-pdot pink">3</div><div>虐待を発見した者には<strong>市町村への通報義務</strong>があり、「通報は全ての人を救う」行為である</div></li>
+      <li><div class="r-pdot pink">4</div><div>令和4年度から<strong>虐待防止委員会・研修・責任者設置が義務化</strong>。不備は減算対象になる</div></li>
+      <li><div class="r-pdot blue">5</div><div>「不適切ケアをなくす」だけでなく、<strong>質の高い支援を積極的に追求する</strong>ことが虐待防止につながる</div></li>
+    </ul>
+    <div class="r-box r-box-green" style="margin-top:12px;">
+      <h3>🤝 あなたへのお願い</h3>
+      <p>悩んだとき・違和感を覚えたときは、一人で抱え込まずに必ず管理者や同僚に相談してください。<strong>相談しやすい職場の雰囲気をみんなで作っていきましょう。</strong></p>
+    </div>
+    <div style="font-size:11px; color:var(--text-light); margin-top:14px; text-align:right;">
+      出典：全国社会福祉協議会「虐待防止のための研修ガイドブック」令和4年版
+    </div>
+  </div>
+
+</div>
+</div><!-- /tab-abuse -->
+
+<!-- ============================
+     TAB 2: BCP・緊急時対応（既存のまま）
+============================= -->
+<div class="tab-panel" id="tab-bcp">
+<div class="main-content">
+
+  <div class="section-title">
+    <div class="icon icon-warning">⚡</div>
+    <div><h2>BCP・緊急時・非常災害対応</h2></div>
+    <div class="law-ref">指定基準 第28条・第40条・第70条・第33条の２</div>
+  </div>
+
   <div class="card">
-    <div class="card-header red">🔴 障害者虐待の5種類</div>
-    <div class="card-body" style="padding:0;">
-      <table>
-        <tr><th>種類</th><th>具体例</th></tr>
-        <tr><td><strong>身体的虐待</strong></td><td>叩く・蹴る・正当な理由のない身体拘束</td></tr>
-        <tr><td><strong>性的虐待</strong></td><td>性的な行為の強要・わいせつな映像を見せる</td></tr>
-        <tr><td><strong>心理的虐待</strong></td><td>怒鳴る・無視・子ども扱いする</td></tr>
-        <tr><td><strong>放棄・放置</strong></td><td>食事を与えない・入浴させない・受診させない</td></tr>
-        <tr><td><strong>経済的虐待</strong></td><td>年金・賃金を渡さない・無断で財産を処分</td></tr>
+    <div class="card-header yellow">📅 義務対応スケジュール一覧（年間）</div>
+    <div class="card-body">
+      <table class="schedule-table">
+        <thead>
+          <tr><th>項目</th><th>委員会・指針</th><th>研修</th><th>訓練</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>感染症・食中毒の予防</strong></td>
+            <td><span class="badge badge-red">3ヶ月に1回以上</span></td>
+            <td><span class="badge badge-red">年2回以上・新規採用時必須</span></td>
+            <td><span class="badge badge-red">年2回以上</span></td>
+          </tr>
+          <tr>
+            <td><strong>業務継続計画（BCP）</strong></td>
+            <td><span class="badge badge-red">策定・整備必須</span></td>
+            <td><span class="badge badge-yellow">年1回以上</span></td>
+            <td><span class="badge badge-yellow">年1回以上</span></td>
+          </tr>
+          <tr>
+            <td><strong>虐待防止</strong></td>
+            <td><span class="badge badge-yellow">年1回以上</span></td>
+            <td><span class="badge badge-red">年1回以上・新規採用時必須</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>身体拘束等の適正化</strong></td>
+            <td><span class="badge badge-yellow">年1回以上</span></td>
+            <td><span class="badge badge-yellow">年1回以上・新規採用時必須</span></td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td><strong>非常災害（避難訓練等）</strong></td>
+            <td>具体的計画を策定・周知</td>
+            <td>定期的な周知徹底</td>
+            <td><span class="badge badge-yellow">定期的に実施</span></td>
+          </tr>
+          <tr>
+            <td><strong>ハラスメント対策</strong></td>
+            <td><span class="badge badge-red">方針の明確化必須</span></td>
+            <td>—</td>
+            <td>—</td>
+          </tr>
+        </tbody>
       </table>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-header blue">ℹ️ 虐待が起きやすい背景</div>
+    <div class="card-header yellow">📄 業務継続計画（BCP）の策定要件</div>
     <div class="card-body">
-      虐待は「しよう！」と思ってする人はほぼいません。<strong>職員の孤立・ストレス・少しの気の緩み</strong>から発生します。「小さな不適切な関わり」が積み重なり感覚がマヒしエスカレートしていくのです。グループホームは一人勤務で密室性が高く、追い詰められやすい環境です。日頃からの連携と相談が大切です。
+      <div class="req-box">
+        <div class="req-title">策定が必要な計画の内容</div>
+        <ul>
+          <li>感染症・災害発生時でも<strong>利用者がサービスを継続して利用できる</strong>体制確保</li>
+          <li>非常時の体制での<strong>早期業務再開</strong>を図るための計画</li>
+          <li>自力でサービス提供する場合と<strong>他の事業所等へ避難する場合</strong>の双方を検討</li>
+        </ul>
+      </div>
+      <div class="alert alert-info">
+        💡 研修・訓練は<strong>全ての従業者が参加できるよう</strong>設定することが望ましい。新規採用時にも別途実施を推奨。
+      </div>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-header red">🚨 虐待を発見したら（通報義務）</div>
+    <div class="card-header red">🚨 緊急時・事故発生時の対応フロー</div>
     <div class="card-body">
-      <ul class="point-list">
-        <li>虐待を受けたと<strong>思われる</strong>障害者を発見した場合、事実確認できなくても<strong>市町村の障害者虐待対応窓口への通報義務</strong>がある</li>
-        <li>事業所内だけで収束させず、<strong>必ず行政と連携</strong>して対応する</li>
-        <li>まず<strong>管理者（藤田さよ子）に連絡</strong>してください</li>
-      </ul>
+      <div class="req-box">
+        <div class="req-title">緊急時等の対応（指定基準 第28条）</div>
+        <ul>
+          <li>利用者の事故・怪我・健康状態の急変時：<strong>速やかに医療機関へ連絡</strong></li>
+          <li>緊急時対応マニュアルを策定し、職員に役割を理解させ訓練すること</li>
+          <li>運営規程に緊急時の対応方法を定めること</li>
+        </ul>
+      </div>
+      <div class="req-box">
+        <div class="req-title">事故発生時の対応（指定基準 第40条）</div>
+        <ul>
+          <li>都道府県・市町村・利用者家族等へ連絡</li>
+          <li>事故の状況と取った処置を<strong>記録する</strong></li>
+          <li>賠償すべき事故の場合は<strong>速やかに損害賠償</strong></li>
+          <li>AED（自動体外式除細動器）の設置が望ましい</li>
+        </ul>
+      </div>
+      <div class="req-box">
+        <div class="req-title">非常災害対策（指定基準 第70条）</div>
+        <ul>
+          <li>消火設備等の設備を設置</li>
+          <li>非常災害に関する具体的計画を策定・定期的に周知</li>
+          <li>消防機関への通報体制を職員に周知徹底</li>
+          <li>消防団・地域住民との連携体制づくり</li>
+          <li>訓練は地域住民の参加を得るようにすること</li>
+        </ul>
+      </div>
     </div>
   </div>
 
   <div class="card">
-    <div class="card-header green">✅ 事業所として義務化されていること</div>
+    <div class="card-header green">🧼 衛生管理等（指定基準 第90条）</div>
     <div class="card-body">
-      <ul class="point-list">
-        <li>虐待防止委員会の定期開催（<strong>年1回以上</strong>）</li>
-        <li>職員への虐待防止研修（<strong>年1回以上・新規採用時必須</strong>）</li>
-        <li>虐待防止担当者の設置</li>
-        <li>「障害者福祉施設等における障害者虐待の防止と対応の手引き」の活用</li>
-      </ul>
+      <div class="req-box">
+        <div class="req-title">感染症・食中毒対策（義務）</div>
+        <ul>
+          <li>対策委員会：<strong>概ね3ヶ月に1回以上</strong></li>
+          <li>指針の整備：<strong>必須</strong></li>
+          <li>研修・訓練：<strong>年2回以上</strong>（新規採用時も必ず実施）</li>
+        </ul>
+      </div>
     </div>
   </div>
 
-  <!-- 理解度クイズ -->
-  <div class="section-title">🧠 理解度クイズ（全10問）</div>
-  <div class="alert blue">スライドを読んだら、理解度を確認しましょう。全問正解を目指してください！</div>
+</div>
+</div><!-- /tab-bcp -->
 
-  <div id="quiz-area"></div>
-  <div id="quiz-result" style="display:none;"></div>
+<!-- ============================
+     TAB 3: 自己チェックシート（既存のまま）
+============================= -->
+<div class="tab-panel" id="tab-checklist">
+<div class="main-content">
 
-  <!-- 受講完了ボタン -->
-  <div class="section-title">✅ 受講記録</div>
-  <div class="alert blue">動画またはスライドを確認し、ポイントを読んだら「受講完了」を押してください。受講日時が記録されます。</div>
-  <button class="complete-btn" id="complete-btn" onclick="markComplete()">✅ 受講完了を記録する</button>
-  <div class="complete-msg" id="complete-msg"></div>
+  <div class="section-title">
+    <div class="icon" style="background:#dbeafe;">✅</div>
+    <div><h2>自己チェックシート（ガイドライン準拠）</h2></div>
+  </div>
 
+  <div class="alert alert-info">
+    📌 ガイドライン別添の自己チェックシート（全69項目）から、<strong>虐待防止・BCP・緊急時対応関連項目</strong>を抽出しています。「はい／いいえ／対応中」を選択し、保存ボタンで記録できます。
+  </div>
+
+  <div class="checklist-header">
+    <div class="progress-bar-wrap">
+      <div class="progress-info">
+        <span>達成状況</span>
+        <span id="progress-text">0 / 0 項目</span>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+    <button class="btn btn-sm btn-accent" onclick="resetAll()">🔄 リセット</button>
+  </div>
+
+  <div class="check-group">
+    <div class="check-group-title">緊急時・事故発生時・非常災害対策</div>
+    <div class="check-item" id="ci-20" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.20</div>
+        <div class="check-item-text">利用者の事故やけが、健康状態の急変等が生じた場合は、運営規程に定められた緊急時の対応方法に基づき、速やかに医療機関への連絡を行う等の必要な措置を講じているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.19</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-item" id="ci-21" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.21</div>
+        <div class="check-item-text">緊急時における対応方法についてのマニュアルを策定するとともに、職員が緊急時における対応方針について理解し、あらかじめ設定された役割を果たすことができるように訓練しているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.19</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-item" id="ci-22" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.22</div>
+        <div class="check-item-text">利用者に対するサービスの提供により事故が発生した場合は、都道府県、市町村、利用者の家族等に連絡を行うとともに、必要な措置を講じているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.19</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-item" id="ci-23" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.23</div>
+        <div class="check-item-text">事故の状況及び事故に際して取った処置を記録しているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.19</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-item" id="ci-25" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.25</div>
+        <div class="check-item-text">非常災害に関する具体的計画を立てて、非常災害時の避難方法や、関係機関・団体への通報及び連絡体制を明確にし、それらを定期的に従業者に周知しているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.19-20</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-item" id="ci-28" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.28</div>
+        <div class="check-item-text">定期的に避難、救出その他必要な訓練を行っているか。訓練を行うに当たっては、地震や火事、風水害など非常災害の内容を明確にした上で実施し、できるだけ地域住民の参加が得られるようにしているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.19-20</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <div class="check-group-title">業務継続計画（BCP）</div>
+    <div class="check-item" id="ci-29" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.29</div>
+        <div class="check-item-text">感染症や災害が発生した場合にあっても、利用者が継続してサービスを利用できるよう、業務継続計画（BCP）を策定しているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.20</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-item" id="ci-30" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.30</div>
+        <div class="check-item-text">業務継続計画について、従業者に対して周知を行うとともに、定期的（年1回以上）な研修や訓練を実施しているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.20</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <div class="check-group-title">衛生管理・感染症対策</div>
+    <div class="check-item" id="ci-31" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.31</div>
+        <div class="check-item-text">感染症の予防や健康維持のために、従業者への清潔確保の徹底、手指洗浄設備・使い捨て手袋等の感染防止備品を備えるなどの対策を講じているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.20-21</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-item" id="ci-32" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.32</div>
+        <div class="check-item-text">感染症や食中毒の予防・まん延防止のため、対策を検討する委員会を定期的（概ね3ヶ月に1回以上）に開催しているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.20-21</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-item" id="ci-33" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.33</div>
+        <div class="check-item-text">従業者に対し、感染症の予防及びまん延の防止のための研修及び訓練を定期的（年2回以上）実施しているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.20-21</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <div class="check-group-title">虐待防止の取組</div>
+    <div class="check-item" id="ci-59" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.59</div>
+        <div class="check-item-text">虐待防止委員会を定期的（少なくとも年に1回）に開催するとともに、その結果について従業者に周知徹底を図っているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.38-39</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-item" id="ci-60" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.60</div>
+        <div class="check-item-text">従業者に対する虐待の防止のための研修を定期的（年に1回以上）に実施しているか。また、新規採用時にも研修を実施しているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.38-39</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="check-group">
+    <div class="check-group-title">身体拘束等の禁止・適正化</div>
+    <div class="check-item" id="ci-61" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.61</div>
+        <div class="check-item-text">利用者や他の利用者の生命又は身体を保護するために緊急やむを得ない場合を除き、身体拘束等を行っていないか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.39-40</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい（行っていない）</option>
+          <option value="no">いいえ（実施事例あり）</option>
+          <option value="wip">要確認</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-item" id="ci-62" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.62</div>
+        <div class="check-item-text">やむを得ず身体拘束等を行う場合は、その様態・時間、その際の利用者の心身の状況、緊急やむを得ない理由等を記録しているか。また、個別支援計画への記載と本人・家族への事前説明・了解取得を行っているか。</div>
+        <div class="check-item-ref">根拠：ガイドライン p.39-40</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい</option>
+          <option value="no">いいえ</option>
+          <option value="wip">対応中</option>
+        </select>
+      </div>
+    </div>
+    <div class="check-item" id="ci-63" onclick="toggleCheck(this)">
+      <input type="checkbox" onclick="event.stopPropagation()">
+      <div class="check-item-content">
+        <div class="check-item-no">No.63</div>
+        <div class="check-item-text">身体拘束等の適正化を図るため、以下の措置を実施しているか。<br>・身体拘束適正化検討委員会の定期開催（少なくとも年1回）<br>・適正化のための指針の整備<br>・従業者への定期的な研修（年1回以上）</div>
+        <div class="check-item-ref">根拠：ガイドライン p.39-40</div>
+        <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
+          <option value="">選択してください</option>
+          <option value="yes">はい（すべて実施）</option>
+          <option value="no">いいえ（未実施あり）</option>
+          <option value="wip">一部対応中</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-header blue">📝 備考・改善課題メモ</div>
+    <div class="card-body">
+      <textarea id="memo-field" placeholder="工夫している点、改善が必要だと思われる点などを自由に記入してください…" style="width:100%; height:120px; padding:10px; border:1px solid var(--border); border-radius:8px; font-family:inherit; font-size:13px; resize:vertical; color:var(--text);"></textarea>
+    </div>
+  </div>
+
+</div>
+</div><!-- /tab-checklist -->
+
+<!-- 保存バー -->
+<div class="save-bar">
+  <div class="status-text" id="save-status">未保存</div>
+  <div style="display:flex;gap:10px">
+    <button class="btn btn-sm btn-primary" onclick="window.print()">🖨️ 印刷</button>
+    <button class="btn btn-accent" onclick="saveData()">💾 保存</button>
+  </div>
 </div>
 
 <script>
-// ===== スライドショー =====
-const TOTAL = 17;
-let current = 0;
-
-function buildDots() {
-  const wrap = document.getElementById('slide-dots');
-  for (let i = 0; i < TOTAL; i++) {
-    const d = document.createElement('button');
-    d.className = 'slide-dot' + (i === 0 ? ' active' : '');
-    d.onclick = () => goSlide(i);
-    wrap.appendChild(d);
+  function switchTab(name, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + name).classList.add('active');
+    btn.classList.add('active');
   }
-}
 
-function goSlide(n) {
-  const img = document.getElementById('slide-img');
-  img.classList.add('fade');
-  setTimeout(() => {
-    current = n;
-    img.src = `slides/slide_${String(current+1).padStart(2,'0')}.jpg`;
-    img.alt = `スライド${current+1}`;
-    img.classList.remove('fade');
-    updateSlideUI();
-  }, 200);
-}
-
-function changeSlide(dir) {
-  const next = current + dir;
-  if (next < 0 || next >= TOTAL) return;
-  goSlide(next);
-}
-
-function updateSlideUI() {
-  document.getElementById('slide-counter').textContent = `${current+1} / ${TOTAL}`;
-  document.getElementById('btn-prev').disabled = current === 0;
-  document.getElementById('btn-next').disabled = current === TOTAL - 1;
-  document.getElementById('progress-bar').style.width = `${((current+1)/TOTAL)*100}%`;
-  document.querySelectorAll('.slide-dot').forEach((d,i) => {
-    d.classList.toggle('active', i === current);
-  });
-}
-
-// スワイプ対応
-let touchStartX = 0;
-document.getElementById('slide-img').addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
-document.getElementById('slide-img').addEventListener('touchend', e => {
-  const diff = touchStartX - e.changedTouches[0].clientX;
-  if (Math.abs(diff) > 40) changeSlide(diff > 0 ? 1 : -1);
-});
-
-// ===== クイズデータ =====
-const QUIZ = [
-  {
-    q: '障害者虐待防止法における「障害者」の定義として、最も適切なものはどれか？',
-    opts: [
-      '18歳以上の成人の障害者に限定される。',
-      '身体障害、知的障害、精神障害（発達障害を含む）その他の心身の機能の障害がある者である。',
-      '障害者手帳（身体・知的・精神）を所持している者に限定される。',
-      '施設に入所している、またはサービスを利用している障害者に限定される。'
-    ],
-    ans: 1,
-    exp: '法では手帳の有無を問わず、心身の障害や社会的障壁によって日常生活が制限されている状態を指します。'
-  },
-  {
-    q: '性的虐待の定義に関する説明として、適切なものはどれか？',
-    opts: [
-      '同性の職員による行為であっても、わいせつな行為であれば性的虐待に該当する。',
-      '身体的な接触が伴わない行為（わいせつな映像を見せる等）は、性的虐待に含まれない。',
-      '痴漢行為や露出行為は刑法で裁かれるため、障害者虐待防止法の対象外である。',
-      '障害者が同意しているように見えれば、性的虐待には該当しない。'
-    ],
-    ans: 0,
-    exp: '性別を問わず、本人の尊厳を傷つけるわいせつな行為はすべて性的虐待の対象となります。'
-  },
-  {
-    q: '身体拘束を行う際、例外として認められるための「3つの要件」に含まれないものはどれか？',
-    opts: [
-      '非代替性（身体拘束以外に他に方法がないこと）',
-      '一時性（身体拘束が一時的なものであること）',
-      '切迫性（本人や他人の生命・身体が危険にさらされる可能性が著しく高いこと）',
-      '専門性（医師または看護師の資格を持つ者が立ち会うこと）'
-    ],
-    ans: 3,
-    exp: '「切迫性」「非代替性」「一時性」の3つが法的要件であり、特定の資格者の立ち会いはその定義に含まれません。'
-  },
-  {
-    q: '身体拘束の適正化のために、施設等が義務付けられている対応として誤っているものはどれか？',
-    opts: [
-      '身体拘束を実施した職員に対する、役職からの即時解任',
-      '身体拘束適正化のための指針の整備',
-      '身体拘束を行った場合の詳細な記録（時間、理由、態様など）',
-      '身体拘束適正化検討委員会の開催'
-    ],
-    ans: 0,
-    exp: '適正化の目的は組織的な改善と手続きの遵守であり、個人の即時解任は法的な義務ではありません。'
-  },
-  {
-    q: '障害者虐待の「通報」に関する説明として、最も適切なものはどれか？',
-    opts: [
-      '施設内で虐待があった場合、職員はまず施設長に報告し、施設長の許可を得てから通報しなければならない。',
-      '虐待を発見した者は、いかなる場合も市町村等への通報義務を負う。',
-      '虐待の事実が確実であると証明できる証拠がある場合のみ、通報義務が生じる。',
-      '通報者の名前は必ず公表され、虐待を行った者との対話の場が設けられる。'
-    ],
-    ans: 1,
-    exp: '障害者虐待防止法では、発見者に通報の努力義務または義務を課しており、被害者の保護を最優先しています。'
-  },
-  {
-    q: '「通報はすべての人を救う」という考え方に基づいた行動として、適切なものはどれか？',
-    opts: [
-      '施設の評判を守るため、まずは内部だけで問題を解決しようと試みる。',
-      '虐待を行っている職員を厳しく糾弾し、職場から排除することに注力する。',
-      '通報によって外部の目を入れ、組織全体の支援の質や職員の労働環境を見直す契機とする。',
-      '通報がきっかけで施設が閉鎖されないよう、事実を控えめに報告する。'
-    ],
-    ans: 2,
-    exp: '通報は被害者の救済だけでなく、加害者となった職員のケアや、組織の健全化を促すための第一歩です。'
-  },
-  {
-    q: '心理的虐待に該当する可能性が極めて高い行為はどれか？',
-    opts: [
-      '食事をこぼしたことに対して、「もう食べさせない」と脅したり、長時間無視したりする。',
-      '本人の預金通帳を預かり、施設が管理する。',
-      '着替えの際に、プライバシーに配慮せずドアを開けっ放しにする。',
-      '本人の目の前で、他の利用者の悪口を継続的に言う。'
-    ],
-    ans: 0,
-    exp: '著しい暴言や拒絶的な態度は、本人の自尊心を深く傷つける典型的な心理的虐待です。'
-  },
-  {
-    q: '障害者虐待防止法において、施設従事者等による虐待の通報先はどこか？',
-    opts: [
-      '地域の福祉ボランティア団体',
-      '都道府県または市町村',
-      '厚生労働省のホームページ',
-      '警察署のみ'
-    ],
-    ans: 1,
-    exp: '法に基づき、市町村（または都道府県）の障害者虐待防止センター等が受理窓口となります。'
-  },
-  {
-    q: '身体拘束の要件の一つである「非代替性」の意味として、最も適切なものはどれか？',
-    opts: [
-      '本人が身体拘束を自ら望んでいる状態。',
-      '職員の人数が足りないため、他に方法がない状態。',
-      '拘束以外のあらゆる方法を検討・実施しても、危険を回避できない状態。',
-      '家族から身体拘束の同意を得ている状態。'
-    ],
-    ans: 2,
-    exp: '他にあらゆる手段を尽くしてもなお、本人の安全を守るためにその方法しかない極限的な状況を指します。'
-  },
-  {
-    q: '経済的虐待に該当する例として、適切なものはどれか？',
-    opts: [
-      '本人の希望で購入した物品の代金を、本人の口座から引き落とす。',
-      '本人の障害年金を、家族が生活費として勝手に使い込んでいる。',
-      '必要な食事を与えず、空腹の状態に置く。',
-      '本人が無駄遣いをしないよう、施設職員が小遣い帳の付け方を指導する。'
-    ],
-    ans: 1,
-    exp: '本人に帰属する財産を、本人の利益にならない目的で不当に消費することは経済的虐待です。'
+  function toggleCheck(item) {
+    const cb = item.querySelector('input[type="checkbox"]');
+    cb.checked = !cb.checked;
+    item.classList.toggle('checked', cb.checked);
+    updateProgress();
   }
-];
 
-let qCurrent = 0;
-let qScore = 0;
-let qAnswered = new Array(QUIZ.length).fill(null);
+  function updateStatus(item, value) {
+    item.classList.remove('checked', 'ng');
+    if (value === 'yes') item.classList.add('checked');
+    else if (value === 'no') item.classList.add('ng');
+    updateProgress();
+  }
 
-function renderQuiz() {
-  const q = QUIZ[qCurrent];
-  const isAnswered = qAnswered[qCurrent] !== null;
-  const selected = qAnswered[qCurrent];
+  function updateProgress() {
+    const selects = document.querySelectorAll('.check-item select');
+    let total = selects.length, done = 0;
+    selects.forEach(s => { if (s.value === 'yes') done++; });
+    document.getElementById('progress-text').textContent = done + ' / ' + total + ' 項目（はい）';
+    document.getElementById('progress-fill').style.width = (total > 0 ? (done/total*100) : 0) + '%';
+  }
 
-  let html = `
-    <div class="card" style="margin-bottom:16px;">
-      <div class="card-header blue">問${qCurrent+1} / ${QUIZ.length}</div>
-      <div class="card-body">
-        <p style="font-weight:700;font-size:.92rem;margin-bottom:14px;color:var(--t);">${q.q}</p>
-        <div style="display:flex;flex-direction:column;gap:8px;">
-  `;
+  function resetAll() {
+    if (!confirm('すべての回答をリセットしますか？')) return;
+    document.querySelectorAll('.check-item').forEach(item => {
+      item.classList.remove('checked', 'ng');
+      const sel = item.querySelector('select');
+      if (sel) sel.value = '';
+    });
+    document.getElementById('memo-field').value = '';
+    updateProgress();
+    document.getElementById('save-status').textContent = 'リセットしました';
+  }
 
-  q.opts.forEach((opt, i) => {
-    let style = 'padding:12px 14px;border-radius:10px;border:1px solid var(--bd);font-size:.85rem;cursor:pointer;line-height:1.6;transition:.15s;background:white;text-align:left;width:100%;font-family:inherit;';
-    let label = '';
-    if (isAnswered) {
-      if (i === q.ans) {
-        style += 'border-color:var(--ok);background:var(--ok-bg);';
-        label = '<br><small style="color:var(--ok);font-weight:700;">✅ 正解です！</small><br><small style="color:#555;line-height:1.6;">' + q.exp + '</small>';
-      } else if (i === selected) {
-        style += 'border-color:var(--dn);background:var(--dn-bg);';
-        label = '<br><small style="color:var(--dn);font-weight:700;">❌ 不正解</small>';
-      } else {
-        style += 'opacity:.5;cursor:default;';
-      }
-    }
-    const click = isAnswered ? '' : `onclick="selectAnswer(${i})"`;
-    html += `<button style="${style}" ${click}>${String.fromCharCode(65+i)}. ${opt}${label}</button>`;
-  });
+  function saveData() {
+    const data = {};
+    document.querySelectorAll('.check-item').forEach(item => {
+      const sel = item.querySelector('select');
+      if (sel && item.id) data[item.id] = sel.value;
+    });
+    data['memo'] = document.getElementById('memo-field').value;
+    data['saved_at'] = new Date().toLocaleString('ja-JP');
+    localStorage.setItem('eonesquare_checklist', JSON.stringify(data));
+    document.getElementById('save-status').textContent = '✅ 保存しました（' + new Date().toLocaleString('ja-JP') + '）';
+  }
 
-  html += '</div>';
-  html += `
-      </div>
-      <div style="padding:12px 16px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;">
-        <button onclick="prevQ()" style="padding:8px 16px;border:1px solid var(--bd);border-radius:8px;background:white;font-family:inherit;font-size:.82rem;cursor:pointer;" ${qCurrent===0?'disabled':''}>← 前へ</button>
-        <span style="font-size:.8rem;color:var(--tl);">回答済み：${qAnswered.filter(a=>a!==null).length} / ${QUIZ.length}</span>
-        ${qCurrent < QUIZ.length-1
-          ? `<button onclick="nextQ()" style="padding:8px 16px;background:var(--p);color:white;border:none;border-radius:8px;font-family:inherit;font-size:.82rem;cursor:pointer;">次へ →</button>`
-          : `<button onclick="showResult()" style="padding:8px 16px;background:var(--ok);color:white;border:none;border-radius:8px;font-family:inherit;font-size:.82rem;cursor:pointer;">結果を見る 🎉</button>`
+  function loadData() {
+    const raw = localStorage.getItem('eonesquare_checklist');
+    if (!raw) return;
+    try {
+      const data = JSON.parse(raw);
+      Object.keys(data).forEach(key => {
+        if (key === 'memo') { document.getElementById('memo-field').value = data[key]; }
+        else if (key === 'saved_at') { document.getElementById('save-status').textContent = '前回保存：' + data[key]; }
+        else {
+          const item = document.getElementById(key);
+          if (item) { const sel = item.querySelector('select'); if (sel) { sel.value = data[key]; updateStatus(item, data[key]); } }
         }
-      </div>
-    </div>
-  `;
+      });
+      updateProgress();
+    } catch(e) {}
+  }
 
-  document.getElementById('quiz-area').innerHTML = html;
-}
-
-function selectAnswer(i) {
-  if (qAnswered[qCurrent] !== null) return;
-  qAnswered[qCurrent] = i;
-  if (i === QUIZ[qCurrent].ans) qScore++;
-  renderQuiz();
-}
-
-function nextQ() { if (qCurrent < QUIZ.length-1) { qCurrent++; renderQuiz(); } }
-function prevQ() { if (qCurrent > 0) { qCurrent--; renderQuiz(); } }
-
-function showResult() {
-  const pct = Math.round(qScore/QUIZ.length*100);
-  let msg = '', color = '';
-  if (pct === 100) { msg = '🎉 満点！完璧です！'; color = 'var(--ok)'; }
-  else if (pct >= 70) { msg = '👍 よくできました！'; color = 'var(--p)'; }
-  else { msg = '📖 もう一度スライドを確認しましょう。'; color = '#E8834A'; }
-
-  document.getElementById('quiz-result').style.display = 'block';
-  document.getElementById('quiz-result').innerHTML = `
-    <div style="background:white;border:2px solid ${color};border-radius:14px;padding:24px;text-align:center;margin-bottom:16px;">
-      <div style="font-size:2rem;font-weight:900;color:${color};">${qScore} / ${QUIZ.length}</div>
-      <div style="font-size:1rem;font-weight:700;color:${color};margin-top:4px;">${msg}</div>
-      <div style="font-size:.82rem;color:var(--tl);margin-top:8px;">正答率 ${pct}%</div>
-      <button onclick="resetQuiz()" style="margin-top:14px;padding:8px 20px;border:1px solid var(--bd);border-radius:8px;background:white;font-family:inherit;font-size:.82rem;cursor:pointer;">🔄 もう一度挑戦</button>
-    </div>
-  `;
-  document.getElementById('quiz-area').style.display = 'none';
-}
-
-function resetQuiz() {
-  qCurrent = 0; qScore = 0;
-  qAnswered = new Array(QUIZ.length).fill(null);
-  document.getElementById('quiz-result').style.display = 'none';
-  document.getElementById('quiz-area').style.display = 'block';
-  renderQuiz();
-}
-
-// ===== 受講完了 =====
-const KEY = 'legal_abuse_' + (localStorage.getItem('e1sq4_user') || 'unknown');
-
-function markComplete() {
-  const now = new Date().toLocaleString('ja-JP');
-  localStorage.setItem(KEY, now);
-  showDone(now);
-}
-
-function showDone(ts) {
-  const btn = document.getElementById('complete-btn');
-  btn.textContent = '✅ 受講済み';
-  btn.classList.add('done');
-  btn.disabled = true;
-  document.getElementById('complete-msg').textContent = '受講日時：' + ts;
-}
-
-window.addEventListener('DOMContentLoaded', () => {
-  buildDots();
-  updateSlideUI();
-  renderQuiz();
-  const saved = localStorage.getItem(KEY);
-  if (saved) showDone(saved);
-});
+  window.addEventListener('DOMContentLoaded', () => { loadData(); updateProgress(); });
 </script>
+
 </body>
 </html>
