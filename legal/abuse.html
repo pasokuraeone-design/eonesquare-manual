@@ -127,6 +127,13 @@ tr:nth-child(even) td{background:#F5F9FD;}
     </div>
   </div>
 
+  <!-- 理解度クイズ -->
+  <div class="section-title">🧠 理解度クイズ（全10問）</div>
+  <div class="alert blue">ポイントを読んだら、理解度を確認しましょう。全問正解を目指してください！</div>
+
+  <div id="quiz-area"></div>
+  <div id="quiz-result" style="display:none;"></div>
+
   <!-- 受講完了ボタン -->
   <div class="section-title">✅ 受講記録</div>
   <div class="alert blue">動画を視聴し、ポイントを読んだら「受講完了」を押してください。受講日時が記録されます。</div>
@@ -136,6 +143,217 @@ tr:nth-child(even) td{background:#F5F9FD;}
 </div>
 
 <script>
+// ===== クイズデータ =====
+const QUIZ = [
+  {
+    q: '障害者虐待防止法における「障害者」の定義として、最も適切なものはどれか？',
+    opts: [
+      '18歳以上の成人の障害者に限定される。',
+      '身体障害、知的障害、精神障害（発達障害を含む）その他の心身の機能の障害がある者である。',
+      '障害者手帳（身体・知的・精神）を所持している者に限定される。',
+      '施設に入所している、またはサービスを利用している障害者に限定される。'
+    ],
+    ans: 1,
+    exp: '法では手帳の有無を問わず、心身の障害や社会的障壁によって日常生活が制限されている状態を指します。'
+  },
+  {
+    q: '性的虐待の定義に関する説明として、適切なものはどれか？',
+    opts: [
+      '同性の職員による行為であっても、わいせつな行為であれば性的虐待に該当する。',
+      '身体的な接触が伴わない行為（わいせつな映像を見せる等）は、性的虐待に含まれない。',
+      '痴漢行為や露出行為は刑法で裁かれるため、障害者虐待防止法の対象外である。',
+      '障害者が同意しているように見えれば、性的虐待には該当しない。'
+    ],
+    ans: 0,
+    exp: '性別を問わず、本人の尊厳を傷つけるわいせつな行為はすべて性的虐待の対象となります。'
+  },
+  {
+    q: '身体拘束を行う際、例外として認められるための「3つの要件」に含まれないものはどれか？',
+    opts: [
+      '非代替性（身体拘束以外に他に方法がないこと）',
+      '一時性（身体拘束が一時的なものであること）',
+      '切迫性（本人や他人の生命・身体が危険にさらされる可能性が著しく高いこと）',
+      '専門性（医師または看護師の資格を持つ者が立ち会うこと）'
+    ],
+    ans: 3,
+    exp: '「切迫性」「非代替性」「一時性」の3つが法的要件であり、特定の資格者の立ち会いはその定義に含まれません。'
+  },
+  {
+    q: '身体拘束の適正化のために、施設等が義務付けられている対応として誤っているものはどれか？',
+    opts: [
+      '身体拘束を実施した職員に対する、役職からの即時解任',
+      '身体拘束適正化のための指針の整備',
+      '身体拘束を行った場合の詳細な記録（時間、理由、態様など）',
+      '身体拘束適正化検討委員会の開催'
+    ],
+    ans: 0,
+    exp: '適正化の目的は組織的な改善と手続きの遵守であり、個人の即時解任は法的な義務ではありません。'
+  },
+  {
+    q: '障害者虐待の「通報」に関する説明として、最も適切なものはどれか？',
+    opts: [
+      '施設内で虐待があった場合、職員はまず施設長に報告し、施設長の許可を得てから通報しなければならない。',
+      '虐待を発見した者は、いかなる場合も市町村等への通報義務を負う。',
+      '虐待の事実が確実であると証明できる証拠がある場合のみ、通報義務が生じる。',
+      '通報者の名前は必ず公表され、虐待を行った者との対話の場が設けられる。'
+    ],
+    ans: 1,
+    exp: '障害者虐待防止法では、発見者に通報の努力義務または義務を課しており、被害者の保護を最優先しています。'
+  },
+  {
+    q: '「通報はすべての人を救う」という考え方に基づいた行動として、適切なものはどれか？',
+    opts: [
+      '施設の評判を守るため、まずは内部だけで問題を解決しようと試みる。',
+      '虐待を行っている職員を厳しく糾弾し、職場から排除することに注力する。',
+      '通報によって外部の目を入れ、組織全体の支援の質や職員の労働環境を見直す契機とする。',
+      '通報がきっかけで施設が閉鎖されないよう、事実を控えめに報告する。'
+    ],
+    ans: 2,
+    exp: '通報は被害者の救済だけでなく、加害者となった職員のケアや、組織の健全化を促すための第一歩です。'
+  },
+  {
+    q: '心理的虐待に該当する可能性が極めて高い行為はどれか？',
+    opts: [
+      '食事をこぼしたことに対して、「もう食べさせない」と脅したり、長時間無視したりする。',
+      '本人の預金通帳を預かり、施設が管理する。',
+      '着替えの際に、プライバシーに配慮せずドアを開けっ放しにする。',
+      '本人の目の前で、他の利用者の悪口を継続的に言う。'
+    ],
+    ans: 0,
+    exp: '著しい暴言や拒絶的な態度は、本人の自尊心を深く傷つける典型的な心理的虐待です。'
+  },
+  {
+    q: '障害者虐待防止法において、施設従事者等による虐待の通報先はどこか？',
+    opts: [
+      '地域の福祉ボランティア団体',
+      '都道府県または市町村',
+      '厚生労働省のホームページ',
+      '警察署のみ'
+    ],
+    ans: 1,
+    exp: '法に基づき、市町村（または都道府県）の障害者虐待防止センター等が受理窓口となります。'
+  },
+  {
+    q: '身体拘束の要件の一つである「非代替性」の意味として、最も適切なものはどれか？',
+    opts: [
+      '本人が身体拘束を自ら望んでいる状態。',
+      '職員の人数が足りないため、他に方法がない状態。',
+      '拘束以外のあらゆる方法を検討・実施しても、危険を回避できない状態。',
+      '家族から身体拘束の同意を得ている状態。'
+    ],
+    ans: 2,
+    exp: '他にあらゆる手段を尽くしてもなお、本人の安全を守るためにその方法しかない極限的な状況を指します。'
+  },
+  {
+    q: '経済的虐待に該当する例として、適切なものはどれか？',
+    opts: [
+      '本人の希望で購入した物品の代金を、本人の口座から引き落とす。',
+      '本人の障害年金を、家族が生活費として勝手に使い込んでいる。',
+      '必要な食事を与えず、空腹の状態に置く。',
+      '本人が無駄遣いをしないよう、施設職員が小遣い帳の付け方を指導する。'
+    ],
+    ans: 1,
+    exp: '本人に帰属する財産を、本人の利益にならない目的で不当に消費することは経済的虐待です。'
+  }
+];
+
+let current = 0;
+let score = 0;
+let answered = new Array(QUIZ.length).fill(null);
+
+function renderQuiz() {
+  const q = QUIZ[current];
+  const isAnswered = answered[current] !== null;
+  const selected = answered[current];
+
+  let html = `
+    <div class="card" style="margin-bottom:16px;">
+      <div class="card-header blue">問${current+1} / ${QUIZ.length}</div>
+      <div class="card-body">
+        <p style="font-weight:700;font-size:.92rem;margin-bottom:14px;color:var(--t);">${q.q}</p>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+  `;
+
+  q.opts.forEach((opt, i) => {
+    let style = 'padding:12px 14px;border-radius:10px;border:1px solid var(--bd);font-size:.85rem;cursor:pointer;line-height:1.6;transition:.15s;background:white;text-align:left;width:100%;font-family:inherit;';
+    let label = '';
+    if (isAnswered) {
+      if (i === q.ans) {
+        style += 'border-color:var(--ok);background:var(--ok-bg);';
+        label = ' ✅ 正解';
+      } else if (i === selected) {
+        style += 'border-color:var(--dn);background:var(--dn-bg);';
+        label = ' ❌ 不正解';
+      } else {
+        style += 'opacity:.55;cursor:default;';
+      }
+    } else {
+      style += 'cursor:pointer;';
+    }
+    const click = isAnswered ? '' : `onclick="selectAnswer(${i})"`;
+    html += `<button style="${style}" ${click}>${String.fromCharCode(65+i)}. ${opt}${label}</button>`;
+  });
+
+  html += '</div>';
+
+  if (isAnswered) {
+    html += `<div style="margin-top:12px;padding:12px;background:#f8f9ff;border-radius:8px;border-left:3px solid var(--pl);font-size:.83rem;color:var(--tl);line-height:1.7;"><strong>解説：</strong>${q.exp}</div>`;
+  }
+
+  html += `
+      </div>
+      <div style="padding:12px 16px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;">
+        <button onclick="prevQ()" style="padding:8px 16px;border:1px solid var(--bd);border-radius:8px;background:white;font-family:inherit;font-size:.82rem;cursor:pointer;" ${current===0?'disabled':''}>← 前へ</button>
+        <span style="font-size:.8rem;color:var(--tl);">回答済み：${answered.filter(a=>a!==null).length} / ${QUIZ.length}</span>
+        ${current < QUIZ.length-1
+          ? `<button onclick="nextQ()" style="padding:8px 16px;background:var(--p);color:white;border:none;border-radius:8px;font-family:inherit;font-size:.82rem;cursor:pointer;">次へ →</button>`
+          : `<button onclick="showResult()" style="padding:8px 16px;background:var(--ok);color:white;border:none;border-radius:8px;font-family:inherit;font-size:.82rem;cursor:pointer;">結果を見る 🎉</button>`
+        }
+      </div>
+    </div>
+  `;
+
+  document.getElementById('quiz-area').innerHTML = html;
+}
+
+function selectAnswer(i) {
+  if (answered[current] !== null) return;
+  answered[current] = i;
+  if (i === QUIZ[current].ans) score++;
+  renderQuiz();
+}
+
+function nextQ() { if (current < QUIZ.length-1) { current++; renderQuiz(); } }
+function prevQ() { if (current > 0) { current--; renderQuiz(); } }
+
+function showResult() {
+  const pct = Math.round(score/QUIZ.length*100);
+  let msg = '', color = '';
+  if (pct === 100) { msg = '🎉 満点！完璧です！'; color = 'var(--ok)'; }
+  else if (pct >= 70) { msg = '👍 よくできました！'; color = 'var(--p)'; }
+  else { msg = '📖 もう一度ポイントを確認しましょう。'; color = 'var(--wn)'; }
+
+  document.getElementById('quiz-result').style.display = 'block';
+  document.getElementById('quiz-result').innerHTML = `
+    <div style="background:white;border:2px solid ${color};border-radius:14px;padding:24px;text-align:center;margin-bottom:16px;">
+      <div style="font-size:2rem;font-weight:900;color:${color};">${score} / ${QUIZ.length}</div>
+      <div style="font-size:1rem;font-weight:700;color:${color};margin-top:4px;">${msg}</div>
+      <div style="font-size:.82rem;color:var(--tl);margin-top:8px;">正答率 ${pct}%</div>
+      <button onclick="resetQuiz()" style="margin-top:14px;padding:8px 20px;border:1px solid var(--bd);border-radius:8px;background:white;font-family:inherit;font-size:.82rem;cursor:pointer;">🔄 もう一度挑戦</button>
+    </div>
+  `;
+  document.getElementById('quiz-area').style.display = 'none';
+}
+
+function resetQuiz() {
+  current = 0; score = 0;
+  answered = new Array(QUIZ.length).fill(null);
+  document.getElementById('quiz-result').style.display = 'none';
+  document.getElementById('quiz-area').style.display = 'block';
+  renderQuiz();
+}
+
+// ===== 受講完了 =====
 const KEY = 'legal_abuse_' + (localStorage.getItem('e1sq4_user') || 'unknown');
 
 function markComplete() {
@@ -153,6 +371,7 @@ function showDone(ts) {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+  renderQuiz();
   const saved = localStorage.getItem(KEY);
   if (saved) showDone(saved);
 });
