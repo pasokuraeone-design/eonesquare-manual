@@ -22,6 +22,22 @@
     --text: #1e2d3d;
     --text-sub: #5a6a7a;
     --text-light: #8a9aaa;
+
+    /* 研修コンテンツ用カラー */
+    --pink: #e8476a;
+    --pink-light: #fde8ec;
+    --pink-mid: #f9b8c6;
+    --blue: #3a8fd9;
+    --blue-light: #e6f2fb;
+    --yellow: #f0b429;
+    --yellow-light: #fff8e6;
+    --green: #2eaa6a;
+    --green-light: #e6f7ef;
+    --orange: #e07a30;
+    --orange-light: #fef3e8;
+    --gray-line: #e4e8f0;
+    --navy: #1a3a5c;
+    --navy-light: #4a72b8;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -31,6 +47,7 @@
     background: var(--bg);
     color: var(--text);
     line-height: 1.7;
+    font-size: 14px;
   }
 
   .back-link {
@@ -68,16 +85,8 @@
     color: var(--accent-soft);
     margin-bottom: 6px;
   }
-  .page-header h1 {
-    font-size: 22px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-  }
-  .page-header .subtitle {
-    font-size: 12px;
-    color: rgba(255,255,255,0.65);
-    margin-top: 4px;
-  }
+  .page-header h1 { font-size: 22px; font-weight: 700; letter-spacing: 0.5px; }
+  .page-header .subtitle { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 4px; }
 
   /* ========== TABS ========== */
   .tab-bar {
@@ -101,321 +110,205 @@
     white-space: nowrap;
   }
   .tab-btn:hover { color: rgba(255,255,255,0.9); }
-  .tab-btn.active {
-    color: white;
-    border-bottom-color: var(--accent);
-  }
+  .tab-btn.active { color: white; border-bottom-color: var(--accent); }
 
   /* ========== LAYOUT ========== */
-  .main-content {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 32px 20px 60px;
-  }
-
+  .main-content { max-width: 960px; margin: 0 auto; padding: 32px 20px 80px; }
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  /* ========== SECTION TITLE ========== */
-  .section-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 20px;
-  }
-  .section-title .icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    flex-shrink: 0;
-  }
-  .icon-danger { background: var(--danger-light); }
-  .icon-warning { background: var(--warning-light); }
-  .section-title h2 {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--primary);
-  }
-  .section-title .law-ref {
-    font-size: 11px;
-    color: var(--text-light);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: 2px 8px;
-    border-radius: 20px;
-    margin-left: auto;
-    white-space: nowrap;
-  }
+  /* ========== 研修コンテンツ用スタイル ========== */
 
-  /* ========== CARD ========== */
-  .card {
-    background: var(--card);
-    border-radius: 12px;
-    border: 1px solid var(--border);
-    margin-bottom: 20px;
-    overflow: hidden;
+  /* セクションヘッダー */
+  .sec-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 14px; padding-bottom: 10px;
+    border-bottom: 2px solid var(--gray-line);
+  }
+  .sec-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .ic-yellow { background: var(--yellow-light); }
+  .ic-pink   { background: var(--pink-light); }
+  .ic-blue   { background: var(--blue-light); }
+  .ic-green  { background: var(--green-light); }
+  .ic-navy   { background: #dce6f5; }
+
+  .sec-title-wrap .ch-label { font-size: 10px; color: var(--text-light); font-weight: 600; letter-spacing: 0.05em; }
+  .sec-title-wrap h2 { font-size: 17px; font-weight: 700; color: var(--primary); line-height: 1.3; }
+
+  /* カード */
+  .r-card {
+    background: var(--card); border-radius: 12px;
+    padding: 16px 18px; border: 1px solid var(--border);
+    margin-bottom: 10px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    border-top: 3px solid var(--primary);
   }
-  .card-header {
-    padding: 14px 20px;
-    font-size: 14px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    border-bottom: 1px solid var(--border);
+  .r-card.c-pink   { border-top-color: var(--pink); }
+  .r-card.c-blue   { border-top-color: var(--blue); }
+  .r-card.c-green  { border-top-color: var(--green); }
+  .r-card.c-yellow { border-top-color: var(--yellow); }
+  .r-card.c-orange { border-top-color: var(--orange); }
+  .r-card h3 {
+    font-size: 13px; font-weight: 700; color: var(--primary);
+    margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
   }
+  .r-card.c-pink h3   { color: var(--pink); }
+  .r-card.c-blue h3   { color: var(--blue); }
+  .r-card.c-green h3  { color: var(--green); }
+  .r-card.c-orange h3 { color: var(--orange); }
+  .r-card p, .r-card li { font-size: 13px; color: var(--text-sub); line-height: 1.65; }
+  .r-card ul { padding-left: 16px; }
+  .r-card li { margin-bottom: 3px; }
+
+  /* カードグリッド */
+  .r-grid { display: grid; gap: 10px; }
+  .r-grid.col2 { grid-template-columns: 1fr 1fr; }
+  .r-grid.col3 { grid-template-columns: 1fr 1fr 1fr; }
+
+  /* ボックス */
+  .r-box { border-radius: 10px; padding: 13px 17px; margin: 8px 0; }
+  .r-box-pink   { background: var(--pink-light);   border-left: 4px solid var(--pink); }
+  .r-box-blue   { background: var(--blue-light);   border-left: 4px solid var(--blue); }
+  .r-box-yellow { background: var(--yellow-light); border-left: 4px solid var(--yellow); }
+  .r-box-green  { background: var(--green-light);  border-left: 4px solid var(--green); }
+  .r-box-navy   { background: #dce6f5;             border-left: 4px solid var(--primary); }
+  .r-box-orange { background: var(--orange-light); border-left: 4px solid var(--orange); }
+  .r-box h3 { font-size: 13px; font-weight: 700; margin-bottom: 5px; display: flex; align-items: center; gap: 5px; }
+  .r-box-pink h3   { color: var(--pink); }
+  .r-box-blue h3   { color: var(--blue); }
+  .r-box-yellow h3 { color: #8b6000; }
+  .r-box-green h3  { color: var(--green); }
+  .r-box-navy h3   { color: var(--primary); }
+  .r-box-orange h3 { color: var(--orange); }
+  .r-box p { font-size: 13px; color: var(--text); line-height: 1.7; }
+  .r-box strong { color: var(--primary); }
+
+  /* テーブル */
+  .r-tbl-wrap { background: var(--card); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .r-tbl { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .r-tbl thead tr { background: var(--primary); }
+  .r-tbl thead th { padding: 11px 14px; color: #fff; font-weight: 700; text-align: left; }
+  .r-tbl tbody tr { border-bottom: 1px solid var(--border); }
+  .r-tbl tbody tr:last-child { border-bottom: none; }
+  .r-tbl tbody tr:nth-child(even) { background: var(--bg); }
+  .r-tbl tbody td { padding: 11px 14px; vertical-align: top; line-height: 1.6; color: var(--text); }
+  .r-cat { font-weight: 700; color: var(--primary); white-space: nowrap; }
+  .r-pink-row td { background: #fff2f5 !important; }
+  .r-pink-row .r-cat { color: var(--pink); }
+
+  /* ポイントリスト */
+  .r-plist { list-style: none; padding: 0; }
+  .r-plist li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 9px; font-size: 13px; color: var(--text); line-height: 1.65; }
+  .r-pdot { flex-shrink: 0; width: 22px; height: 22px; border-radius: 50%; background: var(--primary); color: #fff; font-size: 11px; font-weight: 700; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .r-pdot.pink { background: var(--pink); }
+  .r-pdot.blue { background: var(--blue); }
+  .r-pdot.green { background: var(--green); }
+
+  /* 義務3項目グリッド */
+  .ob-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 12px; }
+  .ob-item { background: var(--card); border-radius: 10px; padding: 14px; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,0.05); border-top: 3px solid var(--primary); border: 1px solid var(--border); }
+  .ob-item.p { border-top-color: var(--pink); }
+  .ob-item.b { border-top-color: var(--blue); }
+  .ob-num { width: 34px; height: 34px; border-radius: 50%; background: var(--primary); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 900; margin: 0 auto 8px; }
+  .ob-item.p .ob-num { background: var(--pink); }
+  .ob-item.b .ob-num { background: var(--blue); }
+  .ob-item h3 { font-size: 12.5px; font-weight: 700; color: var(--primary); margin-bottom: 5px; }
+  .ob-item p { font-size: 11.5px; color: var(--text-sub); line-height: 1.5; }
+
+  /* フロー */
+  .r-flow { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; background: var(--card); padding: 13px 16px; border-radius: 10px; border: 1px solid var(--border); box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .r-fb { background: var(--primary); color: #fff; padding: 7px 12px; border-radius: 6px; font-size: 12px; font-weight: 700; }
+  .r-fb.p { background: var(--pink); }
+  .r-fb.b { background: var(--blue); }
+  .r-farr { color: var(--text-light); font-size: 15px; font-weight: 700; }
+
+  /* 区切りラベル */
+  .r-divlabel { font-size: 11px; color: var(--text-light); font-weight: 700; letter-spacing: 0.06em; margin: 12px 0 6px; display: flex; align-items: center; gap: 6px; }
+  .r-divlabel::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+  /* セクション間余白 */
+  .r-section { margin-bottom: 28px; }
+
+  /* ========== 既存スタイル（BCP・チェックリスト用）========== */
+  .section-title { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .section-title .icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .icon-warning { background: var(--warning-light); }
+  .section-title h2 { font-size: 18px; font-weight: 700; color: var(--primary); }
+  .section-title .law-ref { font-size: 11px; color: var(--text-light); background: var(--bg); border: 1px solid var(--border); padding: 2px 8px; border-radius: 20px; margin-left: auto; white-space: nowrap; }
+
+  .card { background: var(--card); border-radius: 12px; border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .card-header { padding: 14px 20px; font-size: 14px; font-weight: 700; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid var(--border); }
   .card-body { padding: 20px; }
-
-  .card-header.red { background: var(--danger-light); color: var(--danger); }
+  .card-header.red    { background: var(--danger-light);  color: var(--danger); }
   .card-header.yellow { background: var(--warning-light); color: var(--warning); }
-  .card-header.green { background: var(--success-light); color: var(--success); }
-  .card-header.blue { background: #dbeafe; color: #1e40af; }
+  .card-header.green  { background: var(--success-light); color: var(--success); }
+  .card-header.blue   { background: #dbeafe; color: #1e40af; }
 
-  /* ========== REQUIREMENT BOX ========== */
-  .req-box {
-    background: #f8f9ff;
-    border-left: 4px solid var(--primary);
-    border-radius: 0 8px 8px 0;
-    padding: 14px 16px;
-    margin-bottom: 12px;
-    font-size: 13.5px;
-  }
-  .req-box .req-title {
-    font-weight: 700;
-    font-size: 12px;
-    color: var(--primary);
-    letter-spacing: 0.5px;
-    margin-bottom: 6px;
-  }
+  .req-box { background: #f8f9ff; border-left: 4px solid var(--primary); border-radius: 0 8px 8px 0; padding: 14px 16px; margin-bottom: 12px; font-size: 13.5px; }
+  .req-box .req-title { font-weight: 700; font-size: 12px; color: var(--primary); letter-spacing: 0.5px; margin-bottom: 6px; }
   .req-box ul { padding-left: 16px; }
   .req-box ul li { margin-bottom: 4px; color: var(--text-sub); }
 
-  .three-req {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    margin: 16px 0;
-  }
-  .req-item {
-    background: var(--danger-light);
-    border-radius: 10px;
-    padding: 14px;
-    text-align: center;
-  }
-  .req-item .req-num {
-    font-size: 24px;
-    font-weight: 900;
-    color: var(--danger);
-    line-height: 1;
-  }
-  .req-item .req-label {
-    font-size: 13px;
-    font-weight: 700;
-    color: var(--danger);
-    margin: 4px 0;
-  }
-  .req-item .req-desc {
-    font-size: 11px;
-    color: var(--text-sub);
-  }
+  .three-req { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+  .req-item { background: var(--danger-light); border-radius: 10px; padding: 14px; text-align: center; }
+  .req-item .req-num { font-size: 24px; font-weight: 900; color: var(--danger); line-height: 1; }
+  .req-item .req-label { font-size: 13px; font-weight: 700; color: var(--danger); margin: 4px 0; }
+  .req-item .req-desc { font-size: 11px; color: var(--text-sub); }
 
-  /* ========== SCHEDULE TABLE ========== */
-  .schedule-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-  }
-  .schedule-table th {
-    background: var(--primary);
-    color: white;
-    padding: 10px 12px;
-    text-align: left;
-    font-size: 12px;
-    font-weight: 600;
-  }
-  .schedule-table td {
-    padding: 10px 12px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: middle;
-  }
+  .schedule-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .schedule-table th { background: var(--primary); color: white; padding: 10px 12px; text-align: left; font-size: 12px; font-weight: 600; }
+  .schedule-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
   .schedule-table tr:last-child td { border-bottom: none; }
   .schedule-table tr:nth-child(even) td { background: var(--bg); }
 
-  .badge {
-    display: inline-block;
-    padding: 2px 8px;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 700;
-    white-space: nowrap;
-  }
-  .badge-red { background: var(--danger-light); color: var(--danger); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 20px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .badge-red    { background: var(--danger-light);  color: var(--danger); }
   .badge-yellow { background: var(--warning-light); color: var(--warning); }
-  .badge-green { background: var(--success-light); color: var(--success); }
-  .badge-blue { background: #dbeafe; color: #1e40af; }
+  .badge-green  { background: var(--success-light); color: var(--success); }
+  .badge-blue   { background: #dbeafe; color: #1e40af; }
 
-  /* ========== CHECKLIST ========== */
-  .checklist-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .progress-bar-wrap {
-    flex: 1;
-    min-width: 200px;
-  }
-  .progress-info {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: var(--text-sub);
-    margin-bottom: 4px;
-  }
-  .progress-bar {
-    height: 8px;
-    background: var(--border);
-    border-radius: 4px;
-    overflow: hidden;
-  }
-  .progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--success), #4caf84);
-    border-radius: 4px;
-    transition: width 0.4s ease;
-  }
+  .checklist-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; flex-wrap: wrap; gap: 10px; }
+  .progress-bar-wrap { flex: 1; min-width: 200px; }
+  .progress-info { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-sub); margin-bottom: 4px; }
+  .progress-bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; }
+  .progress-fill { height: 100%; background: linear-gradient(90deg, var(--success), #4caf84); border-radius: 4px; transition: width 0.4s ease; }
 
-  .check-group {
-    margin-bottom: 24px;
-  }
-  .check-group-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: var(--text-light);
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 8px 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 10px;
-  }
+  .check-group { margin-bottom: 24px; }
+  .check-group-title { font-size: 12px; font-weight: 700; color: var(--text-light); letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 0; border-bottom: 1px solid var(--border); margin-bottom: 10px; }
 
-  .check-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 10px 12px;
-    border-radius: 8px;
-    margin-bottom: 6px;
-    transition: background 0.15s;
-    cursor: pointer;
-  }
+  .check-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 12px; border-radius: 8px; margin-bottom: 6px; transition: background 0.15s; cursor: pointer; }
   .check-item:hover { background: var(--bg); }
   .check-item.checked { background: var(--success-light); }
   .check-item.ng { background: var(--danger-light); }
-
-  .check-item input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    margin-top: 2px;
-    cursor: pointer;
-    accent-color: var(--success);
-    flex-shrink: 0;
-  }
-
+  .check-item input[type="checkbox"] { width: 18px; height: 18px; margin-top: 2px; cursor: pointer; accent-color: var(--success); flex-shrink: 0; }
   .check-item-content { flex: 1; }
-  .check-item-no {
-    font-size: 10px;
-    color: var(--text-light);
-    font-weight: 700;
-  }
-  .check-item-text {
-    font-size: 13px;
-    color: var(--text);
-    line-height: 1.5;
-  }
-  .check-item-ref {
-    font-size: 11px;
-    color: var(--text-light);
-    margin-top: 2px;
-  }
+  .check-item-no { font-size: 10px; color: var(--text-light); font-weight: 700; }
+  .check-item-text { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .check-item-ref { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+  .check-item select { margin-top: 6px; font-size: 12px; padding: 4px 8px; border: 1px solid var(--border); border-radius: 6px; background: white; color: var(--text); cursor: pointer; }
 
-  .check-item select {
-    margin-top: 6px;
-    font-size: 12px;
-    padding: 4px 8px;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    background: white;
-    color: var(--text);
-    cursor: pointer;
-  }
+  .alert { padding: 12px 16px; border-radius: 8px; font-size: 13px; margin-bottom: 14px; display: flex; gap: 8px; align-items: flex-start; }
+  .alert-danger  { background: var(--danger-light);  color: var(--danger);  border-left: 4px solid var(--danger); }
+  .alert-warning { background: var(--warning-light); color: var(--warning); border-left: 4px solid #f0a500; }
+  .alert-info    { background: #dbeafe; color: #1e40af; border-left: 4px solid #3b82f6; }
 
-  /* ========== SAVE BTN ========== */
-  .save-bar {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: white;
-    border-top: 1px solid var(--border);
-    padding: 12px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 -4px 16px rgba(0,0,0,0.08);
-    z-index: 99;
-  }
-  .save-bar .status-text {
-    font-size: 13px;
-    color: var(--text-sub);
-  }
-  .btn {
-    padding: 10px 24px;
-    border-radius: 8px;
-    font-size: 14px;
-    font-weight: 700;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .btn-primary {
-    background: var(--primary);
-    color: white;
-  }
+  .save-bar { position: fixed; bottom: 0; left: 0; right: 0; background: white; border-top: 1px solid var(--border); padding: 12px 20px; display: flex; align-items: center; justify-content: space-between; box-shadow: 0 -4px 16px rgba(0,0,0,0.08); z-index: 99; }
+  .save-bar .status-text { font-size: 13px; color: var(--text-sub); }
+  .btn { padding: 10px 24px; border-radius: 8px; font-size: 14px; font-weight: 700; border: none; cursor: pointer; transition: all 0.2s; }
+  .btn-primary { background: var(--primary); color: white; }
   .btn-primary:hover { background: var(--primary-light); }
-  .btn-accent {
-    background: var(--accent);
-    color: white;
-  }
+  .btn-accent { background: var(--accent); color: white; }
   .btn-accent:hover { opacity: 0.9; }
   .btn-sm { padding: 6px 14px; font-size: 12px; }
 
-  /* ========== ALERT ========== */
-  .alert {
-    padding: 12px 16px;
-    border-radius: 8px;
-    font-size: 13px;
-    margin-bottom: 14px;
-    display: flex;
-    gap: 8px;
-    align-items: flex-start;
-  }
-  .alert-danger { background: var(--danger-light); color: var(--danger); border-left: 4px solid var(--danger); }
-  .alert-warning { background: var(--warning-light); color: var(--warning); border-left: 4px solid #f0a500; }
-  .alert-info { background: #dbeafe; color: #1e40af; border-left: 4px solid #3b82f6; }
-
-  /* ========== RESPONSIVE ========== */
   @media (max-width: 600px) {
     .page-header { padding: 20px; }
     .main-content { padding: 20px 12px 80px; }
-    .three-req { grid-template-columns: 1fr; }
+    .three-req, .ob-grid, .r-grid.col2, .r-grid.col3 { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -431,137 +324,271 @@
 </header>
 
 <div class="tab-bar">
-  <button class="tab-btn active" onclick="switchTab('abuse')">虐待防止・身体拘束</button>
-  <button class="tab-btn" onclick="switchTab('bcp')">BCP・緊急時対応</button>
-  <button class="tab-btn" onclick="switchTab('checklist')">自己チェックシート</button>
+  <button class="tab-btn active" onclick="switchTab('abuse', this)">虐待防止研修</button>
+  <button class="tab-btn" onclick="switchTab('bcp', this)">BCP・緊急時対応</button>
+  <button class="tab-btn" onclick="switchTab('checklist', this)">自己チェックシート</button>
 </div>
 
 <!-- ============================
-     TAB 1: 虐待防止・身体拘束
+     TAB 1: 虐待防止研修（全面リニューアル）
 ============================= -->
 <div class="tab-panel active" id="tab-abuse">
 <div class="main-content">
 
-  <div class="section-title">
-    <div class="icon icon-danger">🛡️</div>
-    <div>
-      <h2>虐待防止・身体拘束の適正化</h2>
+  <!-- はじめに -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-yellow">⚖️</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">はじめに</div>
+        <h2>なぜこの研修が必要なのか</h2>
+      </div>
     </div>
-    <div class="law-ref">指定基準 第40条の２・第35条の２</div>
-  </div>
-
-  <div class="alert alert-danger">
-    ⚠️ 共同生活援助における虐待判断件数は毎年増加傾向にあり、他サービスと比較して高い割合となっています。事業所全体での取り組みが必須です。
-  </div>
-
-  <!-- 義務事項一覧 -->
-  <div class="card">
-    <div class="card-header red">🔴 義務事項（指定基準・虐待防止）</div>
-    <div class="card-body">
-      <div class="req-box">
-        <div class="req-title">① 虐待防止委員会</div>
-        <ul>
-          <li>定期開催：<strong>少なくとも年1回以上</strong></li>
-          <li>結果を全従業者に周知徹底</li>
-          <li>苦情解決の第三者委員等の外部委員を入れること（推奨）</li>
-          <li>責任者は通常、管理者が担う</li>
-        </ul>
-      </div>
-      <div class="req-box">
-        <div class="req-title">② 虐待防止のための研修</div>
-        <ul>
-          <li>定期実施：<strong>年1回以上</strong></li>
-          <li><strong>新規採用時には必ず実施</strong></li>
-          <li>事業所内研修＋自治体等の外部研修への参加も重要</li>
-          <li>「障害者福祉施設等における障害者虐待の防止と対応の手引き」を必読とすること</li>
-        </ul>
-      </div>
-      <div class="req-box">
-        <div class="req-title">③ 虐待防止担当者の設置</div>
-        <ul>
-          <li>措置を適切に実施するための担当者を置くこと</li>
-          <li>サービス管理責任者等を担当者として配置することを推奨</li>
-        </ul>
-      </div>
-      <div class="req-box">
-        <div class="req-title">④ 虐待発見時の通報義務（障害者虐待防止法 第16条）</div>
-        <ul>
-          <li>虐待を受けたと思われる利用者を発見した場合、<strong>市町村の障害者虐待対応窓口へ通報する義務がある</strong></li>
-          <li>事業所内だけで収束させず、必ず行政と連携して対応する</li>
-        </ul>
-      </div>
+    <div class="r-box r-box-yellow">
+      <h3>⚠️ 令和4年度から義務化されました</h3>
+      <p>障害福祉サービス等の報酬改定により、<strong>①虐待防止委員会の開催、②職員研修の実施、③虐待防止責任者の設置</strong>が義務化されました。不備がある場合は<strong>減算の対象</strong>となります。身体拘束適正化も同時に義務化されています。</p>
+    </div>
+    <div class="r-box r-box-navy">
+      <h3>📋 障害者虐待防止法（平成24年施行）</h3>
+      <p>「何人も、障害者に対し、虐待をしてはならない」（第3条）。施設設置者には、<strong>職員研修の実施・苦情解決体制の整備・虐待防止措置</strong>を講ずることが義務づけられています（第15条）。</p>
     </div>
   </div>
 
-  <!-- 身体拘束3要件 -->
-  <div class="card">
-    <div class="card-header red">🔴 身体拘束等の禁止と「やむを得ない場合」の3要件</div>
-    <div class="card-body">
-      <div class="alert alert-warning">
-        ⚡ 原則禁止です。以下の3要件を<strong>すべて</strong>満たす場合のみ、組織的・慎重な判断のもとで例外が認められます。
-      </div>
-
-      <div class="three-req">
-        <div class="req-item">
-          <div class="req-num">①</div>
-          <div class="req-label">切迫性</div>
-          <div class="req-desc">利用者本人または他の利用者の生命・身体に危険が切迫している</div>
-        </div>
-        <div class="req-item">
-          <div class="req-num">②</div>
-          <div class="req-label">非代替性</div>
-          <div class="req-desc">身体拘束以外に代替する手段がない</div>
-        </div>
-        <div class="req-item">
-          <div class="req-num">③</div>
-          <div class="req-label">一時性</div>
-          <div class="req-desc">一時的なものである（長期継続しない）</div>
-        </div>
-      </div>
-
-      <div class="req-box">
-        <div class="req-title">やむを得ず実施した場合に必須の記録事項</div>
-        <ul>
-          <li>身体拘束の態様・時間</li>
-          <li>その際の利用者の心身の状況</li>
-          <li>緊急やむを得ない理由</li>
-          <li>個別支援計画への記載＋利用者・家族への事前説明・了解取得</li>
-        </ul>
-      </div>
-
-      <div class="alert alert-info">
-        💡 「要件を満たせば行ってよい」ではなく、常に廃止・短縮へ向けた方策を検討し、定期的なモニタリングを行うこと。
+  <!-- 第1章：虐待の5種類 -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-navy">📋</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第1章 セクション1</div>
+        <h2>障害者虐待の5種類</h2>
       </div>
     </div>
-  </div>
-
-  <!-- 身体拘束適正化の義務措置 -->
-  <div class="card">
-    <div class="card-header yellow">🟡 身体拘束等の適正化に向けた義務措置</div>
-    <div class="card-body">
-      <table class="schedule-table">
+    <div class="r-box r-box-pink">
+      <h3>🔴 重要なポイント</h3>
+      <p>「指導のつもり」「しつけのため」であっても、<strong>本人が傷ついたり追い込まれたりすれば虐待</strong>です。意図は問われません。「どこまでが不適切か」より、<strong>不適切な支援そのものをなくす</strong>ことが大切です。</p>
+    </div>
+    <div class="r-tbl-wrap" style="margin-top:10px;">
+      <table class="r-tbl">
         <thead>
-          <tr><th>措置内容</th><th>頻度・要件</th></tr>
+          <tr><th style="width:28%">種類</th><th>具体例</th></tr>
         </thead>
         <tbody>
-          <tr><td>身体拘束適正化検討委員会の開催</td><td><span class="badge badge-red">少なくとも年1回</span></td></tr>
-          <tr><td>身体拘束等の適正化のための指針の整備</td><td><span class="badge badge-red">必須</span></td></tr>
-          <tr><td>従業者への研修実施</td><td><span class="badge badge-red">年1回以上・新規採用時必須</span></td></tr>
-          <tr><td>実施時の記録（態様・時間・心身状況・理由）</td><td><span class="badge badge-red">実施の都度</span></td></tr>
-          <tr><td>個別支援計画への記載と本人・家族への説明・同意</td><td><span class="badge badge-yellow">実施前に必ず</span></td></tr>
+          <tr>
+            <td class="r-cat">身体的虐待</td>
+            <td>叩く・蹴る・<strong>正当な理由のない身体拘束</strong>・つなぎ服の着用</td>
+          </tr>
+          <tr>
+            <td class="r-cat">性的虐待</td>
+            <td>性的な行為の強要・わいせつな映像を見せる</td>
+          </tr>
+          <tr>
+            <td class="r-cat">心理的虐待</td>
+            <td>怒鳴る・無視・子ども扱いする・差別的言動</td>
+          </tr>
+          <tr class="r-pink-row">
+            <td class="r-cat">放棄・放置<br><small style="font-weight:400">（ネグレクト）</small></td>
+            <td>食事を与えない・入浴させない・受診させない</td>
+          </tr>
+          <tr>
+            <td class="r-cat">経済的虐待</td>
+            <td>年金・賃金を渡さない・無断で財産を処分する</td>
+          </tr>
         </tbody>
       </table>
-      <div class="alert alert-danger" style="margin-top:14px">
-        ⚠️ 必要な記録がされていない場合は<strong>指定基準違反</strong>となります。
+    </div>
+    <div class="r-box r-box-blue" style="margin-top:10px;">
+      <h3>ℹ️ 身体拘束の3要件（やむを得ない場合のみ）</h3>
+      <p><strong>切迫性</strong>（生命・身体に危険）・<strong>非代替性</strong>（他の方法がない）・<strong>一時性</strong>（短期間のみ）の3つをすべて満たす場合のみ、<strong>組織判断のうえで記録に残します</strong>。</p>
+    </div>
+  </div>
+
+  <!-- 第1章：背景 -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-pink">⚠️</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第1章 セクション2</div>
+        <h2>虐待が起きやすい背景</h2>
+      </div>
+    </div>
+    <div class="r-box r-box-pink">
+      <h3>🔴 虐待は「特別な人」がするわけではない</h3>
+      <p>虐待は「しよう！」と思っている人はほぼいません。<strong>職員の孤立・ストレス・少しの気の緩み</strong>から発生します。「小さな不適切な関わり」が積み重なり感覚がマヒしエスカレートしていくのです。グループホームは一人勤務で密室性が高く、追い詰められやすい環境です。<strong>日頃からの連携と相談が大切です。</strong></p>
+    </div>
+    <div class="r-grid col3" style="margin-top:10px;">
+      <div class="r-card c-pink">
+        <h3>🚪 密室性が高い</h3>
+        <p>外部の目が届きにくく、閉鎖的な環境で支援が行われる</p>
+      </div>
+      <div class="r-card c-blue">
+        <h3>😰 職員の負担</h3>
+        <p>一人夜勤・人手不足・行動障害への対応困難などストレスが蓄積</p>
+      </div>
+      <div class="r-card c-yellow">
+        <h3>📉 力関係の差</h3>
+        <p>利用者は「不当なこと」と訴えることが難しい非対称な関係</p>
+      </div>
+    </div>
+    <div class="r-box r-box-yellow" style="margin-top:10px;">
+      <h3>💡 自分に問いかけてみましょう</h3>
+      <p>「自分がされたら嫌なことを利用者にしていませんか。常に相手の立場で、適切な支援を心がけましょう」（厚生労働省通知より）</p>
+    </div>
+  </div>
+
+  <!-- 第2章：体制整備 -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-blue">🏛️</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第2章 セクション1</div>
+        <h2>虐待防止のための体制整備</h2>
+      </div>
+    </div>
+    <div class="ob-grid">
+      <div class="ob-item">
+        <div class="ob-num">1</div>
+        <h3>虐待防止委員会</h3>
+        <p>定期開催し、結果を全職員に周知。法人単位での設置も可。</p>
+      </div>
+      <div class="ob-item p">
+        <div class="ob-num">2</div>
+        <h3>職員研修の実施</h3>
+        <p>年1回以上。外部研修への参加も認められる。</p>
+      </div>
+      <div class="ob-item b">
+        <div class="ob-num">3</div>
+        <h3>責任者の設置</h3>
+        <p>虐待防止責任者を置く（管理者兼務可）。</p>
+      </div>
+    </div>
+    <div class="r-box r-box-green">
+      <h3>✅ チェックリストを活用しよう</h3>
+      <p>「A：体制整備チェックリスト」と「C：職員セルフチェックリスト」を最低年1回実施し、PDCAサイクルで継続的に改善していきましょう。形式的に整備するだけでなく、<strong>実際に機能させること</strong>が重要です。</p>
+    </div>
+    <div class="r-box r-box-orange" style="margin-top:8px;">
+      <h3>⚠️ 不備があると減算になります</h3>
+      <p>身体拘束適正化については①記録の整備、②委員会開催、③指針の作成、④研修の実施がすべて義務。令和5年度からは訪問系サービスも含め全項目が減算適用対象です。</p>
+    </div>
+  </div>
+
+  <!-- 第3章：通報義務 -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-pink">🚨</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第3章 セクション1・2</div>
+        <h2>通報義務と発生時の対応</h2>
+      </div>
+    </div>
+    <div class="r-box r-box-pink">
+      <h3>🚨 通報は「義務」です（第16条）</h3>
+      <p>虐待を受けたと思われる障害者を発見した者は、<strong>速やかに市町村に通報しなければなりません</strong>。守秘義務はこの通報を妨げません。通報したことによる不利益な取り扱いは禁止されています。<strong>「通報しない」という選択肢はありません。</strong></p>
+    </div>
+    <div class="r-divlabel">📋 発生時の対応フロー</div>
+    <div class="r-flow" style="margin-bottom:12px;">
+      <div class="r-fb p">虐待を発見・気づく</div>
+      <div class="r-farr">→</div>
+      <div class="r-fb">管理者へ報告</div>
+      <div class="r-farr">→</div>
+      <div class="r-fb">市町村へ通報</div>
+      <div class="r-farr">→</div>
+      <div class="r-fb b">事実確認・対応</div>
+    </div>
+    <div class="r-grid col2">
+      <div class="r-card c-green">
+        <h3>✅ 通報することで</h3>
+        <ul>
+          <li>利用者の被害を最小限に留められる</li>
+          <li>職員のやり直しの機会が残る</li>
+          <li>施設の処分・賠償が大きくならない</li>
+          <li>再発防止・支援質向上のきっかけに</li>
+        </ul>
+      </div>
+      <div class="r-card c-pink">
+        <h3>⚠️ 「軽微だから」は禁物</h3>
+        <ul>
+          <li>不適切ケアは虐待へとエスカレートする</li>
+          <li>早期発見こそが最も効果的な防止策</li>
+          <li>迷ったら必ず管理者に相談する</li>
+          <li>「通報は全ての人を救う」</li>
+        </ul>
       </div>
     </div>
   </div>
 
-  <!-- 身体拘束に該当しない例外 -->
-  <div class="card">
-    <div class="card-header blue">ℹ️ 身体拘束に該当しない場合（注意点）</div>
-    <div class="card-body" style="font-size:13.5px; color:var(--text-sub); line-height:1.8">
-      座位保持装置等にみられるように、<strong>身体の変形や拘縮を防止し、体幹を安定させることで活動性を高める目的</strong>で使用されるベルトやテーブルについては、一律に身体拘束と判断することは適当ではありません。<strong>目的に応じて適切に判断</strong>することが求められます。
+  <!-- 早期発見 -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-green">🔍</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第3章 セクション1</div>
+        <h2>虐待早期発見のチェックポイント</h2>
+      </div>
+    </div>
+    <div class="r-grid col2">
+      <div class="r-card c-pink">
+        <h3>🔴 身体面のサイン</h3>
+        <ul>
+          <li>説明のつかない傷・あざ・骨折</li>
+          <li>急激な体重減少・不衛生な状態</li>
+          <li>オムツかぶれがひどい</li>
+          <li>医療・介護の放置</li>
+        </ul>
+      </div>
+      <div class="r-card c-blue">
+        <h3>🔵 精神面のサイン</h3>
+        <ul>
+          <li>過度な不安・萎縮・おびえ</li>
+          <li>特定の職員を怖がる</li>
+          <li>急な問題行動の増加</li>
+          <li>無気力・ふさぎ込み</li>
+        </ul>
+      </div>
+      <div class="r-card">
+        <h3>💰 経済面のサイン</h3>
+        <ul>
+          <li>手元のお金が極端に少ない</li>
+          <li>金銭管理の状況が不透明</li>
+          <li>突然の大きな出費・財産減少</li>
+        </ul>
+      </div>
+      <div class="r-card c-yellow">
+        <h3>👥 職場環境のサイン</h3>
+        <ul>
+          <li>特定職員の言動への違和感</li>
+          <li>支援記録の不自然な記載</li>
+          <li>職員間の報告・連絡がない</li>
+        </ul>
+      </div>
+    </div>
+    <div class="r-box r-box-blue" style="margin-top:10px;">
+      <h3>💡 「なんとなく変」が大切</h3>
+      <p>明確な証拠がなくても、「なんとなくいつもと違う」と感じたら必ず管理者に相談しましょう。チームで見守る意識が虐待防止の基盤です。</p>
+    </div>
+  </div>
+
+  <!-- まとめ -->
+  <div class="r-section">
+    <div class="sec-head">
+      <div class="sec-icon ic-green">✅</div>
+      <div class="sec-title-wrap">
+        <div class="ch-label">第4章 まとめ</div>
+        <h2>今日の研修の要点</h2>
+      </div>
+    </div>
+    <ul class="r-plist">
+      <li><div class="r-pdot">1</div><div>虐待には5つの類型があり、<strong>身体拘束も正当な理由がなければ身体的虐待</strong>にあたる</div></li>
+      <li><div class="r-pdot">2</div><div>虐待は特別な人が起こすのではなく、<strong>どの施設でも起こり得る</strong>。ストレス・孤立・密室性が背景にある</div></li>
+      <li><div class="r-pdot pink">3</div><div>虐待を発見した者には<strong>市町村への通報義務</strong>があり、「通報は全ての人を救う」行為である</div></li>
+      <li><div class="r-pdot pink">4</div><div>令和4年度から<strong>虐待防止委員会・研修・責任者設置が義務化</strong>。不備は減算対象になる</div></li>
+      <li><div class="r-pdot blue">5</div><div>「不適切ケアをなくす」だけでなく、<strong>質の高い支援を積極的に追求する</strong>ことが虐待防止につながる</div></li>
+    </ul>
+    <div class="r-box r-box-green" style="margin-top:12px;">
+      <h3>🤝 あなたへのお願い</h3>
+      <p>悩んだとき・違和感を覚えたときは、一人で抱え込まずに必ず管理者や同僚に相談してください。<strong>相談しやすい職場の雰囲気をみんなで作っていきましょう。</strong></p>
+    </div>
+    <div style="font-size:11px; color:var(--text-light); margin-top:14px; text-align:right;">
+      出典：全国社会福祉協議会「虐待防止のための研修ガイドブック」令和4年版
     </div>
   </div>
 
@@ -569,20 +596,17 @@
 </div><!-- /tab-abuse -->
 
 <!-- ============================
-     TAB 2: BCP・緊急時対応
+     TAB 2: BCP・緊急時対応（既存のまま）
 ============================= -->
 <div class="tab-panel" id="tab-bcp">
 <div class="main-content">
 
   <div class="section-title">
     <div class="icon icon-warning">⚡</div>
-    <div>
-      <h2>BCP・緊急時・非常災害対応</h2>
-    </div>
+    <div><h2>BCP・緊急時・非常災害対応</h2></div>
     <div class="law-ref">指定基準 第28条・第40条・第70条・第33条の２</div>
   </div>
 
-  <!-- 年間義務スケジュール一覧 -->
   <div class="card">
     <div class="card-header yellow">📅 義務対応スケジュール一覧（年間）</div>
     <div class="card-body">
@@ -632,7 +656,6 @@
     </div>
   </div>
 
-  <!-- BCP要件 -->
   <div class="card">
     <div class="card-header yellow">📄 業務継続計画（BCP）の策定要件</div>
     <div class="card-body">
@@ -644,20 +667,12 @@
           <li>自力でサービス提供する場合と<strong>他の事業所等へ避難する場合</strong>の双方を検討</li>
         </ul>
       </div>
-      <div class="req-box">
-        <div class="req-title">参照すべきガイドライン（厚労省）</div>
-        <ul>
-          <li>「障害福祉サービス事業所等における新型コロナウイルス感染症発生時の業務継続ガイドライン」</li>
-          <li>「障害福祉サービス事業所等における自然災害発生時の業務継続ガイドライン」</li>
-        </ul>
-      </div>
       <div class="alert alert-info">
         💡 研修・訓練は<strong>全ての従業者が参加できるよう</strong>設定することが望ましい。新規採用時にも別途実施を推奨。
       </div>
     </div>
   </div>
 
-  <!-- 緊急時対応 -->
   <div class="card">
     <div class="card-header red">🚨 緊急時・事故発生時の対応フロー</div>
     <div class="card-body">
@@ -676,7 +691,6 @@
           <li>事故の状況と取った処置を<strong>記録する</strong></li>
           <li>賠償すべき事故の場合は<strong>速やかに損害賠償</strong></li>
           <li>AED（自動体外式除細動器）の設置が望ましい</li>
-          <li>従業者は救急講習等を受講することが望ましい</li>
         </ul>
       </div>
       <div class="req-box">
@@ -686,24 +700,15 @@
           <li>非常災害に関する具体的計画を策定・定期的に周知</li>
           <li>消防機関への通報体制を職員に周知徹底</li>
           <li>消防団・地域住民との連携体制づくり</li>
-          <li>利用者の障害種別・特性に応じた災害時対応を日頃から理解しておく</li>
           <li>訓練は地域住民の参加を得るようにすること</li>
         </ul>
       </div>
     </div>
   </div>
 
-  <!-- 衛生管理 -->
   <div class="card">
     <div class="card-header green">🧼 衛生管理等（指定基準 第90条）</div>
     <div class="card-body">
-      <div class="req-box">
-        <div class="req-title">日常の衛生管理（義務）</div>
-        <ul>
-          <li>従業者への清潔確保の徹底（手洗い・手指消毒・換気等）</li>
-          <li>手指洗浄設備・使い捨て手袋等の感染防止備品を常備</li>
-        </ul>
-      </div>
       <div class="req-box">
         <div class="req-title">感染症・食中毒対策（義務）</div>
         <ul>
@@ -719,16 +724,14 @@
 </div><!-- /tab-bcp -->
 
 <!-- ============================
-     TAB 3: 自己チェックシート
+     TAB 3: 自己チェックシート（既存のまま）
 ============================= -->
 <div class="tab-panel" id="tab-checklist">
 <div class="main-content">
 
   <div class="section-title">
     <div class="icon" style="background:#dbeafe;">✅</div>
-    <div>
-      <h2>自己チェックシート（ガイドライン準拠）</h2>
-    </div>
+    <div><h2>自己チェックシート（ガイドライン準拠）</h2></div>
   </div>
 
   <div class="alert alert-info">
@@ -748,10 +751,8 @@
     <button class="btn btn-sm btn-accent" onclick="resetAll()">🔄 リセット</button>
   </div>
 
-  <!-- ===== グループ1: 緊急時・事故・非常災害 ===== -->
   <div class="check-group">
     <div class="check-group-title">緊急時・事故発生時・非常災害対策</div>
-
     <div class="check-item" id="ci-20" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -766,7 +767,6 @@
         </select>
       </div>
     </div>
-
     <div class="check-item" id="ci-21" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -781,7 +781,6 @@
         </select>
       </div>
     </div>
-
     <div class="check-item" id="ci-22" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -796,7 +795,6 @@
         </select>
       </div>
     </div>
-
     <div class="check-item" id="ci-23" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -811,7 +809,6 @@
         </select>
       </div>
     </div>
-
     <div class="check-item" id="ci-25" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -826,7 +823,6 @@
         </select>
       </div>
     </div>
-
     <div class="check-item" id="ci-28" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -843,10 +839,8 @@
     </div>
   </div>
 
-  <!-- ===== グループ2: BCP ===== -->
   <div class="check-group">
     <div class="check-group-title">業務継続計画（BCP）</div>
-
     <div class="check-item" id="ci-29" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -861,7 +855,6 @@
         </select>
       </div>
     </div>
-
     <div class="check-item" id="ci-30" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -878,10 +871,8 @@
     </div>
   </div>
 
-  <!-- ===== グループ3: 衛生管理 ===== -->
   <div class="check-group">
     <div class="check-group-title">衛生管理・感染症対策</div>
-
     <div class="check-item" id="ci-31" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -896,7 +887,6 @@
         </select>
       </div>
     </div>
-
     <div class="check-item" id="ci-32" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -911,7 +901,6 @@
         </select>
       </div>
     </div>
-
     <div class="check-item" id="ci-33" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -928,10 +917,8 @@
     </div>
   </div>
 
-  <!-- ===== グループ4: 虐待防止 ===== -->
   <div class="check-group">
     <div class="check-group-title">虐待防止の取組</div>
-
     <div class="check-item" id="ci-59" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -946,7 +933,6 @@
         </select>
       </div>
     </div>
-
     <div class="check-item" id="ci-60" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -963,15 +949,13 @@
     </div>
   </div>
 
-  <!-- ===== グループ5: 身体拘束 ===== -->
   <div class="check-group">
     <div class="check-group-title">身体拘束等の禁止・適正化</div>
-
     <div class="check-item" id="ci-61" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
         <div class="check-item-no">No.61</div>
-        <div class="check-item-text">利用者や他の利用者の生命又は身体を保護するために緊急やむを得ない場合を除き、身体拘束等（押さえつけ・居室等への隔離等）を行っていないか。</div>
+        <div class="check-item-text">利用者や他の利用者の生命又は身体を保護するために緊急やむを得ない場合を除き、身体拘束等を行っていないか。</div>
         <div class="check-item-ref">根拠：ガイドライン p.39-40</div>
         <select onchange="event.stopPropagation(); updateStatus(this.closest('.check-item'), this.value)">
           <option value="">選択してください</option>
@@ -981,7 +965,6 @@
         </select>
       </div>
     </div>
-
     <div class="check-item" id="ci-62" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -996,7 +979,6 @@
         </select>
       </div>
     </div>
-
     <div class="check-item" id="ci-63" onclick="toggleCheck(this)">
       <input type="checkbox" onclick="event.stopPropagation()">
       <div class="check-item-content">
@@ -1013,7 +995,6 @@
     </div>
   </div>
 
-  <!-- メモ欄 -->
   <div class="card">
     <div class="card-header blue">📝 備考・改善課題メモ</div>
     <div class="card-body">
@@ -1028,21 +1009,19 @@
 <div class="save-bar">
   <div class="status-text" id="save-status">未保存</div>
   <div style="display:flex;gap:10px">
-    <button class="btn btn-sm btn-primary" onclick="printSheet()">🖨️ 印刷</button>
+    <button class="btn btn-sm btn-primary" onclick="window.print()">🖨️ 印刷</button>
     <button class="btn btn-accent" onclick="saveData()">💾 保存</button>
   </div>
 </div>
 
 <script>
-  // ===== TAB SWITCH =====
-  function switchTab(name) {
+  function switchTab(name, btn) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
     document.getElementById('tab-' + name).classList.add('active');
-    event.target.classList.add('active');
+    btn.classList.add('active');
   }
 
-  // ===== CHECKBOX =====
   function toggleCheck(item) {
     const cb = item.querySelector('input[type="checkbox"]');
     cb.checked = !cb.checked;
@@ -1059,8 +1038,7 @@
 
   function updateProgress() {
     const selects = document.querySelectorAll('.check-item select');
-    let total = selects.length;
-    let done = 0;
+    let total = selects.length, done = 0;
     selects.forEach(s => { if (s.value === 'yes') done++; });
     document.getElementById('progress-text').textContent = done + ' / ' + total + ' 項目（はい）';
     document.getElementById('progress-fill').style.width = (total > 0 ? (done/total*100) : 0) + '%';
@@ -1078,7 +1056,6 @@
     document.getElementById('save-status').textContent = 'リセットしました';
   }
 
-  // ===== SAVE (localStorage) =====
   function saveData() {
     const data = {};
     document.querySelectorAll('.check-item').forEach(item => {
@@ -1088,8 +1065,7 @@
     data['memo'] = document.getElementById('memo-field').value;
     data['saved_at'] = new Date().toLocaleString('ja-JP');
     localStorage.setItem('eonesquare_checklist', JSON.stringify(data));
-    const now = new Date().toLocaleString('ja-JP');
-    document.getElementById('save-status').textContent = '✅ 保存しました（' + now + '）';
+    document.getElementById('save-status').textContent = '✅ 保存しました（' + new Date().toLocaleString('ja-JP') + '）';
   }
 
   function loadData() {
@@ -1098,34 +1074,18 @@
     try {
       const data = JSON.parse(raw);
       Object.keys(data).forEach(key => {
-        if (key === 'memo') {
-          document.getElementById('memo-field').value = data[key];
-        } else if (key === 'saved_at') {
-          document.getElementById('save-status').textContent = '前回保存：' + data[key];
-        } else {
+        if (key === 'memo') { document.getElementById('memo-field').value = data[key]; }
+        else if (key === 'saved_at') { document.getElementById('save-status').textContent = '前回保存：' + data[key]; }
+        else {
           const item = document.getElementById(key);
-          if (item) {
-            const sel = item.querySelector('select');
-            if (sel) {
-              sel.value = data[key];
-              updateStatus(item, data[key]);
-            }
-          }
+          if (item) { const sel = item.querySelector('select'); if (sel) { sel.value = data[key]; updateStatus(item, data[key]); } }
         }
       });
       updateProgress();
     } catch(e) {}
   }
 
-  function printSheet() {
-    window.print();
-  }
-
-  // 初期化
-  window.addEventListener('DOMContentLoaded', () => {
-    loadData();
-    updateProgress();
-  });
+  window.addEventListener('DOMContentLoaded', () => { loadData(); updateProgress(); });
 </script>
 
 </body>
